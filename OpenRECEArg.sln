@@ -1,0 +1,38 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 2012
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Logica", "Logica\Logica.csproj", "{AA656BCA-BB12-45BE-A938-26FE0FAD8C88}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Datos", "Datos\Datos.csproj", "{B5D673DF-17B3-464F-A87E-42588C9E3675}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Entidades", "Entidades\Entidades.csproj", "{41D61EAA-E22F-413C-9B9E-2FE4F25EDAF0}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OpenRECE", "WinRECE\OpenRECE.csproj", "{319369C5-D821-426E-BF46-6AE8AB3EEFDB}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{AA656BCA-BB12-45BE-A938-26FE0FAD8C88}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{AA656BCA-BB12-45BE-A938-26FE0FAD8C88}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{AA656BCA-BB12-45BE-A938-26FE0FAD8C88}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{AA656BCA-BB12-45BE-A938-26FE0FAD8C88}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B5D673DF-17B3-464F-A87E-42588C9E3675}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B5D673DF-17B3-464F-A87E-42588C9E3675}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B5D673DF-17B3-464F-A87E-42588C9E3675}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B5D673DF-17B3-464F-A87E-42588C9E3675}.Release|Any CPU.Build.0 = Release|Any CPU
+		{41D61EAA-E22F-413C-9B9E-2FE4F25EDAF0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{41D61EAA-E22F-413C-9B9E-2FE4F25EDAF0}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{41D61EAA-E22F-413C-9B9E-2FE4F25EDAF0}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{41D61EAA-E22F-413C-9B9E-2FE4F25EDAF0}.Release|Any CPU.Build.0 = Release|Any CPU
+		{319369C5-D821-426E-BF46-6AE8AB3EEFDB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{319369C5-D821-426E-BF46-6AE8AB3EEFDB}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{319369C5-D821-426E-BF46-6AE8AB3EEFDB}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{319369C5-D821-426E-BF46-6AE8AB3EEFDB}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal
