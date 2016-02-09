@@ -43,15 +43,27 @@ namespace OpenRECE
             {
                 MessageBox.Show("Para utilizar el programa primero debe cargar el certificado desde Configuracion -> Certificado");
             }
+            else
+            {
+                pedirTicketAcceso();
+            }
+        }
+
+        /// <summary>
+        /// Control del Botón de Pedir Ticket de Acceso.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void btnSolicitarTA_Click(object sender, EventArgs e)
+        {
+            pedirTicketAcceso();
         }
 
         /// <summary>
         /// Control del Botón de Pedir Ticket de Acceso.
         /// Si hay uno vigente en la B.D. utiliza este, sino pide uno nuevo al WebService.
         /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-        private void btnSolicitarTA_Click(object sender, EventArgs e)
+        private void pedirTicketAcceso()
         {
             objEntidadesConfiguracionCertificado = objLogicaConfiguracionCertificado.TraerConfiguracion();
             /*Verifica si tiene una configuracion cargada en la B.D.*/
@@ -69,8 +81,8 @@ namespace OpenRECE
                 {
                     /*No hay ningún Ticket de Acceso habilitado en la base de Datos, se pedirá uno nuevo*/
                     Entidades.CertificadosX509 objEntidadesCertificado = new Entidades.CertificadosX509();
-                    Logica.CertificadosX509 objLogicaCertificado = new Logica.CertificadosX509();                                        
-                    
+                    Logica.CertificadosX509 objLogicaCertificado = new Logica.CertificadosX509();
+
                     objEntidadesCertificado.IdServicioNegocio = DEFAULT_SERVICIO;
 
                     if (objEntidadesConfiguracionCertificado.TipoAprobacion == 'P')
@@ -83,7 +95,7 @@ namespace OpenRECE
                     }
 
                     /*Pido en el WebService un Nuevo Ticket de Acceso*/
-                    Logica.Tickets objTicketRespuesta = new Logica.Tickets();                    
+                    Logica.Tickets objTicketRespuesta = new Logica.Tickets();
                     objEntidadesTicket_Acceso = objTicketRespuesta.Gestionar_TA(objEntidadesCertificado);
 
                     if (objEntidadesTicket_Acceso.Sign != null)
@@ -137,6 +149,42 @@ namespace OpenRECE
 
             objTiposCbtes.ShowDialog();
 
+        }
+
+        /// <summary>
+        /// Abre el Form de Tipos Conceptos
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void tiposDeConceptosToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            frmTiposConceptos objTiposConceptos = new frmTiposConceptos();
+
+            objTiposConceptos.ShowDialog();
+        }
+
+        /// <summary>
+        /// Abre el Form de Tipos de Documentos
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void tiposDeDocumentosToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            frmTiposDocumentos objTiposDocumentos = new frmTiposDocumentos();
+
+            objTiposDocumentos.ShowDialog();
+        }
+
+        /// <summary>
+        /// Abre el Form de Tipos Iva
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void tiposDeIvaToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            frmTiposIva objTiposIva = new frmTiposIva();
+
+            objTiposIva.ShowDialog();
         }
 
         /// <summary>

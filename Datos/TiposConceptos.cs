@@ -7,20 +7,20 @@ using System.Text;
 
 namespace Datos
 {
-    public class TiposCbtes
+    public class TiposConceptos
     {
         /// <summary>
-        /// Agrega un registro de Tipos de Comprobante en la B.D.
+        /// Agrega un registro de Tipos de Conceptos en la B.D.
         /// </summary>
-        /// <param name="pTipoCbte">Objeto Tipo Comprobante</param>
-        public void Agregar(Entidades.TiposCbtes pTipoCbte)
+        /// <param name="pTipoConcepto">Objeto Tipo Concepto</param>
+        public void Agregar(Entidades.TiposConceptos pTipoConcepto)
         {
             DateTime fchNula;
             fchNula = DateTime.ParseExact("19000101", "yyyyMMdd", System.Globalization.CultureInfo.InvariantCulture);
 
             //Declaro variable con la sentencia SQL
-            string strSQL = "INSERT TiposCbtes (Id_TipoCbte, Descripcion, FchDesde, FchHasta)";
-            strSQL += "VALUES (@id_TipoCbte, @descripcion, @fchDesde , @fchHasta)";
+            string strSQL = "INSERT TiposConceptos (Id_TipoConcepto, Descripcion, FchDesde, FchHasta)";
+            strSQL += "VALUES (@id_TipoConcepto, @descripcion, @fchDesde , @fchHasta)";
 
 
 
@@ -31,12 +31,12 @@ namespace Datos
             SqlCommand comAlta = new SqlCommand(strSQL, objConexion);
 
             //Cargo los valores de los parametros
-            comAlta.Parameters.AddWithValue("@id_TipoCbte", pTipoCbte.Id_TipoCbte);
-            comAlta.Parameters.AddWithValue("@descripcion", pTipoCbte.Descripcion);
+            comAlta.Parameters.AddWithValue("@id_TipoConcepto", pTipoConcepto.Id_TipoConcepto);
+            comAlta.Parameters.AddWithValue("@descripcion", pTipoConcepto.Descripcion);
 
-            if (DateTime.Compare(pTipoCbte.FchDesde, fchNula) > 0)
+            if (DateTime.Compare(pTipoConcepto.FchDesde, fchNula) > 0)
             {
-                comAlta.Parameters.AddWithValue("@fchDesde", pTipoCbte.FchDesde);
+                comAlta.Parameters.AddWithValue("@fchDesde", pTipoConcepto.FchDesde);
             }
             else
             {
@@ -44,14 +44,14 @@ namespace Datos
 
             }
 
-            if (DateTime.Compare(pTipoCbte.FchHasta, fchNula) > 0)
+            if (DateTime.Compare(pTipoConcepto.FchHasta, fchNula) > 0)
             {
-                comAlta.Parameters.AddWithValue("@fchHasta", pTipoCbte.FchHasta);
+                comAlta.Parameters.AddWithValue("@fchHasta", pTipoConcepto.FchHasta);
             }
             else
             {
                 comAlta.Parameters.AddWithValue("@fchHasta", DBNull.Value);
-            
+
             }
 
             try
@@ -71,7 +71,7 @@ namespace Datos
             catch (Exception)
             {
                 //Pasa la excepción a la capa de lógica
-                throw new Exception("No pudo realizar el Alta del Tipo de Comprobante");
+                throw new Exception("No pudo realizar el Alta del Tipo de Concepto");
             }
             finally
             {
@@ -85,14 +85,14 @@ namespace Datos
         }
 
         /// <summary>
-        /// Retorna un DataTable con todos los Tipos de Comprobantes guardados
+        /// Retorna un DataTable con todos los Tipos de Conceptos guardados
         /// en la B.D.
         /// </summary>
-        /// <returns>Tipos de Comprobantes en DataTable</returns>
+        /// <returns>Tipos de Conceptos en DataTable</returns>
         public DataTable TraerTodos()
         {
             DataTable dt = new DataTable();
-            string strSql = "SELECT * FROM TiposCbtes";
+            string strSql = "SELECT * FROM TiposConceptos";
 
             try
             {
@@ -108,7 +108,7 @@ namespace Datos
             }
             catch (Exception)
             {
-                throw new Exception("No pudo listar los Tipos de Comprobantes");
+                throw new Exception("No pudo listar los Tipos de Conceptos");
             }
 
             return dt;

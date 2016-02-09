@@ -45,6 +45,9 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Tickets_Acceso.cs" />
     <Compile Include="TiposCbtes.cs" />
+    <Compile Include="TiposConceptos.cs" />
+    <Compile Include="TiposDocumentos.cs" />
+    <Compile Include="TiposIva.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Entidades\Entidades.csproj">

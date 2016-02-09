@@ -9,56 +9,56 @@ using System.Windows.Forms;
 
 namespace OpenRECE
 {
-    public partial class frmTiposCbtes : Form
+    public partial class frmTiposDocumentos : Form
     {
-        public frmTiposCbtes()
+        public frmTiposDocumentos()
         {
             InitializeComponent();
         }
 
         /// <summary>
         /// Carga el Form
-        /// Caraga los Tipos de Comprobantes
+        /// Caraga los Tipos de Conceptos
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        private void frmTiposCbtes_Load(object sender, EventArgs e)
+        private void frmTiposDocumentos_Load(object sender, EventArgs e)
         {
             TraerTodos();
         }
 
         /// <summary>
-        /// Carga el DataGrid los Tipos de Comprobantes desde la B.D.
+        /// Carga el DataGrid los Tipos de Documentos desde la B.D.
         /// </summary>
         void TraerTodos()
         {
-            Logica.TiposCbtes objLogicaTiposCbtes = new Logica.TiposCbtes();
+            Logica.TiposDocumentos objLogicaTiposDocumentos = new Logica.TiposDocumentos();
 
-            dgvTiposCbtes.DataSource = objLogicaTiposCbtes.TraerTodos();
+            dgvTiposDocumentos.DataSource = objLogicaTiposDocumentos.TraerTodos();
         }
 
         /// <summary>
-        /// Control del Botón Actualizar Tipos Comprobantes
-        /// Llama al WebService para obtener los Tipos de Comprobantes y guardarlos en la B.D.
+        /// Control del Botón Actualizar Tipos Documentos
+        /// Llama al WebService para obtener los Tipos de Documentos y guardarlos en la B.D.
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        private void btnActualizarTiposCbtes_Click(object sender, EventArgs e)
+        private void btnActualizarTiposDocumentos_Click(object sender, EventArgs e)
         {
             Entidades.Tickets_Acceso objEntidadesTicket_Acceso = new Entidades.Tickets_Acceso();
             Logica.Tickets_Acceso objLogicaTicket_Acceso = new Logica.Tickets_Acceso();
 
             objEntidadesTicket_Acceso = objLogicaTicket_Acceso.TraerTicketActivo();
 
-            //Llamo al Webservice de Paises para recuperar los Paises
+            //Llamo al Webservice de Documentos para recuperar los Paises
             Logica.WebServices_AFIP objLogicaWebServiceAfip = new Logica.WebServices_AFIP();
-            objLogicaWebServiceAfip.FEParamGetTiposCbtes(objEntidadesTicket_Acceso);
-            MessageBox.Show("Tipos de Comprobantes actualizados desde el WebService");
+            objLogicaWebServiceAfip.FEParamGetTiposDoc(objEntidadesTicket_Acceso);
+            MessageBox.Show("Tipos de Documentos actualizados desde el WebService");
             TraerTodos();
         }
 
         /// <summary>
-        /// Cierra la Ventana Actual
+        /// Cierra la ventana actual
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
@@ -66,6 +66,5 @@ namespace OpenRECE
         {
             this.Close();
         }
-
     }
 }

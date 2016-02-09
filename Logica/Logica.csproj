@@ -56,6 +56,9 @@
     <Compile Include="Tickets.cs" />
     <Compile Include="Tickets_Acceso.cs" />
     <Compile Include="TiposCbtes.cs" />
+    <Compile Include="TiposConceptos.cs" />
+    <Compile Include="TiposDocumentos.cs" />
+    <Compile Include="TiposIva..cs" />
     <Compile Include="Web References\ar.gov.afip.wsaahomo\Reference.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>

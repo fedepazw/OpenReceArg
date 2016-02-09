@@ -42,11 +42,14 @@
             this.salirToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.tablasToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.tiposDeComprobantesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.tiposDeConceptosToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.tiposDeDocumentosToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.paisesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.configuracionToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.certificadoToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.ayudaToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.acercaDeToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.tiposDeIvaToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.gbRespuestaAFIP.SuspendLayout();
             this.tlpRtaAFIP.SuspendLayout();
             this.menuStripSuperior.SuspendLayout();
@@ -162,13 +165,16 @@
             // salirToolStripMenuItem
             // 
             this.salirToolStripMenuItem.Name = "salirToolStripMenuItem";
-            this.salirToolStripMenuItem.Size = new System.Drawing.Size(96, 22);
+            this.salirToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
             this.salirToolStripMenuItem.Text = "&Salir";
             // 
             // tablasToolStripMenuItem
             // 
             this.tablasToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.tiposDeComprobantesToolStripMenuItem,
+            this.tiposDeConceptosToolStripMenuItem,
+            this.tiposDeDocumentosToolStripMenuItem,
+            this.tiposDeIvaToolStripMenuItem,
             this.paisesToolStripMenuItem});
             this.tablasToolStripMenuItem.Enabled = false;
             this.tablasToolStripMenuItem.Name = "tablasToolStripMenuItem";
@@ -181,6 +187,20 @@
             this.tiposDeComprobantesToolStripMenuItem.Size = new System.Drawing.Size(201, 22);
             this.tiposDeComprobantesToolStripMenuItem.Text = "&Tipos de Comprobantes";
             this.tiposDeComprobantesToolStripMenuItem.Click += new System.EventHandler(this.tiposDeComprobantesToolStripMenuItem_Click);
+            // 
+            // tiposDeConceptosToolStripMenuItem
+            // 
+            this.tiposDeConceptosToolStripMenuItem.Name = "tiposDeConceptosToolStripMenuItem";
+            this.tiposDeConceptosToolStripMenuItem.Size = new System.Drawing.Size(201, 22);
+            this.tiposDeConceptosToolStripMenuItem.Text = "Tipos de &Conceptos";
+            this.tiposDeConceptosToolStripMenuItem.Click += new System.EventHandler(this.tiposDeConceptosToolStripMenuItem_Click);
+            // 
+            // tiposDeDocumentosToolStripMenuItem
+            // 
+            this.tiposDeDocumentosToolStripMenuItem.Name = "tiposDeDocumentosToolStripMenuItem";
+            this.tiposDeDocumentosToolStripMenuItem.Size = new System.Drawing.Size(201, 22);
+            this.tiposDeDocumentosToolStripMenuItem.Text = "Tipos de &Documentos";
+            this.tiposDeDocumentosToolStripMenuItem.Click += new System.EventHandler(this.tiposDeDocumentosToolStripMenuItem_Click);
             // 
             // paisesToolStripMenuItem
             // 
@@ -218,6 +238,13 @@
             this.acercaDeToolStripMenuItem.Size = new System.Drawing.Size(135, 22);
             this.acercaDeToolStripMenuItem.Text = "A&cerca de...";
             this.acercaDeToolStripMenuItem.Click += new System.EventHandler(this.acercaDeToolStripMenuItem_Click);
+            // 
+            // tiposDeIvaToolStripMenuItem
+            // 
+            this.tiposDeIvaToolStripMenuItem.Name = "tiposDeIvaToolStripMenuItem";
+            this.tiposDeIvaToolStripMenuItem.Size = new System.Drawing.Size(201, 22);
+            this.tiposDeIvaToolStripMenuItem.Text = "Tipos de &Iva";
+            this.tiposDeIvaToolStripMenuItem.Click += new System.EventHandler(this.tiposDeIvaToolStripMenuItem_Click);
             // 
             // frmTicketAcceso
             // 
@@ -265,5 +292,8 @@
         private System.Windows.Forms.ToolStripMenuItem ayudaToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem acercaDeToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem tiposDeComprobantesToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem tiposDeConceptosToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem tiposDeDocumentosToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem tiposDeIvaToolStripMenuItem;
     }
 }

@@ -91,6 +91,24 @@
     <Compile Include="frmTiposCbtes.Designer.cs">
       <DependentUpon>frmTiposCbtes.cs</DependentUpon>
     </Compile>
+    <Compile Include="frmTiposConceptos.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmTiposConceptos.Designer.cs">
+      <DependentUpon>frmTiposConceptos.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frmTiposDocumentos.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmTiposDocumentos.Designer.cs">
+      <DependentUpon>frmTiposDocumentos.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frmTiposIva.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmTiposIva.Designer.cs">
+      <DependentUpon>frmTiposIva.cs</DependentUpon>
+    </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <EmbeddedResource Include="frmAcercaDe.resx">
@@ -107,6 +125,15 @@
     </EmbeddedResource>
     <EmbeddedResource Include="frmTiposCbtes.resx">
       <DependentUpon>frmTiposCbtes.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmTiposConceptos.resx">
+      <DependentUpon>frmTiposConceptos.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmTiposDocumentos.resx">
+      <DependentUpon>frmTiposDocumentos.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmTiposIva.resx">
+      <DependentUpon>frmTiposIva.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
