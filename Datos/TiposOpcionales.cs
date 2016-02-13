@@ -7,20 +7,20 @@ using System.Text;
 
 namespace Datos
 {
-    public class TiposIva
+    public class TiposOpcionales
     {
         /// <summary>
-        /// Agrega un registro de Tipos de Iva en la B.D.
+        /// Agrega un registro de Tipos Opcionales en la B.D.
         /// </summary>
-        /// <param name="pTipoIva">Objeto Tipo Iva</param>
-        public void Agregar(Entidades.TiposIva pTipoIva)
+        /// <param name="pTipoOpcional">Objeto Tipo Moneda</param>
+        public void Agregar(Entidades.TiposOpcionales pTipoOpcional)
         {
             DateTime fchNula;
             fchNula = DateTime.ParseExact("19000101", "yyyyMMdd", System.Globalization.CultureInfo.InvariantCulture);
 
             //Declaro variable con la sentencia SQL
-            string strSQL = "INSERT TiposIva (Id_TipoIva, Descripcion, FchDesde, FchHasta)";
-            strSQL += "VALUES (@id_TipoIva, @descripcion, @fchDesde , @fchHasta)";
+            string strSQL = "INSERT TiposOpcionales (Id_TipoOpcional, Descripcion, FchDesde, FchHasta)";
+            strSQL += "VALUES (@id_TipoOpcional, @descripcion, @fchDesde , @fchHasta)";
 
 
 
@@ -31,12 +31,12 @@ namespace Datos
             SqlCommand comAlta = new SqlCommand(strSQL, objConexion);
 
             //Cargo los valores de los parametros
-            comAlta.Parameters.AddWithValue("@id_TipoIva", pTipoIva.Id_TipoIva);
-            comAlta.Parameters.AddWithValue("@descripcion", pTipoIva.Descripcion);
+            comAlta.Parameters.AddWithValue("@id_TipoOpcional", pTipoOpcional.Id_TipoOpcional);
+            comAlta.Parameters.AddWithValue("@descripcion", pTipoOpcional.Descripcion);
 
-            if (DateTime.Compare(pTipoIva.FchDesde, fchNula) > 0)
+            if (DateTime.Compare(pTipoOpcional.FchDesde, fchNula) > 0)
             {
-                comAlta.Parameters.AddWithValue("@fchDesde", pTipoIva.FchDesde);
+                comAlta.Parameters.AddWithValue("@fchDesde", pTipoOpcional.FchDesde);
             }
             else
             {
@@ -44,9 +44,9 @@ namespace Datos
 
             }
 
-            if (DateTime.Compare(pTipoIva.FchHasta, fchNula) > 0)
+            if (DateTime.Compare(pTipoOpcional.FchHasta, fchNula) > 0)
             {
-                comAlta.Parameters.AddWithValue("@fchHasta", pTipoIva.FchHasta);
+                comAlta.Parameters.AddWithValue("@fchHasta", pTipoOpcional.FchHasta);
             }
             else
             {
@@ -71,7 +71,7 @@ namespace Datos
             catch (Exception)
             {
                 //Pasa la excepción a la capa de lógica
-                throw new Exception("No pudo realizar el Alta del Tipo de Iva");
+                throw new Exception("No pudo realizar el Alta del Tipo Opcionales");
             }
             finally
             {
@@ -85,14 +85,14 @@ namespace Datos
         }
 
         /// <summary>
-        /// Retorna un DataTable con todos los Tipos de Iva guardados
+        /// Retorna un DataTable con todos los Tipos Opcionales guardados
         /// en la B.D.
         /// </summary>
-        /// <returns>Tipos de Iva en DataTable</returns>
+        /// <returns>Tipos Opcionales en DataTable</returns>
         public DataTable TraerTodos()
         {
             DataTable dt = new DataTable();
-            string strSql = "SELECT * FROM TiposIva";
+            string strSql = "SELECT * FROM TiposOpcionales";
 
             try
             {
@@ -108,20 +108,20 @@ namespace Datos
             }
             catch (Exception)
             {
-                throw new Exception("No pudo listar los Tipos de Iva");
+                throw new Exception("No pudo listar los Tipos Opcionales");
             }
 
             return dt;
         }
 
         /// <summary>
-        /// Borra todos los registros de Tipos de Iva en la B.D.
+        /// Borra todos los registros de Tipos Opcionales en la B.D.
         /// </summary>
         public void BorrarTodos()
         {
             string strConsulta = "";
 
-            strConsulta = "DELETE FROM TiposIva";
+            strConsulta = "DELETE FROM TiposOpcionales";
 
             //Crear objeto de la clase SQLConnection
             SqlConnection objConexion = new SqlConnection(Conexion.strConexion);

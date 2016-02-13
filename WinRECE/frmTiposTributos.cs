@@ -9,53 +9,54 @@ using System.Windows.Forms;
 
 namespace OpenRECE
 {
-    public partial class frmTiposCbtes : Form
+    public partial class frmTiposTributos : Form
     {
-        public frmTiposCbtes()
+        public frmTiposTributos()
         {
             InitializeComponent();
         }
 
         /// <summary>
-        /// Carga el Form
-        /// Caraga los Tipos de Comprobantes
+        /// Carga del Form
+        /// Carga los Tipos Tributos
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        private void frmTiposCbtes_Load(object sender, EventArgs e)
+        private void frmTiposTributos_Load(object sender, EventArgs e)
         {
             TraerTodos();
         }
 
         /// <summary>
-        /// Carga el DataGrid los Tipos de Comprobantes desde la B.D.
+        /// Carga el DataGrid los Tipos de Tributos desde la B.D.
         /// </summary>
         void TraerTodos()
         {
-            Logica.TiposCbtes objLogicaTiposCbtes = new Logica.TiposCbtes();
+            Logica.TiposTributos objLogicaTiposTributos = new Logica.TiposTributos();
 
-            dgvTiposCbtes.DataSource = objLogicaTiposCbtes.TraerTodos();
+            dgvTiposTributos.DataSource = objLogicaTiposTributos.TraerTodos();
+
         }
 
         /// <summary>
-        /// Control del Botón Actualizar Tipos Comprobantes
-        /// Llama al WebService para obtener los Tipos de Comprobantes y guardarlos en la B.D.
+        /// Control del Botón Actualizar Tipos de Tributos
+        /// Llama al WebService para obtener los Tributos y guardarlos en la B.D.
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        private void btnActualizarTiposCbtes_Click(object sender, EventArgs e)
+        private void btnActualizarTiposTributos_Click(object sender, EventArgs e)
         {
             Entidades.Tickets_Acceso objEntidadesTicket_Acceso = new Entidades.Tickets_Acceso();
             Logica.Tickets_Acceso objLogicaTicket_Acceso = new Logica.Tickets_Acceso();
 
             objEntidadesTicket_Acceso = objLogicaTicket_Acceso.TraerTicketActivo();
 
-            //Llamo al Webservice de Paises para recuperar los Paises
+            //Llamo al Webservice de Tributos para recuperar los Paises
             Logica.WebServices_AFIP objLogicaWebServiceAfip = new Logica.WebServices_AFIP();
 
-            if (objLogicaWebServiceAfip.FEParamGetTiposCbtes(objEntidadesTicket_Acceso) == Entidades.WebServices_AFIP.RespuestaWS.Correcta)
+            if (objLogicaWebServiceAfip.FEParamGetTiposTributos(objEntidadesTicket_Acceso) == Entidades.WebServices_AFIP.RespuestaWS.Correcta)
             {
-                MessageBox.Show("Tipos de Comprobantes actualizados desde el WebService");
+                MessageBox.Show("Tipos de Tributos actualizados desde el WebService");
             }
             else
             {
@@ -66,7 +67,7 @@ namespace OpenRECE
         }
 
         /// <summary>
-        /// Cierra la Ventana Actual
+        /// Cierra la ventana actual
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
@@ -74,6 +75,5 @@ namespace OpenRECE
         {
             this.Close();
         }
-
     }
 }

@@ -31,5 +31,13 @@ namespace Logica
 
             return dt;
         }
+
+        /// <summary>
+        /// Delega a la Capa de Datos Borrar todos los Tipos de Conceptos a la B.D.
+        /// </summary>
+        public void BorrarTodos()
+        {
+            objDatosTiposConceptos.BorrarTodos();
+        }
     }
 }

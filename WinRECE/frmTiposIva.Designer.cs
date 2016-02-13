@@ -37,7 +37,7 @@
             // 
             // btnCerrar
             // 
-            this.btnCerrar.Location = new System.Drawing.Point(416, 474);
+            this.btnCerrar.Location = new System.Drawing.Point(416, 215);
             this.btnCerrar.Name = "btnCerrar";
             this.btnCerrar.Size = new System.Drawing.Size(75, 39);
             this.btnCerrar.TabIndex = 14;
@@ -47,7 +47,7 @@
             // 
             // btnActualizarTiposIva
             // 
-            this.btnActualizarTiposIva.Location = new System.Drawing.Point(215, 473);
+            this.btnActualizarTiposIva.Location = new System.Drawing.Point(215, 214);
             this.btnActualizarTiposIva.Name = "btnActualizarTiposIva";
             this.btnActualizarTiposIva.Size = new System.Drawing.Size(75, 40);
             this.btnActualizarTiposIva.TabIndex = 13;
@@ -59,21 +59,22 @@
             // 
             this.dgvTiposIva.AllowUserToAddRows = false;
             this.dgvTiposIva.AllowUserToDeleteRows = false;
-            this.dgvTiposIva.AllowUserToResizeColumns = false;
+            this.dgvTiposIva.AllowUserToOrderColumns = true;
             this.dgvTiposIva.AllowUserToResizeRows = false;
             this.dgvTiposIva.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.dgvTiposIva.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgvTiposIva.Location = new System.Drawing.Point(18, 9);
             this.dgvTiposIva.Name = "dgvTiposIva";
+            this.dgvTiposIva.ReadOnly = true;
             this.dgvTiposIva.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dgvTiposIva.Size = new System.Drawing.Size(473, 458);
+            this.dgvTiposIva.Size = new System.Drawing.Size(473, 199);
             this.dgvTiposIva.TabIndex = 12;
             // 
             // frmTiposIva
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(509, 522);
+            this.ClientSize = new System.Drawing.Size(509, 261);
             this.ControlBox = false;
             this.Controls.Add(this.btnCerrar);
             this.Controls.Add(this.btnActualizarTiposIva);

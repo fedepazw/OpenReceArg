@@ -73,6 +73,18 @@
     <Compile Include="frmConfiguracionCertificado.Designer.cs">
       <DependentUpon>frmConfiguracionCertificado.cs</DependentUpon>
     </Compile>
+    <Compile Include="frmErroresWS.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmErroresWS.Designer.cs">
+      <DependentUpon>frmErroresWS.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frmEventosWS.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmEventosWS.Designer.cs">
+      <DependentUpon>frmEventosWS.cs</DependentUpon>
+    </Compile>
     <Compile Include="frmPaises.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -109,6 +121,24 @@
     <Compile Include="frmTiposIva.Designer.cs">
       <DependentUpon>frmTiposIva.cs</DependentUpon>
     </Compile>
+    <Compile Include="frmTiposMonedas.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmTiposMonedas.Designer.cs">
+      <DependentUpon>frmTiposMonedas.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frmTiposOpcionales.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmTiposOpcionales.Designer.cs">
+      <DependentUpon>frmTiposOpcionales.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frmTiposTributos.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmTiposTributos.Designer.cs">
+      <DependentUpon>frmTiposTributos.cs</DependentUpon>
+    </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <EmbeddedResource Include="frmAcercaDe.resx">
@@ -116,6 +146,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="frmConfiguracionCertificado.resx">
       <DependentUpon>frmConfiguracionCertificado.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmErroresWS.resx">
+      <DependentUpon>frmErroresWS.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmEventosWS.resx">
+      <DependentUpon>frmEventosWS.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="frmPaises.resx">
       <DependentUpon>frmPaises.cs</DependentUpon>
@@ -134,6 +170,15 @@
     </EmbeddedResource>
     <EmbeddedResource Include="frmTiposIva.resx">
       <DependentUpon>frmTiposIva.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmTiposMonedas.resx">
+      <DependentUpon>frmTiposMonedas.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmTiposOpcionales.resx">
+      <DependentUpon>frmTiposOpcionales.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmTiposTributos.resx">
+      <DependentUpon>frmTiposTributos.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>

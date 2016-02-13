@@ -52,8 +52,16 @@ namespace OpenRECE
 
             //Llamo al Webservice de Documentos para recuperar los Paises
             Logica.WebServices_AFIP objLogicaWebServiceAfip = new Logica.WebServices_AFIP();
-            objLogicaWebServiceAfip.FEParamGetTiposDoc(objEntidadesTicket_Acceso);
-            MessageBox.Show("Tipos de Documentos actualizados desde el WebService");
+
+            if (objLogicaWebServiceAfip.FEParamGetTiposDoc(objEntidadesTicket_Acceso) == Entidades.WebServices_AFIP.RespuestaWS.Correcta)
+            {
+                MessageBox.Show("Tipos de Documentos actualizados desde el WebService");
+            }
+            else
+            {
+                MessageBox.Show("El WebService devolvió un Error/Evento. Por favor revise los Logs");
+            }
+
             TraerTodos();
         }
 

@@ -37,7 +37,7 @@
             // 
             // btnCerrar
             // 
-            this.btnCerrar.Location = new System.Drawing.Point(416, 474);
+            this.btnCerrar.Location = new System.Drawing.Point(416, 209);
             this.btnCerrar.Name = "btnCerrar";
             this.btnCerrar.Size = new System.Drawing.Size(75, 39);
             this.btnCerrar.TabIndex = 8;
@@ -47,7 +47,7 @@
             // 
             // btnActualizarTiposConceptos
             // 
-            this.btnActualizarTiposConceptos.Location = new System.Drawing.Point(215, 473);
+            this.btnActualizarTiposConceptos.Location = new System.Drawing.Point(215, 208);
             this.btnActualizarTiposConceptos.Name = "btnActualizarTiposConceptos";
             this.btnActualizarTiposConceptos.Size = new System.Drawing.Size(75, 40);
             this.btnActualizarTiposConceptos.TabIndex = 7;
@@ -59,21 +59,22 @@
             // 
             this.dgvTiposConceptos.AllowUserToAddRows = false;
             this.dgvTiposConceptos.AllowUserToDeleteRows = false;
-            this.dgvTiposConceptos.AllowUserToResizeColumns = false;
+            this.dgvTiposConceptos.AllowUserToOrderColumns = true;
             this.dgvTiposConceptos.AllowUserToResizeRows = false;
             this.dgvTiposConceptos.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.dgvTiposConceptos.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgvTiposConceptos.Location = new System.Drawing.Point(18, 9);
             this.dgvTiposConceptos.Name = "dgvTiposConceptos";
+            this.dgvTiposConceptos.ReadOnly = true;
             this.dgvTiposConceptos.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dgvTiposConceptos.Size = new System.Drawing.Size(473, 458);
+            this.dgvTiposConceptos.Size = new System.Drawing.Size(473, 192);
             this.dgvTiposConceptos.TabIndex = 6;
             // 
             // frmTiposConceptos
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(509, 522);
+            this.ClientSize = new System.Drawing.Size(509, 255);
             this.ControlBox = false;
             this.Controls.Add(this.btnCerrar);
             this.Controls.Add(this.btnActualizarTiposConceptos);

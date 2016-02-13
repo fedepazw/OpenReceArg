@@ -41,6 +41,8 @@
   <ItemGroup>
     <Compile Include="Conexion.cs" />
     <Compile Include="Configuracion_Certificado.cs" />
+    <Compile Include="Errores_WS.cs" />
+    <Compile Include="Eventos_WS.cs" />
     <Compile Include="Paises.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Tickets_Acceso.cs" />
@@ -48,6 +50,9 @@
     <Compile Include="TiposConceptos.cs" />
     <Compile Include="TiposDocumentos.cs" />
     <Compile Include="TiposIva.cs" />
+    <Compile Include="TiposMonedas.cs" />
+    <Compile Include="TiposOpcionales.cs" />
+    <Compile Include="TiposTributos.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Entidades\Entidades.csproj">

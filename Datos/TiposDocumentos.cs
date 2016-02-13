@@ -113,5 +113,47 @@ namespace Datos
 
             return dt;
         }
+
+        /// <summary>
+        /// Borra todos los registros de Tipos de Documentos en la B.D.
+        /// </summary>
+        public void BorrarTodos()
+        {
+            string strConsulta = "";
+
+            strConsulta = "DELETE FROM TiposDocumentos";
+
+            //Crear objeto de la clase SQLConnection
+            SqlConnection objConexion = new SqlConnection(Conexion.strConexion);
+
+            SqlCommand comBorrar = new SqlCommand(strConsulta, objConexion);
+
+            try
+            {
+                objConexion.Open();
+
+                //Ejecuto el comando con NonQuery cuando es transaccional (Insert, update o delete)
+                comBorrar.ExecuteNonQuery();
+            }
+            catch (SqlException)
+            {
+                //Se produjo un error SQL, SqlExcepcion es especifico de sql por eso va arriba de Excepcion
+                throw new Exception("Error en la Base de Datos");
+            }
+            catch (Exception)
+            {
+                //Pasa la excepción a la capa de lógica                
+                throw new Exception("Error en la Capa de Datos");
+            }
+            finally
+            {
+                //Cierro la conexion solo si estaba abierto
+                if (objConexion.State == ConnectionState.Open)
+                {
+                    objConexion.Close();
+                }
+
+            }
+        }
     }
 }

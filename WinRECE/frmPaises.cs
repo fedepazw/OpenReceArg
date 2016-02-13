@@ -53,8 +53,16 @@ namespace OpenRECE
 
             //Llamo al Webservice de Paises para recuperar los Paises
             Logica.WebServices_AFIP objLogicaWebServiceAfip = new Logica.WebServices_AFIP();
-            objLogicaWebServiceAfip.FEParamGetTiposPaises(objEntidadesTicket_Acceso);
-            MessageBox.Show("Paises actualizados desde el WebService");
+
+            if (objLogicaWebServiceAfip.FEParamGetTiposPaises(objEntidadesTicket_Acceso) == Entidades.WebServices_AFIP.RespuestaWS.Correcta)
+            {
+                MessageBox.Show("Paises actualizados desde el WebService");
+            }
+            else
+            {
+                MessageBox.Show("El WebService devolvió un Error/Evento. Por favor revise los Logs");
+            }
+
             TraerTodos();
         }
 

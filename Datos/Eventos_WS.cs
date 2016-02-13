@@ -7,17 +7,17 @@ using System.Text;
 
 namespace Datos
 {
-    public class Paises
+    public class Eventos_WS
     {
         /// <summary>
-        /// Agrega un registro de Pais en la B.D.
+        /// Agrega un registro de Eventos en la B.D.
         /// </summary>
-        /// <param name="pPais">Objeto Pais</param>
-        public void Agregar(Entidades.Paises pPais)
+        /// <param name="pEventosWS">Objeto Eventos WS</param>
+        public void Agregar(Entidades.Eventos_WS pEventosWS)
         {
             //Declaro variable con la sentencia SQL
-            string strSQL = "INSERT Paises (Id_Pais, Descripcion)";
-            strSQL += "VALUES (@id_pais, @descripcion)";
+            string strSQL = "INSERT Eventos_WS (Codigo, Mensaje, Fecha, Observaciones)";
+            strSQL += "VALUES (@codigo, @mensaje, @fecha, @observaciones)";
 
             //Crear objeto de la clase SQLConnection
             SqlConnection objConexion = new SqlConnection(Conexion.strConexion);
@@ -26,8 +26,10 @@ namespace Datos
             SqlCommand comAlta = new SqlCommand(strSQL, objConexion);
 
             //Cargo los valores de los parametros
-            comAlta.Parameters.AddWithValue("@id_pais", pPais.Id_Pais);
-            comAlta.Parameters.AddWithValue("@descripcion", pPais.Descripcion);
+            comAlta.Parameters.AddWithValue("@codigo", pEventosWS.Codigo);
+            comAlta.Parameters.AddWithValue("@mensaje", pEventosWS.Mensaje);
+            comAlta.Parameters.AddWithValue("@fecha", pEventosWS.Fecha);
+            comAlta.Parameters.AddWithValue("@observaciones", pEventosWS.Observaciones);
 
             try
             {
@@ -46,7 +48,7 @@ namespace Datos
             catch (Exception)
             {
                 //Pasa la excepción a la capa de lógica
-                throw new Exception("No pudo realizar el Alta del Pais");
+                throw new Exception("No pudo realizar el Alta del Eventos WS");
             }
             finally
             {
@@ -60,14 +62,14 @@ namespace Datos
         }
 
         /// <summary>
-        /// Retorna un DataTable con todos los Paises guardados
+        /// Retorna un DataTable con todos los Eventos WS guardados
         /// en la B.D.
         /// </summary>
-        /// <returns>Paises en DataTable</returns>
+        /// <returns>Eventos WS en DataTable</returns>
         public DataTable TraerTodos()
         {
             DataTable dt = new DataTable();
-            string strSql = "SELECT * FROM Paises";
+            string strSql = "SELECT * FROM Eventos_WS";
 
             try
             {
@@ -83,52 +85,10 @@ namespace Datos
             }
             catch (Exception)
             {
-                throw new Exception("No pudo listar los Paises");
+                throw new Exception("No pudo listar los Eventos WS");
             }
 
             return dt;
-        }
-
-        /// <summary>
-        /// Borra todos los registros de Paises en la B.D.
-        /// </summary>
-        public void BorrarTodos()
-        {
-            string strConsulta = "";
-
-            strConsulta = "DELETE FROM Paises";
-
-            //Crear objeto de la clase SQLConnection
-            SqlConnection objConexion = new SqlConnection(Conexion.strConexion);
-
-            SqlCommand comBorrar = new SqlCommand(strConsulta, objConexion);
-
-            try
-            {
-                objConexion.Open();
-
-                //Ejecuto el comando con NonQuery cuando es transaccional (Insert, update o delete)
-                comBorrar.ExecuteNonQuery();
-            }
-            catch (SqlException)
-            {
-                //Se produjo un error SQL, SqlExcepcion es especifico de sql por eso va arriba de Excepcion
-                throw new Exception("Error en la Base de Datos");
-            }
-            catch (Exception)
-            {
-                //Pasa la excepción a la capa de lógica                
-                throw new Exception("Error en la Capa de Datos");
-            }
-            finally
-            {
-                //Cierro la conexion solo si estaba abierto
-                if (objConexion.State == ConnectionState.Open)
-                {
-                    objConexion.Close();
-                }
-
-            }
         }
     }
 }

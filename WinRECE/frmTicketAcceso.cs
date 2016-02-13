@@ -12,6 +12,8 @@ namespace OpenRECE
 {
     public partial class frmTicketAcceso : Form
     {
+        /*Verificación Conexión Internet*/
+        Logica.Internet objLogicaInternet = new Logica.Internet();
         /*Configuracion Guardada en la B.D.*/
         Entidades.Configuracion_Certificado objEntidadesConfiguracionCertificado = new Entidades.Configuracion_Certificado();
         Logica.Configuracion_Certificado objLogicaConfiguracionCertificado = new Logica.Configuracion_Certificado();
@@ -37,18 +39,26 @@ namespace OpenRECE
         {
             this.Text = Application.ProductName + " - "+ Application.ProductVersion;
 
-            objEntidadesConfiguracionCertificado = objLogicaConfiguracionCertificado.TraerConfiguracion();
-            /*Verifica si tiene una configuracion cargada en la B.D.*/
-            if (objEntidadesConfiguracionCertificado.Cuit == 0)
+            if (objLogicaInternet.hayInternet() == true)
             {
-                MessageBox.Show("Para utilizar el programa primero debe cargar el certificado desde Configuracion -> Certificado");
+                btnVerificarInternet.Visible = false;
+                objEntidadesConfiguracionCertificado = objLogicaConfiguracionCertificado.TraerConfiguracion();
+                /*Verifica si tiene una configuracion cargada en la B.D.*/
+                if (objEntidadesConfiguracionCertificado.Cuit == 0)
+                {
+                    MessageBox.Show("Para utilizar el programa primero debe cargar el certificado desde Configuracion -> Certificado");
+                }
+                else
+                {
+                    pedirTicketAcceso();
+                }
             }
             else
             {
-                pedirTicketAcceso();
+                MessageBox.Show("No hay conexión a Internet. Por favor verificar su conexión");
             }
         }
-
+        
         /// <summary>
         /// Control del Botón de Pedir Ticket de Acceso.
         /// </summary>
@@ -120,6 +130,7 @@ namespace OpenRECE
         /// <param name="pTicket_Rta">Ticket Respuesta WebService</param>
         private void mostrarDatosTicketAcceso(Entidades.Tickets_Acceso pTicket_Rta)
         {
+            lblIdTicketAccesoRta.Text = pTicket_Rta.Id_Ticket.ToString();
             lblFchGeneracionRta.Text = pTicket_Rta.Fecha_Generacion.ToShortDateString() + ' ' + pTicket_Rta.Fecha_Generacion.ToShortTimeString();
             lblFchExpiracionRta.Text = pTicket_Rta.Fecha_Expiracion.ToShortDateString() + ' ' + pTicket_Rta.Fecha_Expiracion.ToShortTimeString();
             tlpRtaAFIP.Visible = true;
@@ -188,6 +199,66 @@ namespace OpenRECE
         }
 
         /// <summary>
+        /// Abre el Form de Tipos de Monedas
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void tiposDeMonedasToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            frmTiposMonedas objTiposMonedas = new frmTiposMonedas();
+
+            objTiposMonedas.ShowDialog();
+        }
+
+        /// <summary>
+        /// Abre el Form de Tipos Opcionales
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void tiposDeDatosOpcionalesToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            frmTiposOpcionales objTiposOpcionales = new frmTiposOpcionales();
+
+            objTiposOpcionales.ShowDialog();
+        }
+
+        /// <summary>
+        /// Abre el Form de Tipos de Tributos
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void tiposDeTributosToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            frmTiposTributos objTiposTributos = new frmTiposTributos();
+
+            objTiposTributos.ShowDialog();
+        }
+
+        /// <summary>
+        /// Abre el Form de Logs de Errores
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void erroresToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            frmErroresWS objErroresWS = new frmErroresWS();
+
+            objErroresWS.ShowDialog();
+        }
+
+        /// <summary>
+        /// Abre el Form de Logs de Eventos
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void eventosToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            frmEventosWS objEventosWS = new frmEventosWS();
+
+            objEventosWS.ShowDialog();
+        }
+
+        /// <summary>
         /// Abre el Form de Configuracion de Certificado
         /// </summary>
         /// <param name="sender"></param>
@@ -212,6 +283,33 @@ namespace OpenRECE
         }
 
         /// <summary>
+        /// Verifica si hay conexión a internet para utilizar la aplicación
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void btnVerificarInternet_Click(object sender, EventArgs e)
+        {
+            if (objLogicaInternet.hayInternet() == true)
+            {
+                btnVerificarInternet.Visible = false;
+                objEntidadesConfiguracionCertificado = objLogicaConfiguracionCertificado.TraerConfiguracion();
+                /*Verifica si tiene una configuracion cargada en la B.D.*/
+                if (objEntidadesConfiguracionCertificado.Cuit == 0)
+                {
+                    MessageBox.Show("Para utilizar el programa primero debe cargar el certificado desde Configuracion -> Certificado");
+                }
+                else
+                {
+                    pedirTicketAcceso();
+                }
+            }
+            else
+            {
+                MessageBox.Show("No hay conexión a Internet. Por favor verificar su conexión");
+            }
+        }
+
+        /// <summary>
         /// Cierra la ventana actual
         /// </summary>
         /// <param name="sender"></param>
@@ -220,6 +318,8 @@ namespace OpenRECE
         {
             this.Close();
         }
+
+
 
     }
 }

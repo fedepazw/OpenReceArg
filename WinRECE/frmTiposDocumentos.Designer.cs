@@ -59,12 +59,13 @@
             // 
             this.dgvTiposDocumentos.AllowUserToAddRows = false;
             this.dgvTiposDocumentos.AllowUserToDeleteRows = false;
-            this.dgvTiposDocumentos.AllowUserToResizeColumns = false;
+            this.dgvTiposDocumentos.AllowUserToOrderColumns = true;
             this.dgvTiposDocumentos.AllowUserToResizeRows = false;
             this.dgvTiposDocumentos.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.dgvTiposDocumentos.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgvTiposDocumentos.Location = new System.Drawing.Point(18, 9);
             this.dgvTiposDocumentos.Name = "dgvTiposDocumentos";
+            this.dgvTiposDocumentos.ReadOnly = true;
             this.dgvTiposDocumentos.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dgvTiposDocumentos.Size = new System.Drawing.Size(473, 458);
             this.dgvTiposDocumentos.TabIndex = 9;

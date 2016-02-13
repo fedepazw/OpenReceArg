@@ -52,8 +52,16 @@ namespace OpenRECE
 
             //Llamo al Webservice de Tipos de Conceptos para recuperar los Conceptos
             Logica.WebServices_AFIP objLogicaWebServiceAfip = new Logica.WebServices_AFIP();
-            objLogicaWebServiceAfip.FEParamGetTiposConcepto(objEntidadesTicket_Acceso);
-            MessageBox.Show("Tipos de Conceptos actualizados desde el WebService");
+
+            if (objLogicaWebServiceAfip.FEParamGetTiposConcepto(objEntidadesTicket_Acceso) == Entidades.WebServices_AFIP.RespuestaWS.Correcta)
+            {
+                MessageBox.Show("Tipos de Conceptos actualizados desde el WebService");
+            }
+            else
+            {
+                MessageBox.Show("El WebService devolvió un Error/Evento. Por favor revise los Logs");
+            }
+
             TraerTodos();
         }
 

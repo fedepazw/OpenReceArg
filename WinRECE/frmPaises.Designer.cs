@@ -39,12 +39,13 @@
             // 
             this.dgvPaises.AllowUserToAddRows = false;
             this.dgvPaises.AllowUserToDeleteRows = false;
-            this.dgvPaises.AllowUserToResizeColumns = false;
+            this.dgvPaises.AllowUserToOrderColumns = true;
             this.dgvPaises.AllowUserToResizeRows = false;
             this.dgvPaises.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.dgvPaises.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgvPaises.Location = new System.Drawing.Point(12, 12);
             this.dgvPaises.Name = "dgvPaises";
+            this.dgvPaises.ReadOnly = true;
             this.dgvPaises.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dgvPaises.Size = new System.Drawing.Size(473, 458);
             this.dgvPaises.TabIndex = 0;
