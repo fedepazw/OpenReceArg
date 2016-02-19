@@ -51,16 +51,32 @@ namespace OpenRECE
 
             objEntidadesTicket_Acceso = objLogicaTicket_Acceso.TraerTicketActivo();
 
-            //Llamo al Webservice de Tipos Datos Opcionales para recuperar los Paises
+            //Llamo al Webservice para recuperar los Tipos de Datos Opcionales
             Logica.WebServices_AFIP objLogicaWebServiceAfip = new Logica.WebServices_AFIP();
 
-            if (objLogicaWebServiceAfip.FEParamGetTiposOpcionales(objEntidadesTicket_Acceso) == Entidades.WebServices_AFIP.RespuestaWS.Correcta)
+            if (objEntidadesTicket_Acceso.TipoAprobacion == 'P') //Producción
             {
-                MessageBox.Show("Tipos Datos Opcionales actualizados desde el WebService");
+                /*WebService Producción*/
+                if (objLogicaWebServiceAfip.FEParamGetTiposOpcionales(objEntidadesTicket_Acceso) == Entidades.WebServices_AFIP.RespuestaWS.Correcta)
+                {
+                    MessageBox.Show("Tipos Datos Opcionales actualizados desde el WebService");
+                }
+                else
+                {
+                    MessageBox.Show("El WebService devolvió un Error/Evento. Por favor revise los Logs");
+                }
             }
             else
             {
-                MessageBox.Show("El WebService devolvió un Error/Evento. Por favor revise los Logs");
+                /*WebService Homologación*/
+                if (objLogicaWebServiceAfip.FEParamGetTiposOpcionales_Homologacion(objEntidadesTicket_Acceso) == Entidades.WebServices_AFIP.RespuestaWS.Correcta)
+                {
+                    MessageBox.Show("Tipos Datos Opcionales actualizados desde el WebService");
+                }
+                else
+                {
+                    MessageBox.Show("El WebService devolvió un Error/Evento. Por favor revise los Logs");
+                }
             }
 
             TraerTodos();

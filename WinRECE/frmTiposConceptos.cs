@@ -50,16 +50,32 @@ namespace OpenRECE
 
             objEntidadesTicket_Acceso = objLogicaTicket_Acceso.TraerTicketActivo();
 
-            //Llamo al Webservice de Tipos de Conceptos para recuperar los Conceptos
+            //Llamo al Webservice para recuperar los Conceptos
             Logica.WebServices_AFIP objLogicaWebServiceAfip = new Logica.WebServices_AFIP();
 
-            if (objLogicaWebServiceAfip.FEParamGetTiposConcepto(objEntidadesTicket_Acceso) == Entidades.WebServices_AFIP.RespuestaWS.Correcta)
+            if (objEntidadesTicket_Acceso.TipoAprobacion == 'P') //Producción
             {
-                MessageBox.Show("Tipos de Conceptos actualizados desde el WebService");
+                /*WebService Producción*/
+                if (objLogicaWebServiceAfip.FEParamGetTiposConcepto(objEntidadesTicket_Acceso) == Entidades.WebServices_AFIP.RespuestaWS.Correcta)
+                {
+                    MessageBox.Show("Tipos de Conceptos actualizados desde el WebService");
+                }
+                else
+                {
+                    MessageBox.Show("El WebService devolvió un Error/Evento. Por favor revise los Logs");
+                }
             }
             else
             {
-                MessageBox.Show("El WebService devolvió un Error/Evento. Por favor revise los Logs");
+                /*WebService Homologacion*/
+                if (objLogicaWebServiceAfip.FEParamGetTiposConcepto_Homologacion(objEntidadesTicket_Acceso) == Entidades.WebServices_AFIP.RespuestaWS.Correcta)
+                {
+                    MessageBox.Show("Tipos de Conceptos actualizados desde el WebService");
+                }
+                else
+                {
+                    MessageBox.Show("El WebService devolvió un Error/Evento. Por favor revise los Logs");
+                }
             }
 
             TraerTodos();

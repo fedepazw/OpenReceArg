@@ -16,8 +16,8 @@ namespace Datos
         public void Agregar(Entidades.Tickets_Acceso pTicket)
         {
             //Declaro variable con la sentencia SQL
-            string strSQL = "INSERT tickets_acceso (fecha_generacion, fecha_expiracion, sign, token)";
-            strSQL += "VALUES (@fecha_generacion, @fecha_expiracion, @sign, @token)";
+            string strSQL = "INSERT tickets_acceso (fecha_generacion, fecha_expiracion, sign, token, tipoAprobacion, cuit)";
+            strSQL += "VALUES (@fecha_generacion, @fecha_expiracion, @sign, @token, @tipoAprobacion, @cuit)";
 
             //Crear objeto de la clase SQLConnection
             SqlConnection objConexion = new SqlConnection(Conexion.strConexion);
@@ -30,6 +30,8 @@ namespace Datos
             comAlta.Parameters.AddWithValue("@fecha_expiracion", pTicket.Fecha_Expiracion);
             comAlta.Parameters.AddWithValue("@sign", pTicket.Sign);
             comAlta.Parameters.AddWithValue("@token", pTicket.Token);
+            comAlta.Parameters.AddWithValue("@tipoAprobacion", pTicket.TipoAprobacion);
+            comAlta.Parameters.AddWithValue("@cuit", pTicket.Cuit);
 
             try
             {
@@ -69,7 +71,7 @@ namespace Datos
         {
             Entidades.Tickets_Acceso objEntidadesTicket_Acceso = new Entidades.Tickets_Acceso();
 
-            string strSQL = "SELECT id_ticket, fecha_generacion, fecha_expiracion, sign, token FROM Tickets_Acceso WHERE id_ticket = (SELECT ISNULL(MAX(id_ticket),0) FROM Tickets_Acceso WHERE fecha_expiracion>GETDATE())";
+            string strSQL = "SELECT id_ticket, fecha_generacion, fecha_expiracion, sign, token, tipoAprobacion, cuit FROM Tickets_Acceso WHERE id_ticket = (SELECT ISNULL(MAX(id_ticket),0) FROM Tickets_Acceso WHERE fecha_expiracion>GETDATE())";
 
             SqlConnection objConexion = new SqlConnection(Conexion.strConexion);
             SqlCommand comTraer = new SqlCommand(strSQL, objConexion);
@@ -87,6 +89,8 @@ namespace Datos
                     objEntidadesTicket_Acceso.Fecha_Expiracion = Convert.ToDateTime(drTicket["fecha_expiracion"].ToString());
                     objEntidadesTicket_Acceso.Sign = drTicket["sign"].ToString();
                     objEntidadesTicket_Acceso.Token = drTicket["token"].ToString();
+                    objEntidadesTicket_Acceso.TipoAprobacion = Convert.ToChar(drTicket["tipoAprobacion"]);
+                    objEntidadesTicket_Acceso.Cuit = Convert.ToInt64(drTicket["cuit"]);
                 }
 
             }

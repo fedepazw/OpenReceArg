@@ -59,5 +59,24 @@ namespace Entidades
             set { token = value; }
         }
 
+        private char tipoAprobacion;
+        /// <summary>
+        /// Tipo de Aprobación (H=Homologación; P=Produccion)
+        /// </summary>
+        public char TipoAprobacion
+        {
+            get { return tipoAprobacion; }
+            set { tipoAprobacion = value; }
+        }
+
+        private long cuit;
+        /// <summary>
+        /// Cuit de la Entidad
+        /// </summary>
+        public long Cuit
+        {
+            get { return cuit; }
+            set { cuit = value; }
+        }
     }
 }

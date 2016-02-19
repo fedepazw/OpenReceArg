@@ -51,16 +51,32 @@ namespace OpenRECE
 
             objEntidadesTicket_Acceso = objLogicaTicket_Acceso.TraerTicketActivo();
 
-            //Llamo al Webservice de Tributos para recuperar los Paises
+            //Llamo al Webservice para recuperar los Tipos de Tributos
             Logica.WebServices_AFIP objLogicaWebServiceAfip = new Logica.WebServices_AFIP();
 
-            if (objLogicaWebServiceAfip.FEParamGetTiposTributos(objEntidadesTicket_Acceso) == Entidades.WebServices_AFIP.RespuestaWS.Correcta)
+            if (objEntidadesTicket_Acceso.TipoAprobacion == 'P') //Producción
             {
-                MessageBox.Show("Tipos de Tributos actualizados desde el WebService");
+                /*WebService Producción*/
+                if (objLogicaWebServiceAfip.FEParamGetTiposTributos(objEntidadesTicket_Acceso) == Entidades.WebServices_AFIP.RespuestaWS.Correcta)
+                {
+                    MessageBox.Show("Tipos de Tributos actualizados desde el WebService");
+                }
+                else
+                {
+                    MessageBox.Show("El WebService devolvió un Error/Evento. Por favor revise los Logs");
+                }
             }
             else
             {
-                MessageBox.Show("El WebService devolvió un Error/Evento. Por favor revise los Logs");
+                /*WebService Homologación*/
+                if (objLogicaWebServiceAfip.FEParamGetTiposTributos_Homologacion(objEntidadesTicket_Acceso) == Entidades.WebServices_AFIP.RespuestaWS.Correcta)
+                {
+                    MessageBox.Show("Tipos de Tributos actualizados desde el WebService");
+                }
+                else
+                {
+                    MessageBox.Show("El WebService devolvió un Error/Evento. Por favor revise los Logs");
+                }
             }
 
             TraerTodos();

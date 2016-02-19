@@ -50,18 +50,33 @@ namespace OpenRECE
 
             objEntidadesTicket_Acceso = objLogicaTicket_Acceso.TraerTicketActivo();
 
-            //Llamo al Webservice de Paises para recuperar los Paises
+            //Llamo al Webservice para recuperar los Tipos de Comprobantes
             Logica.WebServices_AFIP objLogicaWebServiceAfip = new Logica.WebServices_AFIP();
 
-            if (objLogicaWebServiceAfip.FEParamGetTiposCbtes(objEntidadesTicket_Acceso) == Entidades.WebServices_AFIP.RespuestaWS.Correcta)
+            if (objEntidadesTicket_Acceso.TipoAprobacion == 'P') //Producción
             {
-                MessageBox.Show("Tipos de Comprobantes actualizados desde el WebService");
+                /*WebService Producción*/
+                if (objLogicaWebServiceAfip.FEParamGetTiposCbtes(objEntidadesTicket_Acceso) == Entidades.WebServices_AFIP.RespuestaWS.Correcta)
+                {
+                    MessageBox.Show("Tipos de Comprobantes actualizados desde el WebService");
+                }
+                else
+                {
+                    MessageBox.Show("El WebService devolvió un Error/Evento. Por favor revise los Logs");
+                }
             }
             else
             {
-                MessageBox.Show("El WebService devolvió un Error/Evento. Por favor revise los Logs");
+                /*WebService Homologacion*/
+                if (objLogicaWebServiceAfip.FEParamGetTiposCbtes_Homologacion(objEntidadesTicket_Acceso) == Entidades.WebServices_AFIP.RespuestaWS.Correcta)
+                {
+                    MessageBox.Show("Tipos de Comprobantes actualizados desde el WebService");
+                }
+                else
+                {
+                    MessageBox.Show("El WebService devolvió un Error/Evento. Por favor revise los Logs");
+                }
             }
-
             TraerTodos();
         }
 

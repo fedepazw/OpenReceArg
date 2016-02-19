@@ -43,11 +43,15 @@
             this.archivoToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.salirToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.tablasToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.empresaToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.puntosDeVentaToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.tiposDeComprobantesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.tiposDeConceptosToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.tiposDeDocumentosToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.tiposDeIvaToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.tiposDeMonedasToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.tiposDeDatosOpcionalesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.tiposDeTributosToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.paisesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.configuracionToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.certificadoToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -57,8 +61,6 @@
             this.ayudaToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.acercaDeToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.btnVerificarInternet = new System.Windows.Forms.Button();
-            this.tiposDeDatosOpcionalesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.tiposDeTributosToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.gbRespuestaAFIP.SuspendLayout();
             this.tlpRtaAFIP.SuspendLayout();
             this.menuStripSuperior.SuspendLayout();
@@ -82,6 +84,7 @@
             this.btnSolicitarTA.TabIndex = 6;
             this.btnSolicitarTA.Text = "Ticket de Acceso";
             this.btnSolicitarTA.UseVisualStyleBackColor = true;
+            this.btnSolicitarTA.Visible = false;
             this.btnSolicitarTA.Click += new System.EventHandler(this.btnSolicitarTA_Click);
             // 
             // gbRespuestaAFIP
@@ -203,6 +206,7 @@
             // tablasToolStripMenuItem
             // 
             this.tablasToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.empresaToolStripMenuItem,
             this.tiposDeComprobantesToolStripMenuItem,
             this.tiposDeConceptosToolStripMenuItem,
             this.tiposDeDocumentosToolStripMenuItem,
@@ -215,6 +219,21 @@
             this.tablasToolStripMenuItem.Name = "tablasToolStripMenuItem";
             this.tablasToolStripMenuItem.Size = new System.Drawing.Size(52, 20);
             this.tablasToolStripMenuItem.Text = "&Tablas";
+            // 
+            // empresaToolStripMenuItem
+            // 
+            this.empresaToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.puntosDeVentaToolStripMenuItem});
+            this.empresaToolStripMenuItem.Name = "empresaToolStripMenuItem";
+            this.empresaToolStripMenuItem.Size = new System.Drawing.Size(214, 22);
+            this.empresaToolStripMenuItem.Text = "&Empresa";
+            // 
+            // puntosDeVentaToolStripMenuItem
+            // 
+            this.puntosDeVentaToolStripMenuItem.Name = "puntosDeVentaToolStripMenuItem";
+            this.puntosDeVentaToolStripMenuItem.Size = new System.Drawing.Size(159, 22);
+            this.puntosDeVentaToolStripMenuItem.Text = "Puntos de &Venta";
+            this.puntosDeVentaToolStripMenuItem.Click += new System.EventHandler(this.puntosDeVentaToolStripMenuItem_Click);
             // 
             // tiposDeComprobantesToolStripMenuItem
             // 
@@ -250,6 +269,20 @@
             this.tiposDeMonedasToolStripMenuItem.Size = new System.Drawing.Size(214, 22);
             this.tiposDeMonedasToolStripMenuItem.Text = "Tipos de &Monedas";
             this.tiposDeMonedasToolStripMenuItem.Click += new System.EventHandler(this.tiposDeMonedasToolStripMenuItem_Click);
+            // 
+            // tiposDeDatosOpcionalesToolStripMenuItem
+            // 
+            this.tiposDeDatosOpcionalesToolStripMenuItem.Name = "tiposDeDatosOpcionalesToolStripMenuItem";
+            this.tiposDeDatosOpcionalesToolStripMenuItem.Size = new System.Drawing.Size(214, 22);
+            this.tiposDeDatosOpcionalesToolStripMenuItem.Text = "Tipos de Datos &Opcionales";
+            this.tiposDeDatosOpcionalesToolStripMenuItem.Click += new System.EventHandler(this.tiposDeDatosOpcionalesToolStripMenuItem_Click);
+            // 
+            // tiposDeTributosToolStripMenuItem
+            // 
+            this.tiposDeTributosToolStripMenuItem.Name = "tiposDeTributosToolStripMenuItem";
+            this.tiposDeTributosToolStripMenuItem.Size = new System.Drawing.Size(214, 22);
+            this.tiposDeTributosToolStripMenuItem.Text = "Tipos de &Tributos";
+            this.tiposDeTributosToolStripMenuItem.Click += new System.EventHandler(this.tiposDeTributosToolStripMenuItem_Click);
             // 
             // paisesToolStripMenuItem
             // 
@@ -321,20 +354,6 @@
             this.btnVerificarInternet.UseVisualStyleBackColor = true;
             this.btnVerificarInternet.Click += new System.EventHandler(this.btnVerificarInternet_Click);
             // 
-            // tiposDeDatosOpcionalesToolStripMenuItem
-            // 
-            this.tiposDeDatosOpcionalesToolStripMenuItem.Name = "tiposDeDatosOpcionalesToolStripMenuItem";
-            this.tiposDeDatosOpcionalesToolStripMenuItem.Size = new System.Drawing.Size(214, 22);
-            this.tiposDeDatosOpcionalesToolStripMenuItem.Text = "Tipos de Datos &Opcionales";
-            this.tiposDeDatosOpcionalesToolStripMenuItem.Click += new System.EventHandler(this.tiposDeDatosOpcionalesToolStripMenuItem_Click);
-            // 
-            // tiposDeTributosToolStripMenuItem
-            // 
-            this.tiposDeTributosToolStripMenuItem.Name = "tiposDeTributosToolStripMenuItem";
-            this.tiposDeTributosToolStripMenuItem.Size = new System.Drawing.Size(214, 22);
-            this.tiposDeTributosToolStripMenuItem.Text = "Tipos de &Tributos";
-            this.tiposDeTributosToolStripMenuItem.Click += new System.EventHandler(this.tiposDeTributosToolStripMenuItem_Click);
-            // 
             // frmTicketAcceso
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -394,5 +413,7 @@
         private System.Windows.Forms.ToolStripMenuItem tiposDeMonedasToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem tiposDeDatosOpcionalesToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem tiposDeTributosToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem empresaToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem puntosDeVentaToolStripMenuItem;
     }
 }

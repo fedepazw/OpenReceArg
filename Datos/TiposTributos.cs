@@ -12,7 +12,7 @@ namespace Datos
         /// <summary>
         /// Agrega un registro de Tipos de Tributos en la B.D.
         /// </summary>
-        /// <param name="pTipoTributo">Objeto Tipo Moneda</param>
+        /// <param name="pTipoTributo">Objeto Tipo de Tributo</param>
         public void Agregar(Entidades.TiposTributos pTipoTributo)
         {
             DateTime fchNula;

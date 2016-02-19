@@ -8,7 +8,10 @@
     <Setting Name="Logica_ar_gov_afip_wsaa_LoginCMSService" Type="(Web Service URL)" Scope="Application">
       <Value Profile="(Default)">https://wsaa.afip.gov.ar/ws/services/LoginCms</Value>
     </Setting>
-    <Setting Name="Logica_ar_gov_afip_wswhomo_Service" Type="(Web Service URL)" Scope="Application">
+    <Setting Name="Logica_AFIP_WSFEV1_Produccion_Service" Type="(Web Service URL)" Scope="Application">
+      <Value Profile="(Default)">https://servicios1.afip.gov.ar/wsfev1/service.asmx</Value>
+    </Setting>
+    <Setting Name="Logica_AFIP_WSFEV1_Homologacion_Service" Type="(Web Service URL)" Scope="Application">
       <Value Profile="(Default)">https://wswhomo.afip.gov.ar/wsfev1/service.asmx</Value>
     </Setting>
   </Settings>

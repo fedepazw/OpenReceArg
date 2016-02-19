@@ -91,6 +91,12 @@
     <Compile Include="frmPaises.Designer.cs">
       <DependentUpon>frmPaises.cs</DependentUpon>
     </Compile>
+    <Compile Include="frmPtoVenta.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmPtoVenta.Designer.cs">
+      <DependentUpon>frmPtoVenta.cs</DependentUpon>
+    </Compile>
     <Compile Include="frmTicketAcceso.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -155,6 +161,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="frmPaises.resx">
       <DependentUpon>frmPaises.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmPtoVenta.resx">
+      <DependentUpon>frmPtoVenta.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="frmTicketAcceso.resx">
       <DependentUpon>frmTicketAcceso.cs</DependentUpon>

@@ -76,6 +76,7 @@ namespace OpenRECE
         private void pedirTicketAcceso()
         {
             objEntidadesConfiguracionCertificado = objLogicaConfiguracionCertificado.TraerConfiguracion();
+
             /*Verifica si tiene una configuracion cargada en la B.D.*/
             if (objEntidadesConfiguracionCertificado.Cuit != 0)
             {
@@ -97,7 +98,7 @@ namespace OpenRECE
 
                     if (objEntidadesConfiguracionCertificado.TipoAprobacion == 'P')
                     {
-                        objEntidadesCertificado.UrlWsaaWsdl = SERVIDOR_WSAA_PRODUCCION;
+                        objEntidadesCertificado.UrlWsaaWsdl = SERVIDOR_WSAA_PRODUCCION;                        
                     }
                     else
                     {
@@ -107,6 +108,9 @@ namespace OpenRECE
                     /*Pido en el WebService un Nuevo Ticket de Acceso*/
                     Logica.Tickets objTicketRespuesta = new Logica.Tickets();
                     objEntidadesTicket_Acceso = objTicketRespuesta.Gestionar_TA(objEntidadesCertificado);
+
+                    objEntidadesTicket_Acceso.Cuit = objEntidadesConfiguracionCertificado.Cuit;
+                    objEntidadesTicket_Acceso.TipoAprobacion = objEntidadesConfiguracionCertificado.TipoAprobacion;
 
                     if (objEntidadesTicket_Acceso.Sign != null)
                     {
@@ -138,15 +142,15 @@ namespace OpenRECE
         }
 
         /// <summary>
-        /// Abre el Form de Paises
+        /// Abre el Form de Puntos de Venta
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        private void paisesToolStripMenuItem_Click(object sender, EventArgs e)
+        private void puntosDeVentaToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            frmPaises objPaises = new frmPaises();
+            frmPtoVenta objPtoVenta = new frmPtoVenta();
 
-            objPaises.ShowDialog();
+            objPtoVenta.ShowDialog();
         }
 
         /// <summary>
@@ -235,6 +239,18 @@ namespace OpenRECE
         }
 
         /// <summary>
+        /// Abre el Form de Paises
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void paisesToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            frmPaises objPaises = new frmPaises();
+
+            objPaises.ShowDialog();
+        }
+
+        /// <summary>
         /// Abre el Form de Logs de Errores
         /// </summary>
         /// <param name="sender"></param>
@@ -318,7 +334,6 @@ namespace OpenRECE
         {
             this.Close();
         }
-
 
 
     }

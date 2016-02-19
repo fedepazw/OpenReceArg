@@ -56,6 +56,7 @@
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
       <DependentUpon>Settings.settings</DependentUpon>
     </Compile>
+    <Compile Include="PtosVenta.cs" />
     <Compile Include="Tickets.cs" />
     <Compile Include="Tickets_Acceso.cs" />
     <Compile Include="TiposCbtes.cs" />
@@ -65,6 +66,16 @@
     <Compile Include="TiposMonedas.cs" />
     <Compile Include="TiposOpcionales.cs" />
     <Compile Include="TiposTributos.cs" />
+    <Compile Include="Web References\AFIP_WSFEV1_Homologacion\Reference.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Reference.map</DependentUpon>
+    </Compile>
+    <Compile Include="Web References\AFIP_WSFEV1_Produccion\Reference.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Reference.map</DependentUpon>
+    </Compile>
     <Compile Include="Web References\ar.gov.afip.wsaahomo\Reference.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -75,13 +86,7 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Reference.map</DependentUpon>
     </Compile>
-    <Compile Include="Web References\ar.gov.afip.wswhomo\Reference.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>Reference.map</DependentUpon>
-    </Compile>
     <Compile Include="WebServices_AFIP.cs" />
-    <Compile Include="XML_FECAESolicitar.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Datos\Datos.csproj">
@@ -99,6 +104,130 @@
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
     </None>
+    <None Include="Web References\AFIP_WSFEV1_Homologacion\CbteTipoResponse.datasource">
+      <DependentUpon>Reference.map</DependentUpon>
+    </None>
+    <None Include="Web References\AFIP_WSFEV1_Homologacion\ConceptoTipoResponse.datasource">
+      <DependentUpon>Reference.map</DependentUpon>
+    </None>
+    <None Include="Web References\AFIP_WSFEV1_Homologacion\DocTipoResponse.datasource">
+      <DependentUpon>Reference.map</DependentUpon>
+    </None>
+    <None Include="Web References\AFIP_WSFEV1_Homologacion\DummyResponse.datasource">
+      <DependentUpon>Reference.map</DependentUpon>
+    </None>
+    <None Include="Web References\AFIP_WSFEV1_Homologacion\FECAEAGetResponse.datasource">
+      <DependentUpon>Reference.map</DependentUpon>
+    </None>
+    <None Include="Web References\AFIP_WSFEV1_Homologacion\FECAEAResponse.datasource">
+      <DependentUpon>Reference.map</DependentUpon>
+    </None>
+    <None Include="Web References\AFIP_WSFEV1_Homologacion\FECAEASinMovConsResponse.datasource">
+      <DependentUpon>Reference.map</DependentUpon>
+    </None>
+    <None Include="Web References\AFIP_WSFEV1_Homologacion\FECAEASinMovResponse.datasource">
+      <DependentUpon>Reference.map</DependentUpon>
+    </None>
+    <None Include="Web References\AFIP_WSFEV1_Homologacion\FECAEResponse.datasource">
+      <DependentUpon>Reference.map</DependentUpon>
+    </None>
+    <None Include="Web References\AFIP_WSFEV1_Homologacion\FECompConsultaResponse.datasource">
+      <DependentUpon>Reference.map</DependentUpon>
+    </None>
+    <None Include="Web References\AFIP_WSFEV1_Homologacion\FECotizacionResponse.datasource">
+      <DependentUpon>Reference.map</DependentUpon>
+    </None>
+    <None Include="Web References\AFIP_WSFEV1_Homologacion\FEPaisResponse.datasource">
+      <DependentUpon>Reference.map</DependentUpon>
+    </None>
+    <None Include="Web References\AFIP_WSFEV1_Homologacion\FEPtoVentaResponse.datasource">
+      <DependentUpon>Reference.map</DependentUpon>
+    </None>
+    <None Include="Web References\AFIP_WSFEV1_Homologacion\FERecuperaLastCbteResponse.datasource">
+      <DependentUpon>Reference.map</DependentUpon>
+    </None>
+    <None Include="Web References\AFIP_WSFEV1_Homologacion\FERegXReqResponse.datasource">
+      <DependentUpon>Reference.map</DependentUpon>
+    </None>
+    <None Include="Web References\AFIP_WSFEV1_Homologacion\FETributoResponse.datasource">
+      <DependentUpon>Reference.map</DependentUpon>
+    </None>
+    <None Include="Web References\AFIP_WSFEV1_Homologacion\IvaTipoResponse.datasource">
+      <DependentUpon>Reference.map</DependentUpon>
+    </None>
+    <None Include="Web References\AFIP_WSFEV1_Homologacion\MonedaResponse.datasource">
+      <DependentUpon>Reference.map</DependentUpon>
+    </None>
+    <None Include="Web References\AFIP_WSFEV1_Homologacion\OpcionalTipoResponse.datasource">
+      <DependentUpon>Reference.map</DependentUpon>
+    </None>
+    <None Include="Web References\AFIP_WSFEV1_Homologacion\Reference.map">
+      <Generator>MSDiscoCodeGenerator</Generator>
+      <LastGenOutput>Reference.cs</LastGenOutput>
+    </None>
+    <None Include="Web References\AFIP_WSFEV1_Homologacion\service.wsdl" />
+    <None Include="Web References\AFIP_WSFEV1_Produccion\CbteTipoResponse.datasource">
+      <DependentUpon>Reference.map</DependentUpon>
+    </None>
+    <None Include="Web References\AFIP_WSFEV1_Produccion\ConceptoTipoResponse.datasource">
+      <DependentUpon>Reference.map</DependentUpon>
+    </None>
+    <None Include="Web References\AFIP_WSFEV1_Produccion\DocTipoResponse.datasource">
+      <DependentUpon>Reference.map</DependentUpon>
+    </None>
+    <None Include="Web References\AFIP_WSFEV1_Produccion\DummyResponse.datasource">
+      <DependentUpon>Reference.map</DependentUpon>
+    </None>
+    <None Include="Web References\AFIP_WSFEV1_Produccion\FECAEAGetResponse.datasource">
+      <DependentUpon>Reference.map</DependentUpon>
+    </None>
+    <None Include="Web References\AFIP_WSFEV1_Produccion\FECAEAResponse.datasource">
+      <DependentUpon>Reference.map</DependentUpon>
+    </None>
+    <None Include="Web References\AFIP_WSFEV1_Produccion\FECAEASinMovConsResponse.datasource">
+      <DependentUpon>Reference.map</DependentUpon>
+    </None>
+    <None Include="Web References\AFIP_WSFEV1_Produccion\FECAEASinMovResponse.datasource">
+      <DependentUpon>Reference.map</DependentUpon>
+    </None>
+    <None Include="Web References\AFIP_WSFEV1_Produccion\FECAEResponse.datasource">
+      <DependentUpon>Reference.map</DependentUpon>
+    </None>
+    <None Include="Web References\AFIP_WSFEV1_Produccion\FECompConsultaResponse.datasource">
+      <DependentUpon>Reference.map</DependentUpon>
+    </None>
+    <None Include="Web References\AFIP_WSFEV1_Produccion\FECotizacionResponse.datasource">
+      <DependentUpon>Reference.map</DependentUpon>
+    </None>
+    <None Include="Web References\AFIP_WSFEV1_Produccion\FEPaisResponse.datasource">
+      <DependentUpon>Reference.map</DependentUpon>
+    </None>
+    <None Include="Web References\AFIP_WSFEV1_Produccion\FEPtoVentaResponse.datasource">
+      <DependentUpon>Reference.map</DependentUpon>
+    </None>
+    <None Include="Web References\AFIP_WSFEV1_Produccion\FERecuperaLastCbteResponse.datasource">
+      <DependentUpon>Reference.map</DependentUpon>
+    </None>
+    <None Include="Web References\AFIP_WSFEV1_Produccion\FERegXReqResponse.datasource">
+      <DependentUpon>Reference.map</DependentUpon>
+    </None>
+    <None Include="Web References\AFIP_WSFEV1_Produccion\FETributoResponse.datasource">
+      <DependentUpon>Reference.map</DependentUpon>
+    </None>
+    <None Include="Web References\AFIP_WSFEV1_Produccion\IvaTipoResponse.datasource">
+      <DependentUpon>Reference.map</DependentUpon>
+    </None>
+    <None Include="Web References\AFIP_WSFEV1_Produccion\MonedaResponse.datasource">
+      <DependentUpon>Reference.map</DependentUpon>
+    </None>
+    <None Include="Web References\AFIP_WSFEV1_Produccion\OpcionalTipoResponse.datasource">
+      <DependentUpon>Reference.map</DependentUpon>
+    </None>
+    <None Include="Web References\AFIP_WSFEV1_Produccion\Reference.map">
+      <Generator>MSDiscoCodeGenerator</Generator>
+      <LastGenOutput>Reference.cs</LastGenOutput>
+    </None>
+    <None Include="Web References\AFIP_WSFEV1_Produccion\service.wsdl" />
     <None Include="Web References\ar.gov.afip.wsaahomo\LoginCms.wsdl" />
     <None Include="Web References\ar.gov.afip.wsaahomo\Reference.map">
       <Generator>MSDiscoCodeGenerator</Generator>
@@ -109,85 +238,21 @@
       <Generator>MSDiscoCodeGenerator</Generator>
       <LastGenOutput>Reference.cs</LastGenOutput>
     </None>
-    <None Include="Web References\ar.gov.afip.wswhomo\CbteTipoResponse.datasource">
-      <DependentUpon>Reference.map</DependentUpon>
-    </None>
-    <None Include="Web References\ar.gov.afip.wswhomo\ConceptoTipoResponse.datasource">
-      <DependentUpon>Reference.map</DependentUpon>
-    </None>
-    <None Include="Web References\ar.gov.afip.wswhomo\DocTipoResponse.datasource">
-      <DependentUpon>Reference.map</DependentUpon>
-    </None>
-    <None Include="Web References\ar.gov.afip.wswhomo\DummyResponse.datasource">
-      <DependentUpon>Reference.map</DependentUpon>
-    </None>
-    <None Include="Web References\ar.gov.afip.wswhomo\FECAEAGetResponse.datasource">
-      <DependentUpon>Reference.map</DependentUpon>
-    </None>
-    <None Include="Web References\ar.gov.afip.wswhomo\FECAEAResponse.datasource">
-      <DependentUpon>Reference.map</DependentUpon>
-    </None>
-    <None Include="Web References\ar.gov.afip.wswhomo\FECAEASinMovConsResponse.datasource">
-      <DependentUpon>Reference.map</DependentUpon>
-    </None>
-    <None Include="Web References\ar.gov.afip.wswhomo\FECAEASinMovResponse.datasource">
-      <DependentUpon>Reference.map</DependentUpon>
-    </None>
-    <None Include="Web References\ar.gov.afip.wswhomo\FECAEResponse.datasource">
-      <DependentUpon>Reference.map</DependentUpon>
-    </None>
-    <None Include="Web References\ar.gov.afip.wswhomo\FECompConsultaResponse.datasource">
-      <DependentUpon>Reference.map</DependentUpon>
-    </None>
-    <None Include="Web References\ar.gov.afip.wswhomo\FECotizacionResponse.datasource">
-      <DependentUpon>Reference.map</DependentUpon>
-    </None>
-    <None Include="Web References\ar.gov.afip.wswhomo\FEPaisResponse.datasource">
-      <DependentUpon>Reference.map</DependentUpon>
-    </None>
-    <None Include="Web References\ar.gov.afip.wswhomo\FEPtoVentaResponse.datasource">
-      <DependentUpon>Reference.map</DependentUpon>
-    </None>
-    <None Include="Web References\ar.gov.afip.wswhomo\FERecuperaLastCbteResponse.datasource">
-      <DependentUpon>Reference.map</DependentUpon>
-    </None>
-    <None Include="Web References\ar.gov.afip.wswhomo\FERegXReqResponse.datasource">
-      <DependentUpon>Reference.map</DependentUpon>
-    </None>
-    <None Include="Web References\ar.gov.afip.wswhomo\FETributoResponse.datasource">
-      <DependentUpon>Reference.map</DependentUpon>
-    </None>
-    <None Include="Web References\ar.gov.afip.wswhomo\IvaTipoResponse.datasource">
-      <DependentUpon>Reference.map</DependentUpon>
-    </None>
-    <None Include="Web References\ar.gov.afip.wswhomo\MonedaResponse.datasource">
-      <DependentUpon>Reference.map</DependentUpon>
-    </None>
-    <None Include="Web References\ar.gov.afip.wswhomo\OpcionalTipoResponse.datasource">
-      <DependentUpon>Reference.map</DependentUpon>
-    </None>
-    <None Include="Web References\ar.gov.afip.wswhomo\Reference.map">
-      <Generator>MSDiscoCodeGenerator</Generator>
-      <LastGenOutput>Reference.cs</LastGenOutput>
-    </None>
-    <None Include="Web References\ar.gov.afip.wswhomo\service.wsdl" />
   </ItemGroup>
   <ItemGroup>
     <WebReferences Include="Web References\" />
   </ItemGroup>
   <ItemGroup>
-    <WebReferenceUrl Include="https://servicios1.afip.gov.ar/wsfev1/service.asmx">
+    <WebReferenceUrl Include="https://servicios1.afip.gov.ar/wsfev1/service.asmx%3fWSDL">
       <UrlBehavior>Dynamic</UrlBehavior>
-      <RelPath>Web References\ar.gov.afip.servicios1\</RelPath>
-      <UpdateFromURL>https://servicios1.afip.gov.ar/wsfev1/service.asmx</UpdateFromURL>
+      <RelPath>Web References\AFIP_WSFEV1_Produccion\</RelPath>
+      <UpdateFromURL>https://servicios1.afip.gov.ar/wsfev1/service.asmx%3fWSDL</UpdateFromURL>
       <ServiceLocationURL>
       </ServiceLocationURL>
       <CachedDynamicPropName>
       </CachedDynamicPropName>
-      <CachedAppSettingsObjectName>
-      </CachedAppSettingsObjectName>
-      <CachedSettingsPropName>
-      </CachedSettingsPropName>
+      <CachedAppSettingsObjectName>Settings</CachedAppSettingsObjectName>
+      <CachedSettingsPropName>Logica_AFIP_WSFEV1_Produccion_Service</CachedSettingsPropName>
     </WebReferenceUrl>
     <WebReferenceUrl Include="https://wsaa.afip.gov.ar/ws/services/LoginCms%3fwsdl">
       <UrlBehavior>Dynamic</UrlBehavior>
@@ -211,23 +276,20 @@
       <CachedAppSettingsObjectName>Settings</CachedAppSettingsObjectName>
       <CachedSettingsPropName>Logica_ar_gov_afip_wsaahomo_LoginCMSService</CachedSettingsPropName>
     </WebReferenceUrl>
-    <WebReferenceUrl Include="https://wswhomo.afip.gov.ar/wsfev1/service.asmx">
+    <WebReferenceUrl Include="https://wswhomo.afip.gov.ar/wsfev1/service.asmx%3fWSDL">
       <UrlBehavior>Dynamic</UrlBehavior>
-      <RelPath>Web References\ar.gov.afip.wswhomo\</RelPath>
-      <UpdateFromURL>https://wswhomo.afip.gov.ar/wsfev1/service.asmx</UpdateFromURL>
+      <RelPath>Web References\AFIP_WSFEV1_Homologacion\</RelPath>
+      <UpdateFromURL>https://wswhomo.afip.gov.ar/wsfev1/service.asmx%3fWSDL</UpdateFromURL>
       <ServiceLocationURL>
       </ServiceLocationURL>
       <CachedDynamicPropName>
       </CachedDynamicPropName>
       <CachedAppSettingsObjectName>Settings</CachedAppSettingsObjectName>
-      <CachedSettingsPropName>Logica_ar_gov_afip_wswhomo_Service</CachedSettingsPropName>
+      <CachedSettingsPropName>Logica_AFIP_WSFEV1_Homologacion_Service</CachedSettingsPropName>
     </WebReferenceUrl>
   </ItemGroup>
   <ItemGroup>
     <WCFMetadata Include="Service References\" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Web References\ar.gov.afip.wswhomo\service.disco" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
