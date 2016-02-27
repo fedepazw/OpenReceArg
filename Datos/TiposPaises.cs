@@ -7,16 +7,16 @@ using System.Text;
 
 namespace Datos
 {
-    public class Paises
+    public class TiposPaises
     {
         /// <summary>
         /// Agrega un registro de Pais en la B.D.
         /// </summary>
         /// <param name="pPais">Objeto Pais</param>
-        public void Agregar(Entidades.Paises pPais)
+        public void Agregar(Entidades.TiposPaises pPais)
         {
             //Declaro variable con la sentencia SQL
-            string strSQL = "INSERT Paises (Id_Pais, Descripcion)";
+            string strSQL = "INSERT TiposPaises (Id_Pais, Descripcion)";
             strSQL += "VALUES (@id_pais, @descripcion)";
 
             //Crear objeto de la clase SQLConnection
@@ -67,7 +67,7 @@ namespace Datos
         public DataTable TraerTodos()
         {
             DataTable dt = new DataTable();
-            string strSql = "SELECT * FROM Paises";
+            string strSql = "SELECT * FROM TiposPaises";
 
             try
             {
@@ -96,7 +96,7 @@ namespace Datos
         {
             string strConsulta = "";
 
-            strConsulta = "DELETE FROM Paises";
+            strConsulta = "DELETE FROM TiposPaises";
 
             //Crear objeto de la clase SQLConnection
             SqlConnection objConexion = new SqlConnection(Conexion.strConexion);

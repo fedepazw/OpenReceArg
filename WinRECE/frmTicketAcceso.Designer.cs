@@ -42,6 +42,8 @@
             this.menuStripSuperior = new System.Windows.Forms.MenuStrip();
             this.archivoToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.salirToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.comprobantesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.autorizadosToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.tablasToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.empresaToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.puntosDeVentaToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -61,6 +63,7 @@
             this.ayudaToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.acercaDeToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.btnVerificarInternet = new System.Windows.Forms.Button();
+            this.ultimosNúmerosToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.gbRespuestaAFIP.SuspendLayout();
             this.tlpRtaAFIP.SuspendLayout();
             this.menuStripSuperior.SuspendLayout();
@@ -179,6 +182,7 @@
             // 
             this.menuStripSuperior.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.archivoToolStripMenuItem,
+            this.comprobantesToolStripMenuItem,
             this.tablasToolStripMenuItem,
             this.configuracionToolStripMenuItem,
             this.logsToolStripMenuItem,
@@ -202,6 +206,23 @@
             this.salirToolStripMenuItem.Name = "salirToolStripMenuItem";
             this.salirToolStripMenuItem.Size = new System.Drawing.Size(96, 22);
             this.salirToolStripMenuItem.Text = "&Salir";
+            // 
+            // comprobantesToolStripMenuItem
+            // 
+            this.comprobantesToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.autorizadosToolStripMenuItem,
+            this.ultimosNúmerosToolStripMenuItem});
+            this.comprobantesToolStripMenuItem.Enabled = false;
+            this.comprobantesToolStripMenuItem.Name = "comprobantesToolStripMenuItem";
+            this.comprobantesToolStripMenuItem.Size = new System.Drawing.Size(98, 20);
+            this.comprobantesToolStripMenuItem.Text = "Com&probantes";
+            // 
+            // autorizadosToolStripMenuItem
+            // 
+            this.autorizadosToolStripMenuItem.Name = "autorizadosToolStripMenuItem";
+            this.autorizadosToolStripMenuItem.Size = new System.Drawing.Size(167, 22);
+            this.autorizadosToolStripMenuItem.Text = "&Autorizados";
+            this.autorizadosToolStripMenuItem.Click += new System.EventHandler(this.autorizadosToolStripMenuItem_Click);
             // 
             // tablasToolStripMenuItem
             // 
@@ -354,6 +375,13 @@
             this.btnVerificarInternet.UseVisualStyleBackColor = true;
             this.btnVerificarInternet.Click += new System.EventHandler(this.btnVerificarInternet_Click);
             // 
+            // ultimosNúmerosToolStripMenuItem
+            // 
+            this.ultimosNúmerosToolStripMenuItem.Name = "ultimosNúmerosToolStripMenuItem";
+            this.ultimosNúmerosToolStripMenuItem.Size = new System.Drawing.Size(167, 22);
+            this.ultimosNúmerosToolStripMenuItem.Text = "&Ultimos Números";
+            this.ultimosNúmerosToolStripMenuItem.Click += new System.EventHandler(this.ultimosNúmerosToolStripMenuItem_Click);
+            // 
             // frmTicketAcceso
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -415,5 +443,8 @@
         private System.Windows.Forms.ToolStripMenuItem tiposDeTributosToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem empresaToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem puntosDeVentaToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem comprobantesToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem autorizadosToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem ultimosNúmerosToolStripMenuItem;
     }
 }

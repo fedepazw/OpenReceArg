@@ -139,6 +139,7 @@ namespace OpenRECE
             lblFchExpiracionRta.Text = pTicket_Rta.Fecha_Expiracion.ToShortDateString() + ' ' + pTicket_Rta.Fecha_Expiracion.ToShortTimeString();
             tlpRtaAFIP.Visible = true;
             tablasToolStripMenuItem.Enabled = true; //Se permite el Acceso a las Tablas solo si tiene un Ticket de Acceso Activo
+            comprobantesToolStripMenuItem.Enabled = true; //Se permite el Acceso a las Comprobantes solo si tiene un Ticket de Acceso Activo
         }
 
         /// <summary>
@@ -251,6 +252,30 @@ namespace OpenRECE
         }
 
         /// <summary>
+        /// Abre el Form de Comprobantes Autorizados
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void autorizadosToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            frmComprobantesAprobados objCbtesAprobados = new frmComprobantesAprobados();
+
+            objCbtesAprobados.ShowDialog();
+        }
+
+        /// <summary>
+        /// Abre el Form de Últimos Números Autorizados
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void ultimosNúmerosToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            frmUltimosNrosCbtes objUltimosNros = new frmUltimosNrosCbtes();
+
+            objUltimosNros.ShowDialog();
+        }
+
+        /// <summary>
         /// Abre el Form de Logs de Errores
         /// </summary>
         /// <param name="sender"></param>
@@ -334,7 +359,6 @@ namespace OpenRECE
         {
             this.Close();
         }
-
 
     }
 }

@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmConfiguracionCertificado));
             this.gbTipoAprobacion = new System.Windows.Forms.GroupBox();
             this.rbServidorHomologacion = new System.Windows.Forms.RadioButton();
             this.rbServidorProduccion = new System.Windows.Forms.RadioButton();
@@ -194,6 +195,7 @@
             this.Controls.Add(this.btnCerrar);
             this.Controls.Add(this.gbDatosCertificado);
             this.Controls.Add(this.gbTipoAprobacion);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "frmConfiguracionCertificado";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Configuración Certificado";

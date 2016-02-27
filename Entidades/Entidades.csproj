@@ -39,10 +39,11 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="CertificadosX509.cs" />
+    <Compile Include="Comprobantes.cs" />
+    <Compile Include="Comprobantes_Autorizados.cs" />
     <Compile Include="Configuracion_Certificado.cs" />
     <Compile Include="Errores_WS.cs" />
     <Compile Include="Eventos_WS.cs" />
-    <Compile Include="Paises.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="PtosVenta.cs" />
     <Compile Include="Tickets_Acceso.cs" />
@@ -52,7 +53,9 @@
     <Compile Include="TiposIva.cs" />
     <Compile Include="TiposMonedas.cs" />
     <Compile Include="TiposOpcionales.cs" />
+    <Compile Include="TiposPaises.cs" />
     <Compile Include="TiposTributos.cs" />
+    <Compile Include="UltCbtesAutorizados.cs" />
     <Compile Include="WebServices_AFIP.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

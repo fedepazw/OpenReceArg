@@ -5,7 +5,7 @@ using System.Text;
 
 namespace Entidades
 {
-    public class Paises
+    public class TiposPaises
     {
         private int id_Pais;
         /// <summary>

@@ -6,17 +6,17 @@ using System.Text;
 
 namespace Logica
 {
-    public class Paises
+    public class TiposPaises
     {
-        Datos.Paises objDatosPaises = new Datos.Paises();
+        Datos.TiposPaises objDatosTiposPaises = new Datos.TiposPaises();
 
         /// <summary>
         /// Delega a la Capa de Datos Agregar un Pais a la B.D.
         /// </summary>
         /// <param name="pPais"></param>
-        public void Agregar(Entidades.Paises pPais)
+        public void Agregar(Entidades.TiposPaises pPais)
         {
-            objDatosPaises.Agregar(pPais);
+            objDatosTiposPaises.Agregar(pPais);
         }
 
         /// <summary>
@@ -27,7 +27,7 @@ namespace Logica
         {
             DataTable dt = new DataTable();
 
-            dt = objDatosPaises.TraerTodos();
+            dt = objDatosTiposPaises.TraerTodos();
 
             return dt;
         }
@@ -37,7 +37,7 @@ namespace Logica
         /// </summary>
         public void BorrarTodos()
         {
-            objDatosPaises.BorrarTodos();
+            objDatosTiposPaises.BorrarTodos();
         }
     }
 }
