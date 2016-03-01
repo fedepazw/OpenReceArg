@@ -60,11 +60,97 @@ namespace OpenRECE
         {
             Logica.Comprobantes_Autorizados objLogicaCbtesAutorizados = new Logica.Comprobantes_Autorizados();
 
-            dgvCbtesAutorizados.DataSource = objLogicaCbtesAutorizados.TraerCbtesEspecifico(pPtoVenta, pTipoCbte);
+            if (chkFiltroNros.Checked == true)
+            {
+                dgvCbtesAutorizados.DataSource = objLogicaCbtesAutorizados.TraerCbtesEspecificoNro(pPtoVenta, pTipoCbte, Convert.ToInt32(txtNroCbteDesde.Text), Convert.ToInt32(txtNroCbteHasta.Text));
+            }
+            else
+            {
+                dgvCbtesAutorizados.DataSource = objLogicaCbtesAutorizados.TraerCbtesEspecifico(pPtoVenta, pTipoCbte);
+            }
         }
 
         /// <summary>
-        /// Control Botón Traer Comprobantes
+        /// Controla que solo se carguen Nros. en el TextBox Nro. Desde
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void txtNroCbteDesde_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (!(char.IsNumber(e.KeyChar)) && (e.KeyChar != (char)Keys.Back))
+            {
+                MessageBox.Show("Solo se permiten números", "Advertencia", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                e.Handled = true;
+                return;
+            }
+        }
+
+        /// <summary>
+        /// Controla que solo se carguen Nros. en el TextBox Nro. Hasta
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void txtNroCbteHasta_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (!(char.IsNumber(e.KeyChar)) && (e.KeyChar != (char)Keys.Back))
+            {
+                MessageBox.Show("Solo se permiten números", "Advertencia", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                e.Handled = true;
+                return;
+            }
+        }
+
+        /// <summary>
+        /// Muestra o no los filtros de Nros de Cbtes
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void chkFiltroNros_CheckedChanged(object sender, EventArgs e)
+        {
+
+            if (chkFiltroNros.Checked == true)
+            {
+                Logica.Comprobantes_Autorizados objLogicaCbtesAutorizados = new Logica.Comprobantes_Autorizados();
+                //Asigno Punto de Venta
+                int ptoVenta = Convert.ToInt32(cboPtosVenta.SelectedValue);
+                //Asigno Tipo de Comprobante
+                int tipoCbte = Convert.ToInt32(cboTipoCbte.SelectedValue);
+
+                txtNroCbteDesde.Text = (objLogicaCbtesAutorizados.MinimoNroCbteEspecifico(ptoVenta, tipoCbte)).ToString();
+                txtNroCbteHasta.Text = (objLogicaCbtesAutorizados.MaximoNroCbteEspecifico(ptoVenta, tipoCbte)).ToString();
+
+                lblNroCbteDesde.Visible = true;
+                txtNroCbteDesde.Visible = true;
+                lblNroCbteHasta.Visible = true;
+                txtNroCbteHasta.Visible = true;
+            }
+            else
+            {
+                lblNroCbteDesde.Visible = false;
+                txtNroCbteDesde.Visible = false;
+                lblNroCbteHasta.Visible = false;
+                txtNroCbteHasta.Visible = false;
+
+            }
+        }
+
+        /// <summary>
+        /// Control Botón Filtrar
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void btnFiltrarCbtes_Click(object sender, EventArgs e)
+        {
+            //Asigno Punto de Venta
+            int ptoVenta = Convert.ToInt32(cboPtosVenta.SelectedValue);
+            //Asigno Tipo de Comprobante
+            int tipoCbte = Convert.ToInt32(cboTipoCbte.SelectedValue);
+
+            TraerTodos(ptoVenta, tipoCbte);
+        }
+
+        /// <summary>
+        /// Control Botón Actualizar desde AFIP
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
@@ -110,6 +196,28 @@ namespace OpenRECE
                 }
             }
             TraerTodos(ptoVenta, tipoCbte);
+        }
+
+        /// <summary>
+        /// Control del botón Imprimir
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void btnImprimir_Click(object sender, EventArgs e)
+        {
+            printDocCbtesAutorizados.Print();
+        }
+
+        /// <summary>
+        /// Crea la Imagen a Imprimir
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void printDocCbtesAutorizados_PrintPage(object sender, System.Drawing.Printing.PrintPageEventArgs e)
+        {
+            Bitmap bm = new Bitmap(this.dgvCbtesAutorizados.Width, this.dgvCbtesAutorizados.Height);
+            dgvCbtesAutorizados.DrawToBitmap(bm, new Rectangle(0, 0, this.dgvCbtesAutorizados.Width, this.dgvCbtesAutorizados.Height));
+            e.Graphics.DrawImage(bm, 0, 0);
         }
 
         /// <summary>

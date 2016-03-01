@@ -106,11 +106,79 @@ namespace Datos
         {
             DataTable dt = new DataTable();
             string strSql;
-            strSql = "SELECT CbteFch, FchProceso, Nro_CbteDesde, ";
-            strSql += "Nro_CbteHasta, CodAutorizacion, ImpTotal, ";
-            strSql += "ImpTotConc, ImpNeto, ImpOpEx, ";
-            strSql += "ImpTrib, ImpIVA, Resultado ";
+            strSql = "SELECT * ";
             strSql += "FROM Comprobantes_Autorizados";
+
+            try
+            {
+                //Creo un objeto DataAdapter (ADO Desconectado, lo pasa a memoria) y le paso el SELECT a ejecutar
+                SqlDataAdapter daTraer = new SqlDataAdapter(strSql, Conexion.strConexion);
+
+                //Cargo el DataTable con la estructura que tiene el DataAdapter
+                daTraer.Fill(dt);
+            }
+            catch (SqlException)
+            {
+                throw new Exception("Error en la Base de Datos");
+            }
+            catch (Exception)
+            {
+                throw new Exception("No pudo listar los Últimos Nros de Cbtes");
+            }
+
+            return dt;
+        }
+
+        /// <summary>
+        /// Retorna un DataTable con todos los Cbtes. Autorizados de un Punto de Venta 
+        /// y Tipo Cbte Especificado
+        /// </summary>
+        /// <param name="pPtoVenta">Punto de Venta</param>
+        /// <param name="pTipoCbte">Tipo de Comprobante</param>
+        /// <returns>Puntos de Venta en DataTable</returns>
+        public DataTable TraerCbtesEspecifico(int pPtoVenta, int pTipoCbte)
+        {
+            DataTable dt = new DataTable();
+            string strSql;
+            strSql = "SELECT * ";
+            strSql += "FROM Comprobantes_Autorizados ";
+            strSql += "WHERE Id_PtoVenta = " + pPtoVenta.ToString() + " AND Id_TipoCbte = " + pTipoCbte.ToString();
+
+            try
+            {
+                //Creo un objeto DataAdapter (ADO Desconectado, lo pasa a memoria) y le paso el SELECT a ejecutar
+                SqlDataAdapter daTraer = new SqlDataAdapter(strSql, Conexion.strConexion);
+
+                //Cargo el DataTable con la estructura que tiene el DataAdapter
+                daTraer.Fill(dt);
+            }
+            catch (SqlException)
+            {
+                throw new Exception("Error en la Base de Datos");
+            }
+            catch (Exception)
+            {
+                throw new Exception("No pudo listar los Últimos Nros de Cbtes");
+            }
+
+            return dt;
+        }
+
+        /// <summary>
+        /// Retorna un DataTable con los Cbtes. Autorizados de un Punto de Venta desde un Nro Hasta Otro
+        /// y Tipo Cbte Especificado
+        /// </summary>
+        /// <param name="pPtoVenta">Punto de Venta</param>
+        /// <param name="pTipoCbte">Tipo de Comprobante</param>
+        /// <returns>Puntos de Venta en DataTable</returns>
+        public DataTable TraerCbtesEspecificoNro(int pPtoVenta, int pTipoCbte, int pNroDesde, int pNroHasta)
+        {
+            DataTable dt = new DataTable();
+            string strSql;
+            strSql = "SELECT * ";
+            strSql += "FROM Comprobantes_Autorizados ";
+            strSql += "WHERE Id_PtoVenta = " + pPtoVenta.ToString() + " AND Id_TipoCbte = " + pTipoCbte.ToString();
+            strSql += " AND Nro_CbteDesde >= " + pNroDesde.ToString() + " AND Nro_CbteHasta <= " + pNroHasta.ToString();
 
             try
             {
@@ -175,45 +243,11 @@ namespace Datos
         }
 
         /// <summary>
-        /// Retorna un DataTable con todos los Cbtes. Autorizados de un Punto de Venta 
-        /// y Tipo Cbte Especificado
-        /// </summary>
-        /// <returns>Puntos de Venta en DataTable</returns>
-        public DataTable TraerCbtesEspecifico(int pPtoVenta, int pTipoCbte)
-        {
-            DataTable dt = new DataTable();
-            string strSql;
-            strSql = "SELECT CbteFch, FchProceso, Nro_CbteDesde, ";
-            strSql += "Nro_CbteHasta, CodAutorizacion, ImpTotal, ";
-            strSql += "ImpTotConc, ImpNeto, ImpOpEx, ";
-            strSql += "ImpTrib, ImpIVA, Resultado ";
-            strSql += "FROM Comprobantes_Autorizados ";
-            strSql += "WHERE Id_PtoVenta = "+pPtoVenta.ToString() + " AND Id_TipoCbte = " + pTipoCbte.ToString();
-
-            try
-            {
-                //Creo un objeto DataAdapter (ADO Desconectado, lo pasa a memoria) y le paso el SELECT a ejecutar
-                SqlDataAdapter daTraer = new SqlDataAdapter(strSql, Conexion.strConexion);
-
-                //Cargo el DataTable con la estructura que tiene el DataAdapter
-                daTraer.Fill(dt);
-            }
-            catch (SqlException)
-            {
-                throw new Exception("Error en la Base de Datos");
-            }
-            catch (Exception)
-            {
-                throw new Exception("No pudo listar los Últimos Nros de Cbtes");
-            }
-
-            return dt;
-        }
-
-        /// <summary>
         /// Borra todos los registros de Cbtes. Autorizado  de un Punto de Venta y 
         /// Tipo Cbte Especificadoen la B.D.
         /// </summary>
+        /// <param name="pPtoVenta">Punto de Venta</param>
+        /// <param name="pTipoCbte">Tipo de Comprobante</param>
         public void BorrarCbtesEspecifico(int pPtoVenta, int pTipoCbte)
         {
             string strConsulta = "";
@@ -251,6 +285,82 @@ namespace Datos
                 }
 
             }
+        }
+
+        /// <summary>
+        /// Devuelve el Nro de Comprobante Máximo de un Punto de Venta y Tipo de Cbte
+        /// </summary>
+        /// <param name="pPtoVenta">Punto de Venta</param>
+        /// <param name="pTipoCbte">Tipo de Comprobante</param>
+        /// <returns></returns>
+        public int MaximoNroCbteEspecifico(int pPtoVenta, int pTipoCbte)
+        {
+            int maxNroCbte=0;
+            string strSql;
+
+            strSql = "SELECT MAX(ISNULL(Nro_CbteHasta,0)) ";
+            strSql += "FROM Comprobantes_Autorizados ";
+            strSql += "WHERE Id_PtoVenta = " + pPtoVenta.ToString() + " AND Id_TipoCbte = " + pTipoCbte.ToString();
+
+            //Crear objeto de la clase SQLConnection
+            SqlConnection objConexion = new SqlConnection(Conexion.strConexion);
+
+            SqlCommand comMaxNroCbte = new SqlCommand(strSql, objConexion);
+
+            try
+            {
+                objConexion.Open();
+
+                maxNroCbte = Convert.ToInt32(comMaxNroCbte.ExecuteScalar());
+            }
+            catch (SqlException)
+            {
+                throw new Exception("Error en la Base de Datos");
+            }
+            catch (Exception)
+            {
+                throw new Exception("No pudo devolver el Nro Max de Cbte Autorizado");
+            }
+
+            return maxNroCbte;
+        }
+
+        /// <summary>
+        /// Devuelve el Nro de Comprobante Minimo de un Punto de Venta y Tipo de Cbte
+        /// </summary>
+        /// <param name="pPtoVenta">Punto de Venta</param>
+        /// <param name="pTipoCbte">Tipo de Comprobante</param>
+        /// <returns></returns>
+        public int MinimoNroCbteEspecifico(int pPtoVenta, int pTipoCbte)
+        {
+            int minNroCbte = 0;
+            string strSql;
+
+            strSql = "SELECT MIN(ISNULL(Nro_CbteDesde,0)) ";
+            strSql += "FROM Comprobantes_Autorizados ";
+            strSql += "WHERE Id_PtoVenta = " + pPtoVenta.ToString() + " AND Id_TipoCbte = " + pTipoCbte.ToString();
+
+            //Crear objeto de la clase SQLConnection
+            SqlConnection objConexion = new SqlConnection(Conexion.strConexion);
+
+            SqlCommand comMaxNroCbte = new SqlCommand(strSql, objConexion);
+
+            try
+            {
+                objConexion.Open();
+
+                minNroCbte = Convert.ToInt32(comMaxNroCbte.ExecuteScalar());
+            }
+            catch (SqlException)
+            {
+                throw new Exception("Error en la Base de Datos");
+            }
+            catch (Exception)
+            {
+                throw new Exception("No pudo devolver el Nro Max de Cbte Autorizado");
+            }
+
+            return minNroCbte;
         }
     }
 }
