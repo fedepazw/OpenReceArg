@@ -101,6 +101,48 @@ namespace OpenRECE
         }
 
         /// <summary>
+        /// Actualiza los Text de los Filtros de Nros de Cbtes
+        /// </summary>
+        private void actualizarNrosCbtesFiltros()
+        {
+            Logica.Comprobantes_Autorizados objLogicaCbtesAutorizados = new Logica.Comprobantes_Autorizados();
+
+            //Asigno Punto de Venta
+            int ptoVenta = Convert.ToInt32(cboPtosVenta.SelectedValue);
+            //Asigno Tipo de Comprobante
+            int tipoCbte = Convert.ToInt32(cboTipoCbte.SelectedValue);
+
+            txtNroCbteDesde.Text = (objLogicaCbtesAutorizados.MinimoNroCbteEspecifico(ptoVenta, tipoCbte)).ToString();
+            txtNroCbteHasta.Text = (objLogicaCbtesAutorizados.MaximoNroCbteEspecifico(ptoVenta, tipoCbte)).ToString();
+        }
+
+        /// <summary>
+        /// Control cuanto ComboBox de Punto de Venta cambia
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void cboPtosVenta_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (chkFiltroNros.Checked == true)
+            {
+                actualizarNrosCbtesFiltros();
+            }
+        }
+
+        /// <summary>
+        /// Contol cuando ComboBox de Tipo de Comprobante cambia
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void cboTipoCbte_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (chkFiltroNros.Checked == true)
+            {
+                actualizarNrosCbtesFiltros();
+            }
+        }
+
+        /// <summary>
         /// Muestra o no los filtros de Nros de Cbtes
         /// </summary>
         /// <param name="sender"></param>
@@ -110,14 +152,7 @@ namespace OpenRECE
 
             if (chkFiltroNros.Checked == true)
             {
-                Logica.Comprobantes_Autorizados objLogicaCbtesAutorizados = new Logica.Comprobantes_Autorizados();
-                //Asigno Punto de Venta
-                int ptoVenta = Convert.ToInt32(cboPtosVenta.SelectedValue);
-                //Asigno Tipo de Comprobante
-                int tipoCbte = Convert.ToInt32(cboTipoCbte.SelectedValue);
-
-                txtNroCbteDesde.Text = (objLogicaCbtesAutorizados.MinimoNroCbteEspecifico(ptoVenta, tipoCbte)).ToString();
-                txtNroCbteHasta.Text = (objLogicaCbtesAutorizados.MaximoNroCbteEspecifico(ptoVenta, tipoCbte)).ToString();
+                actualizarNrosCbtesFiltros();
 
                 lblNroCbteDesde.Visible = true;
                 txtNroCbteDesde.Visible = true;
@@ -158,7 +193,7 @@ namespace OpenRECE
         {
             Entidades.Tickets_Acceso objEntidadesTicket_Acceso = new Entidades.Tickets_Acceso();
             Logica.Tickets_Acceso objLogicaTicket_Acceso = new Logica.Tickets_Acceso();
-            Entidades.Comprobantes objEntidadesComprobantes = new Entidades.Comprobantes();
+            Entidades.Comprobantes objEntidadesComprobantes = new Entidades.Comprobantes();            
 
             objEntidadesTicket_Acceso = objLogicaTicket_Acceso.TraerTicketActivo();
           
@@ -172,28 +207,60 @@ namespace OpenRECE
 
             if (objEntidadesTicket_Acceso.TipoAprobacion == 'P') //Producción
             {
-                /*WebService Producción*/
-                if (objLogicaWebServiceAfip.FECompConsultar(objEntidadesTicket_Acceso, ptoVenta, tipoCbte) == Entidades.WebServices_AFIP.RespuestaWS.Correcta)
+                
+                if (chkFiltroNros.Checked == true)
                 {
-                    MessageBox.Show("Comprobantes Autorizados desde el WebService");
+                    /*WebService Producción*/
+                    if (objLogicaWebServiceAfip.FECompConsultar(objEntidadesTicket_Acceso, ptoVenta, tipoCbte, Convert.ToInt64(txtNroCbteDesde.Text), Convert.ToInt64(txtNroCbteHasta.Text)) == Entidades.WebServices_AFIP.RespuestaWS.Correcta)
+                    {
+                        MessageBox.Show("Comprobantes Autorizados desde el WebService");
+                    }
+                    else
+                    {
+                        MessageBox.Show("El WebService devolvió un Error/Evento. Por favor revise los Logs");
+                    }
                 }
                 else
                 {
-                    MessageBox.Show("El WebService devolvió un Error/Evento. Por favor revise los Logs");
+                    /*WebService Producción*/
+                    if (objLogicaWebServiceAfip.FECompConsultar(objEntidadesTicket_Acceso, ptoVenta, tipoCbte) == Entidades.WebServices_AFIP.RespuestaWS.Correcta)
+                    {
+                        MessageBox.Show("Comprobantes Autorizados desde el WebService");
+                    }
+                    else
+                    {
+                        MessageBox.Show("El WebService devolvió un Error/Evento. Por favor revise los Logs");
+                    }
                 }
 
             }
             else
             {
-                /*WebService Homologacion*/
-                if (objLogicaWebServiceAfip.FECompConsultar_Homologacion(objEntidadesTicket_Acceso, ptoVenta, tipoCbte) == Entidades.WebServices_AFIP.RespuestaWS.Correcta)
+                if (chkFiltroNros.Checked == true)
                 {
-                    MessageBox.Show("Comprobantes Autorizados desde el WebService");
+                    /*WebService Homologacion*/
+                    if (objLogicaWebServiceAfip.FECompConsultar_Homologacion(objEntidadesTicket_Acceso, ptoVenta, tipoCbte, Convert.ToInt64(txtNroCbteDesde.Text), Convert.ToInt64(txtNroCbteHasta.Text)) == Entidades.WebServices_AFIP.RespuestaWS.Correcta)
+                    {
+                        MessageBox.Show("Comprobantes Autorizados desde el WebService");
+                    }
+                    else
+                    {
+                        MessageBox.Show("El WebService devolvió un Error/Evento. Por favor revise los Logs");
+                    }
                 }
                 else
-                {
-                    MessageBox.Show("El WebService devolvió un Error/Evento. Por favor revise los Logs");
+                {                    
+                    /*WebService Homologacion*/
+                    if (objLogicaWebServiceAfip.FECompConsultar_Homologacion(objEntidadesTicket_Acceso, ptoVenta, tipoCbte) == Entidades.WebServices_AFIP.RespuestaWS.Correcta)
+                    {
+                        MessageBox.Show("Comprobantes Autorizados desde el WebService");
+                    }
+                    else
+                    {
+                        MessageBox.Show("El WebService devolvió un Error/Evento. Por favor revise los Logs");
+                    }
                 }
+
             }
             TraerTodos(ptoVenta, tipoCbte);
         }

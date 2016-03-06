@@ -276,6 +276,18 @@ namespace OpenRECE
         }
 
         /// <summary>
+        /// Abre el Form de Prueba del WebService
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void pruebaDelWebServiceToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            frmPruebaWebService objPruebaWS = new frmPruebaWebService();
+
+            objPruebaWS.ShowDialog();
+        }
+
+        /// <summary>
         /// Abre el Form de Logs de Errores
         /// </summary>
         /// <param name="sender"></param>
@@ -309,6 +321,18 @@ namespace OpenRECE
             frmConfiguracionCertificado objConfiguracionCertificado = new frmConfiguracionCertificado();
 
             objConfiguracionCertificado.ShowDialog();
+        }
+
+        /// <summary>
+        /// Abre el Form de AutoConfiguración
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void autoConfiguraciónToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            frmAutoConfiguracion objAutoConfiguracion = new frmAutoConfiguracion();
+
+            objAutoConfiguracion.ShowDialog();
         }
 
         /// <summary>

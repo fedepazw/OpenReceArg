@@ -44,6 +44,7 @@
             this.salirToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.comprobantesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.autorizadosToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.ultimosNúmerosToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.tablasToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.empresaToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.puntosDeVentaToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -57,13 +58,14 @@
             this.paisesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.configuracionToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.certificadoToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.pruebaDelWebServiceToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.logsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.erroresToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.eventosToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.ayudaToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.acercaDeToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.btnVerificarInternet = new System.Windows.Forms.Button();
-            this.ultimosNúmerosToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.autoConfiguraciónToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.gbRespuestaAFIP.SuspendLayout();
             this.tlpRtaAFIP.SuspendLayout();
             this.menuStripSuperior.SuspendLayout();
@@ -224,6 +226,13 @@
             this.autorizadosToolStripMenuItem.Text = "&Autorizados";
             this.autorizadosToolStripMenuItem.Click += new System.EventHandler(this.autorizadosToolStripMenuItem_Click);
             // 
+            // ultimosNúmerosToolStripMenuItem
+            // 
+            this.ultimosNúmerosToolStripMenuItem.Name = "ultimosNúmerosToolStripMenuItem";
+            this.ultimosNúmerosToolStripMenuItem.Size = new System.Drawing.Size(167, 22);
+            this.ultimosNúmerosToolStripMenuItem.Text = "&Ultimos Números";
+            this.ultimosNúmerosToolStripMenuItem.Click += new System.EventHandler(this.ultimosNúmerosToolStripMenuItem_Click);
+            // 
             // tablasToolStripMenuItem
             // 
             this.tablasToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
@@ -315,7 +324,9 @@
             // configuracionToolStripMenuItem
             // 
             this.configuracionToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.certificadoToolStripMenuItem});
+            this.certificadoToolStripMenuItem,
+            this.autoConfiguraciónToolStripMenuItem,
+            this.pruebaDelWebServiceToolStripMenuItem});
             this.configuracionToolStripMenuItem.Name = "configuracionToolStripMenuItem";
             this.configuracionToolStripMenuItem.Size = new System.Drawing.Size(95, 20);
             this.configuracionToolStripMenuItem.Text = "&Configuracion";
@@ -323,9 +334,16 @@
             // certificadoToolStripMenuItem
             // 
             this.certificadoToolStripMenuItem.Name = "certificadoToolStripMenuItem";
-            this.certificadoToolStripMenuItem.Size = new System.Drawing.Size(132, 22);
+            this.certificadoToolStripMenuItem.Size = new System.Drawing.Size(194, 22);
             this.certificadoToolStripMenuItem.Text = "C&ertificado";
             this.certificadoToolStripMenuItem.Click += new System.EventHandler(this.certificadoToolStripMenuItem_Click);
+            // 
+            // pruebaDelWebServiceToolStripMenuItem
+            // 
+            this.pruebaDelWebServiceToolStripMenuItem.Name = "pruebaDelWebServiceToolStripMenuItem";
+            this.pruebaDelWebServiceToolStripMenuItem.Size = new System.Drawing.Size(194, 22);
+            this.pruebaDelWebServiceToolStripMenuItem.Text = "Prueba del &WebService";
+            this.pruebaDelWebServiceToolStripMenuItem.Click += new System.EventHandler(this.pruebaDelWebServiceToolStripMenuItem_Click);
             // 
             // logsToolStripMenuItem
             // 
@@ -375,12 +393,12 @@
             this.btnVerificarInternet.UseVisualStyleBackColor = true;
             this.btnVerificarInternet.Click += new System.EventHandler(this.btnVerificarInternet_Click);
             // 
-            // ultimosNúmerosToolStripMenuItem
+            // autoConfiguraciónToolStripMenuItem
             // 
-            this.ultimosNúmerosToolStripMenuItem.Name = "ultimosNúmerosToolStripMenuItem";
-            this.ultimosNúmerosToolStripMenuItem.Size = new System.Drawing.Size(167, 22);
-            this.ultimosNúmerosToolStripMenuItem.Text = "&Ultimos Números";
-            this.ultimosNúmerosToolStripMenuItem.Click += new System.EventHandler(this.ultimosNúmerosToolStripMenuItem_Click);
+            this.autoConfiguraciónToolStripMenuItem.Name = "autoConfiguraciónToolStripMenuItem";
+            this.autoConfiguraciónToolStripMenuItem.Size = new System.Drawing.Size(194, 22);
+            this.autoConfiguraciónToolStripMenuItem.Text = "A&utoConfiguración";
+            this.autoConfiguraciónToolStripMenuItem.Click += new System.EventHandler(this.autoConfiguraciónToolStripMenuItem_Click);
             // 
             // frmTicketAcceso
             // 
@@ -446,5 +464,7 @@
         private System.Windows.Forms.ToolStripMenuItem comprobantesToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem autorizadosToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem ultimosNúmerosToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem pruebaDelWebServiceToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem autoConfiguraciónToolStripMenuItem;
     }
 }

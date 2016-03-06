@@ -31,5 +31,12 @@ namespace Logica
             return objEntidadesTicket_Acceso;
         }
 
+        /// <summary>
+        /// Delega a la Capa de Datos desactivar un Ticket de Acceso Vigente de la B.D.
+        /// </summary>
+        public void DesactivarTicketActivo()
+        {
+            objDatosTickets_Acceso.DesactivarTicketActivo();
+        }
     }
 }

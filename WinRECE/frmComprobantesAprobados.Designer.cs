@@ -40,10 +40,10 @@
             this.txtNroCbteHasta = new System.Windows.Forms.TextBox();
             this.lblNroCbteDesde = new System.Windows.Forms.Label();
             this.lblNroCbteHasta = new System.Windows.Forms.Label();
-            this.printDocCbtesAutorizados = new System.Drawing.Printing.PrintDocument();
             this.btnImprimir = new System.Windows.Forms.Button();
             this.chkFiltroNros = new System.Windows.Forms.CheckBox();
             this.btnFiltrarCbtes = new System.Windows.Forms.Button();
+            this.printDocCbtesAutorizados = new System.Drawing.Printing.PrintDocument();
             ((System.ComponentModel.ISupportInitialize)(this.dgvCbtesAutorizados)).BeginInit();
             this.SuspendLayout();
             // 
@@ -95,6 +95,7 @@
             this.cboPtosVenta.Name = "cboPtosVenta";
             this.cboPtosVenta.Size = new System.Drawing.Size(321, 21);
             this.cboPtosVenta.TabIndex = 25;
+            this.cboPtosVenta.SelectedIndexChanged += new System.EventHandler(this.cboPtosVenta_SelectedIndexChanged);
             // 
             // lblPtoVenta
             // 
@@ -114,6 +115,7 @@
             this.cboTipoCbte.Name = "cboTipoCbte";
             this.cboTipoCbte.Size = new System.Drawing.Size(321, 21);
             this.cboTipoCbte.TabIndex = 28;
+            this.cboTipoCbte.SelectedIndexChanged += new System.EventHandler(this.cboTipoCbte_SelectedIndexChanged);
             // 
             // lblTipoCbte
             // 
@@ -171,11 +173,6 @@
             this.lblNroCbteHasta.Text = "Nro. Cbte. Hasta:";
             this.lblNroCbteHasta.Visible = false;
             // 
-            // printDocCbtesAutorizados
-            // 
-            this.printDocCbtesAutorizados.DocumentName = "Comprobantes Autorizados";
-            this.printDocCbtesAutorizados.PrintPage += new System.Drawing.Printing.PrintPageEventHandler(this.printDocCbtesAutorizados_PrintPage);
-            // 
             // btnImprimir
             // 
             this.btnImprimir.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
@@ -208,6 +205,11 @@
             this.btnFiltrarCbtes.Text = "Filtrar";
             this.btnFiltrarCbtes.UseVisualStyleBackColor = true;
             this.btnFiltrarCbtes.Click += new System.EventHandler(this.btnFiltrarCbtes_Click);
+            // 
+            // printDocCbtesAutorizados
+            // 
+            this.printDocCbtesAutorizados.DocumentName = "Comprobantes Autorizados";
+            this.printDocCbtesAutorizados.PrintPage += new System.Drawing.Printing.PrintPageEventHandler(this.printDocCbtesAutorizados_PrintPage);
             // 
             // frmComprobantesAprobados
             // 
@@ -253,9 +255,9 @@
         private System.Windows.Forms.TextBox txtNroCbteHasta;
         private System.Windows.Forms.Label lblNroCbteDesde;
         private System.Windows.Forms.Label lblNroCbteHasta;
-        private System.Drawing.Printing.PrintDocument printDocCbtesAutorizados;
         private System.Windows.Forms.Button btnImprimir;
         private System.Windows.Forms.CheckBox chkFiltroNros;
         private System.Windows.Forms.Button btnFiltrarCbtes;
+        private System.Drawing.Printing.PrintDocument printDocCbtesAutorizados;
     }
 }

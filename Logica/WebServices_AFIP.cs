@@ -2122,5 +2122,320 @@ namespace Logica
             return objEntidadesWebService_AFIP_Rta;
         }
 
+        /// <summary>
+        /// Llama al WebService FECompConsultar
+        /// Devuelve los Comprobantes ya aprobados.
+        /// NOTA: El Servicio FECompConsultar funciona a partir del 28-07-2015, para comprobantes con fechas anteriores devuelve error
+        /// </summary>
+        /// <param name="pTicket_Rta"></param>
+        public Entidades.WebServices_AFIP.RespuestaWS FECompConsultar(Entidades.Tickets_Acceso pTicket_Rta, int pPtoVenta, int pTipoCbte, long NroCbteDesde, long NroCbteHasta)
+        {
+            Entidades.WebServices_AFIP.RespuestaWS objEntidadesWebService_AFIP_Rta = new Entidades.WebServices_AFIP.RespuestaWS();
+            /*
+             * https://servicios1.afip.gov.ar/wsfev1/service.asmx?op=FECompConsultar
+             */
+            /*WebService*/
+            AFIP_WSFEV1_Produccion.FEAuthRequest autorizacion = new AFIP_WSFEV1_Produccion.FEAuthRequest();
+            AFIP_WSFEV1_Produccion.FECompConsultaResponse respuesta = new AFIP_WSFEV1_Produccion.FECompConsultaResponse();
+            /*Comprobante a Consultar*/
+            AFIP_WSFEV1_Produccion.FECompConsultaReq cbteAConsultar = new AFIP_WSFEV1_Produccion.FECompConsultaReq();
+            /*Comprobantes Recuperados*/
+            Entidades.Comprobantes_Autorizados objEntidadesCbtesAutorizados = new Entidades.Comprobantes_Autorizados();
+            Logica.Comprobantes_Autorizados objLogicaCbtesAutorizados = new Logica.Comprobantes_Autorizados();
+            /*Comprobantes Recuperados*/
+            Logica.UltCbtesAutorizados objLogicaUltCbteAutorizado = new Logica.UltCbtesAutorizados();
+            /*Errores Devueltos*/
+            Entidades.Errores_WS objEntidadesErroresWS = new Entidades.Errores_WS();
+            Logica.Errores_WS objLogicaErroresWS = new Logica.Errores_WS();
+            /*Eventos Devueltos*/
+            Entidades.Eventos_WS objEntidadesEventosWS = new Entidades.Eventos_WS();
+            Logica.Eventos_WS objLogicaEventosWS = new Logica.Eventos_WS();
+
+            /*Asigno los datos a la autorización*/
+            autorizacion.Cuit = pTicket_Rta.Cuit;
+            autorizacion.Sign = pTicket_Rta.Sign;
+            autorizacion.Token = pTicket_Rta.Token;
+
+            /*Asigno los datos al Comprobante a Consultar*/
+            cbteAConsultar.PtoVta = pPtoVenta;
+            cbteAConsultar.CbteTipo = pTipoCbte;
+
+            /*Busco cual es el Ultimo Nro de Comprobante Autorizado para recorrer hasta ese*/
+            long ultCbteAutorizado = objLogicaUltCbteAutorizado.TraerUltNro(cbteAConsultar.PtoVta, cbteAConsultar.CbteTipo);
+
+            /*Si el Pedido es mayor al Ultimo CbteAutorizado lo actualizo*/
+            if (NroCbteHasta > ultCbteAutorizado)
+            {
+                NroCbteHasta = ultCbteAutorizado;
+            }
+
+            /*Primero Borra el listado de la base para cargarlo de Cero*/
+            objLogicaCbtesAutorizados.BorrarCbtesEspecifico(cbteAConsultar.PtoVta, cbteAConsultar.CbteTipo);
+
+            for (long i = NroCbteDesde; i <= NroCbteHasta; i++)
+            {
+                /*Asigno el Nro a Comprobar*/
+                cbteAConsultar.CbteNro = i;
+
+                /*Llamo al WebService*/
+                AFIP_WSFEV1_Produccion.Service webService = new AFIP_WSFEV1_Produccion.Service();
+                respuesta = webService.FECompConsultar(autorizacion, cbteAConsultar);
+
+                /*Por cada Error devuelto lo agrego en la B.D.*/
+                if (respuesta.Errors != null)
+                {
+                    foreach (AFIP_WSFEV1_Produccion.Err errorItem in respuesta.Errors)
+                    {
+                        objEntidadesErroresWS.Codigo = errorItem.Code;
+                        objEntidadesErroresWS.Mensaje = errorItem.Msg;
+                        objEntidadesErroresWS.Fecha = DateTime.Now;
+                        objEntidadesErroresWS.Observaciones = "Llamando al WS: FECompConsulta. Nro. Cbte = " + cbteAConsultar.CbteNro.ToString() + " Tipo Cbte = " + cbteAConsultar.CbteTipo.ToString() + " Punto Venta = " + cbteAConsultar.PtoVta.ToString();
+
+                        objLogicaErroresWS.Agregar(objEntidadesErroresWS);
+                    }
+
+                    objEntidadesWebService_AFIP_Rta = Entidades.WebServices_AFIP.RespuestaWS.Error;
+                }
+
+                /*Por cada Evento devuelto lo agrego en la B.D.*/
+                if (respuesta.Events != null)
+                {
+                    foreach (AFIP_WSFEV1_Produccion.Evt eventoItem in respuesta.Events)
+                    {
+                        objEntidadesEventosWS.Codigo = eventoItem.Code;
+                        objEntidadesEventosWS.Mensaje = eventoItem.Msg;
+                        objEntidadesEventosWS.Fecha = DateTime.Now;
+                        objEntidadesErroresWS.Observaciones = "Llamando al WS: FECompConsulta. Nro. Cbte = " + cbteAConsultar.CbteNro.ToString() + " Tipo Cbte = " + cbteAConsultar.CbteTipo.ToString() + " Punto Venta = " + cbteAConsultar.PtoVta.ToString();
+
+                        objLogicaEventosWS.Agregar(objEntidadesEventosWS);
+                    }
+
+                    objEntidadesWebService_AFIP_Rta = Entidades.WebServices_AFIP.RespuestaWS.Evento;
+                }
+
+                /*Por cada Comprobante Autorizado devuelto lo agrego en la B.D.*/
+                if (respuesta.ResultGet != null)
+                {
+                    objEntidadesCbtesAutorizados.Id_PtoVenta = Convert.ToInt16(respuesta.ResultGet.PtoVta);
+                    objEntidadesCbtesAutorizados.Id_TipoCbte = respuesta.ResultGet.CbteTipo;
+                    objEntidadesCbtesAutorizados.Id_TipoConcepto = respuesta.ResultGet.Concepto;
+                    objEntidadesCbtesAutorizados.Id_TipoDoc = respuesta.ResultGet.DocTipo;
+                    objEntidadesCbtesAutorizados.DocNro = respuesta.ResultGet.DocNro;
+                    objEntidadesCbtesAutorizados.Nro_CbteDesde = respuesta.ResultGet.CbteDesde;
+                    objEntidadesCbtesAutorizados.Nro_CbteHasta = respuesta.ResultGet.CbteHasta;
+                    objEntidadesCbtesAutorizados.CbteFch = DateTime.ParseExact(respuesta.ResultGet.CbteFch, "yyyyMMdd", System.Globalization.CultureInfo.InvariantCulture);
+                    objEntidadesCbtesAutorizados.ImpTotal = respuesta.ResultGet.ImpTotal;
+                    objEntidadesCbtesAutorizados.ImpTotConc = respuesta.ResultGet.ImpTotConc;
+                    objEntidadesCbtesAutorizados.ImpNeto = respuesta.ResultGet.ImpNeto;
+                    objEntidadesCbtesAutorizados.ImpOpEx = respuesta.ResultGet.ImpOpEx;
+                    objEntidadesCbtesAutorizados.ImpTrib = respuesta.ResultGet.ImpTrib;
+                    objEntidadesCbtesAutorizados.ImpIVA = respuesta.ResultGet.ImpIVA;
+                    objEntidadesCbtesAutorizados.FchServDesde = DateTime.ParseExact(respuesta.ResultGet.FchServDesde, "yyyyMMdd", System.Globalization.CultureInfo.InvariantCulture);
+                    objEntidadesCbtesAutorizados.FchServHasta = DateTime.ParseExact(respuesta.ResultGet.FchServHasta, "yyyyMMdd", System.Globalization.CultureInfo.InvariantCulture);
+                    objEntidadesCbtesAutorizados.FchVtoPago = DateTime.ParseExact(respuesta.ResultGet.FchVtoPago, "yyyyMMdd", System.Globalization.CultureInfo.InvariantCulture);
+                    objEntidadesCbtesAutorizados.Id_TipoMoneda = respuesta.ResultGet.MonId;
+                    objEntidadesCbtesAutorizados.MonCotiz = respuesta.ResultGet.MonCotiz;
+                    objEntidadesCbtesAutorizados.Resultado = respuesta.ResultGet.Resultado;
+                    objEntidadesCbtesAutorizados.CodAutorizacion = respuesta.ResultGet.CodAutorizacion;
+                    objEntidadesCbtesAutorizados.EmisionTipo = respuesta.ResultGet.EmisionTipo;
+                    objEntidadesCbtesAutorizados.FchVto = DateTime.ParseExact(respuesta.ResultGet.FchVto, "yyyyMMdd", System.Globalization.CultureInfo.InvariantCulture);
+                    objEntidadesCbtesAutorizados.FchProceso = DateTime.ParseExact(respuesta.ResultGet.FchProceso, "yyyyMMddHHmmss", System.Globalization.CultureInfo.InvariantCulture);
+
+                    objLogicaCbtesAutorizados.Agregar(objEntidadesCbtesAutorizados);
+
+                    objEntidadesWebService_AFIP_Rta = Entidades.WebServices_AFIP.RespuestaWS.Correcta;
+                }
+            }
+
+            return objEntidadesWebService_AFIP_Rta;
+        }
+
+        /// <summary>
+        /// Llama al WebService FECompConsultar (Homologacion)
+        /// Devuelve los Comprobantes ya aprobados.
+        /// </summary>
+        /// <param name="pTicket_Rta"></param>
+        public Entidades.WebServices_AFIP.RespuestaWS FECompConsultar_Homologacion(Entidades.Tickets_Acceso pTicket_Rta, int pPtoVenta, int pTipoCbte, long NroCbteDesde, long NroCbteHasta)
+        {
+            Entidades.WebServices_AFIP.RespuestaWS objEntidadesWebService_AFIP_Rta = new Entidades.WebServices_AFIP.RespuestaWS();
+            /*
+             * https://wswhomo.afip.gov.ar/wsfev1/service.asmx?op=FECompConsultar
+             */
+            /*WebService*/
+            AFIP_WSFEV1_Homologacion.FEAuthRequest autorizacion = new AFIP_WSFEV1_Homologacion.FEAuthRequest();
+            AFIP_WSFEV1_Homologacion.FECompConsultaResponse respuesta = new AFIP_WSFEV1_Homologacion.FECompConsultaResponse();
+            /*Comprobante a Consultar*/
+            AFIP_WSFEV1_Homologacion.FECompConsultaReq cbteAConsultar = new AFIP_WSFEV1_Homologacion.FECompConsultaReq();
+            /*Comprobantes Recuperados*/
+            Entidades.Comprobantes_Autorizados objEntidadesCbtesAutorizados = new Entidades.Comprobantes_Autorizados();
+            Logica.Comprobantes_Autorizados objLogicaCbtesAutorizados = new Logica.Comprobantes_Autorizados();
+            /*Comprobantes Recuperados*/
+            Logica.UltCbtesAutorizados objLogicaUltCbteAutorizado = new Logica.UltCbtesAutorizados();
+            /*Errores Devueltos*/
+            Entidades.Errores_WS objEntidadesErroresWS = new Entidades.Errores_WS();
+            Logica.Errores_WS objLogicaErroresWS = new Logica.Errores_WS();
+            /*Eventos Devueltos*/
+            Entidades.Eventos_WS objEntidadesEventosWS = new Entidades.Eventos_WS();
+            Logica.Eventos_WS objLogicaEventosWS = new Logica.Eventos_WS();
+
+            /*Asigno los datos a la autorización*/
+            autorizacion.Cuit = pTicket_Rta.Cuit;
+            autorizacion.Sign = pTicket_Rta.Sign;
+            autorizacion.Token = pTicket_Rta.Token;
+
+            /*Asigno los datos al Comprobante a Consultar*/
+            cbteAConsultar.PtoVta = pPtoVenta;
+            cbteAConsultar.CbteTipo = pTipoCbte;
+
+            /*Busco cual es el Ultimo Nro de Comprobante Autorizado para recorrer hasta ese*/
+            long ultCbteAutorizado = objLogicaUltCbteAutorizado.TraerUltNro(cbteAConsultar.PtoVta, cbteAConsultar.CbteTipo);
+
+            /*Si el Pedido es mayor al Ultimo CbteAutorizado lo actualizo*/
+            if (NroCbteHasta > ultCbteAutorizado)
+            {
+                NroCbteHasta = ultCbteAutorizado;
+            }
+
+            /*Primero Borra el listado de la base para cargarlo de Cero*/
+            objLogicaCbtesAutorizados.BorrarCbtesEspecifico(cbteAConsultar.PtoVta, cbteAConsultar.CbteTipo);
+
+            for (long i = NroCbteDesde; i <= NroCbteHasta; i++)
+            {
+                /*Asigno el Nro a Comprobar*/
+                cbteAConsultar.CbteNro = i;
+
+                /*Llamo al WebService*/
+                AFIP_WSFEV1_Homologacion.Service webService = new AFIP_WSFEV1_Homologacion.Service();
+                respuesta = webService.FECompConsultar(autorizacion, cbteAConsultar);
+
+                /*Por cada Error devuelto lo agrego en la B.D.*/
+                if (respuesta.Errors != null)
+                {
+                    foreach (AFIP_WSFEV1_Homologacion.Err errorItem in respuesta.Errors)
+                    {
+                        objEntidadesErroresWS.Codigo = errorItem.Code;
+                        objEntidadesErroresWS.Mensaje = errorItem.Msg;
+                        objEntidadesErroresWS.Fecha = DateTime.Now;
+                        objEntidadesErroresWS.Observaciones = "Llamando al WS: FECompConsulta. Nro. Cbte = " + cbteAConsultar.CbteNro.ToString() + " Tipo Cbte = " + cbteAConsultar.CbteTipo.ToString() + " Punto Venta = " + cbteAConsultar.PtoVta.ToString();
+
+                        objLogicaErroresWS.Agregar(objEntidadesErroresWS);
+                    }
+
+                    objEntidadesWebService_AFIP_Rta = Entidades.WebServices_AFIP.RespuestaWS.Error;
+                }
+
+                /*Por cada Evento devuelto lo agrego en la B.D.*/
+                if (respuesta.Events != null)
+                {
+                    foreach (AFIP_WSFEV1_Homologacion.Evt eventoItem in respuesta.Events)
+                    {
+                        objEntidadesEventosWS.Codigo = eventoItem.Code;
+                        objEntidadesEventosWS.Mensaje = eventoItem.Msg;
+                        objEntidadesEventosWS.Fecha = DateTime.Now;
+                        objEntidadesErroresWS.Observaciones = "Llamando al WS: FECompConsulta. Nro. Cbte = " + cbteAConsultar.CbteNro.ToString() + " Tipo Cbte = " + cbteAConsultar.CbteTipo.ToString() + " Punto Venta = " + cbteAConsultar.PtoVta.ToString();
+
+                        objLogicaEventosWS.Agregar(objEntidadesEventosWS);
+                    }
+
+                    objEntidadesWebService_AFIP_Rta = Entidades.WebServices_AFIP.RespuestaWS.Evento;
+                }
+
+                /*Por cada Comprobante Autorizado devuelto lo agrego en la B.D.*/
+                if (respuesta.ResultGet != null)
+                {
+                    objEntidadesCbtesAutorizados.Id_PtoVenta = Convert.ToInt16(respuesta.ResultGet.PtoVta);
+                    objEntidadesCbtesAutorizados.Id_TipoCbte = respuesta.ResultGet.CbteTipo;
+                    objEntidadesCbtesAutorizados.Id_TipoConcepto = respuesta.ResultGet.Concepto;
+                    objEntidadesCbtesAutorizados.Id_TipoDoc = respuesta.ResultGet.DocTipo;
+                    objEntidadesCbtesAutorizados.DocNro = respuesta.ResultGet.DocNro;
+                    objEntidadesCbtesAutorizados.Nro_CbteDesde = respuesta.ResultGet.CbteDesde;
+                    objEntidadesCbtesAutorizados.Nro_CbteHasta = respuesta.ResultGet.CbteHasta;
+                    objEntidadesCbtesAutorizados.CbteFch = DateTime.ParseExact(respuesta.ResultGet.CbteFch, "yyyyMMdd", System.Globalization.CultureInfo.InvariantCulture);
+                    objEntidadesCbtesAutorizados.ImpTotal = respuesta.ResultGet.ImpTotal;
+                    objEntidadesCbtesAutorizados.ImpTotConc = respuesta.ResultGet.ImpTotConc;
+                    objEntidadesCbtesAutorizados.ImpNeto = respuesta.ResultGet.ImpNeto;
+                    objEntidadesCbtesAutorizados.ImpOpEx = respuesta.ResultGet.ImpOpEx;
+                    objEntidadesCbtesAutorizados.ImpTrib = respuesta.ResultGet.ImpTrib;
+                    objEntidadesCbtesAutorizados.ImpIVA = respuesta.ResultGet.ImpIVA;
+                    objEntidadesCbtesAutorizados.FchServDesde = DateTime.ParseExact(respuesta.ResultGet.FchServDesde, "yyyyMMdd", System.Globalization.CultureInfo.InvariantCulture);
+                    objEntidadesCbtesAutorizados.FchServHasta = DateTime.ParseExact(respuesta.ResultGet.FchServHasta, "yyyyMMdd", System.Globalization.CultureInfo.InvariantCulture);
+                    objEntidadesCbtesAutorizados.FchVtoPago = DateTime.ParseExact(respuesta.ResultGet.FchVtoPago, "yyyyMMdd", System.Globalization.CultureInfo.InvariantCulture);
+                    objEntidadesCbtesAutorizados.Id_TipoMoneda = respuesta.ResultGet.MonId;
+                    objEntidadesCbtesAutorizados.MonCotiz = respuesta.ResultGet.MonCotiz;
+                    objEntidadesCbtesAutorizados.Resultado = respuesta.ResultGet.Resultado;
+                    objEntidadesCbtesAutorizados.CodAutorizacion = respuesta.ResultGet.CodAutorizacion;
+                    objEntidadesCbtesAutorizados.EmisionTipo = respuesta.ResultGet.EmisionTipo;
+                    objEntidadesCbtesAutorizados.FchVto = DateTime.ParseExact(respuesta.ResultGet.FchVto, "yyyyMMdd", System.Globalization.CultureInfo.InvariantCulture);
+                    objEntidadesCbtesAutorizados.FchProceso = DateTime.ParseExact(respuesta.ResultGet.FchProceso, "yyyyMMddHHmmss", System.Globalization.CultureInfo.InvariantCulture);
+
+                    objLogicaCbtesAutorizados.Agregar(objEntidadesCbtesAutorizados);
+
+                    objEntidadesWebService_AFIP_Rta = Entidades.WebServices_AFIP.RespuestaWS.Correcta;
+                }
+            }
+
+            return objEntidadesWebService_AFIP_Rta;
+        }
+
+        /// <summary>
+        /// Llama al WebService FEDummy
+        /// Retorna la comprobación vía Ping de los elementos principales de la infraestructura.
+        /// </summary>
+        public Entidades.WebServices_AFIP.RespuestaWS FEDummy()
+        {
+            Entidades.WebServices_AFIP.RespuestaWS objEntidadesWebService_AFIP_Rta = new Entidades.WebServices_AFIP.RespuestaWS();
+            /*
+             * https://servicios1.afip.gov.ar/wsfev1/service.asmx?op=FEDummy
+             */
+            /*WebService*/            
+            AFIP_WSFEV1_Produccion.DummyResponse respuesta = new AFIP_WSFEV1_Produccion.DummyResponse();
+
+            /*Llamo al WebService*/
+            AFIP_WSFEV1_Produccion.Service webService = new AFIP_WSFEV1_Produccion.Service();
+            respuesta = webService.FEDummy();
+
+            if (respuesta.AppServer == "OK" && respuesta.AuthServer == "OK" && respuesta.DbServer == "OK")
+            {
+                /*El Servicio esta devolviendo Correctamente los parámetros*/
+                objEntidadesWebService_AFIP_Rta = Entidades.WebServices_AFIP.RespuestaWS.Correcta;
+            }
+            else
+            {
+                objEntidadesWebService_AFIP_Rta = Entidades.WebServices_AFIP.RespuestaWS.Error;
+            }
+
+            return objEntidadesWebService_AFIP_Rta;
+        }
+
+        /// <summary>
+        /// Llama al WebService FEDummy (Homologacion)
+        /// Retorna la comprobación vía Ping de los elementos principales de la infraestructura.
+        /// </summary>
+        /// <param name="pTicket_Rta"></param>
+        public Entidades.WebServices_AFIP.RespuestaWS FEDummy_Homologacion()
+        {
+            Entidades.WebServices_AFIP.RespuestaWS objEntidadesWebService_AFIP_Rta = new Entidades.WebServices_AFIP.RespuestaWS();
+            /*
+             * https://wswhomo.afip.gov.ar/wsfev1/service.asmx?op=FEDummy
+             */
+            /*WebService*/
+            AFIP_WSFEV1_Homologacion.DummyResponse respuesta = new AFIP_WSFEV1_Homologacion.DummyResponse();
+
+            /*Llamo al WebService*/
+            AFIP_WSFEV1_Homologacion.Service webService = new AFIP_WSFEV1_Homologacion.Service();
+            respuesta = webService.FEDummy();
+
+            if (respuesta.AppServer == "OK" && respuesta.AuthServer == "OK" && respuesta.DbServer == "OK")
+            {
+                /*El Servicio esta devolviendo Correctamente los parámetros*/
+                objEntidadesWebService_AFIP_Rta = Entidades.WebServices_AFIP.RespuestaWS.Correcta;
+            }
+            else
+            {
+                objEntidadesWebService_AFIP_Rta = Entidades.WebServices_AFIP.RespuestaWS.Error;
+            }
+
+            return objEntidadesWebService_AFIP_Rta;
+        }
     }
 }

@@ -298,7 +298,7 @@ namespace Datos
             int maxNroCbte=0;
             string strSql;
 
-            strSql = "SELECT MAX(ISNULL(Nro_CbteHasta,0)) ";
+            strSql = "SELECT ISNULL(MAX(Nro_CbteHasta),0) ";
             strSql += "FROM Comprobantes_Autorizados ";
             strSql += "WHERE Id_PtoVenta = " + pPtoVenta.ToString() + " AND Id_TipoCbte = " + pTipoCbte.ToString();
 
@@ -336,7 +336,7 @@ namespace Datos
             int minNroCbte = 0;
             string strSql;
 
-            strSql = "SELECT MIN(ISNULL(Nro_CbteDesde,0)) ";
+            strSql = "SELECT ISNULL(MIN(Nro_CbteDesde),0) ";
             strSql += "FROM Comprobantes_Autorizados ";
             strSql += "WHERE Id_PtoVenta = " + pPtoVenta.ToString() + " AND Id_TipoCbte = " + pTipoCbte.ToString();
 

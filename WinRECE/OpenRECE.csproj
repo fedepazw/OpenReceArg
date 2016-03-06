@@ -64,20 +64,17 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="DataSetCbtesAutorizados.cs">
-      <DependentUpon>DataSetCbtesAutorizados.xsd</DependentUpon>
-      <SubType>Component</SubType>
-    </Compile>
-    <Compile Include="DataSetCbtesAutorizados.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>DataSetCbtesAutorizados.xsd</DependentUpon>
-    </Compile>
     <Compile Include="frmAcercaDe.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="frmAcercaDe.Designer.cs">
       <DependentUpon>frmAcercaDe.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frmAutoConfiguracion.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmAutoConfiguracion.Designer.cs">
+      <DependentUpon>frmAutoConfiguracion.cs</DependentUpon>
     </Compile>
     <Compile Include="frmComprobantesAprobados.cs">
       <SubType>Form</SubType>
@@ -103,23 +100,29 @@
     <Compile Include="frmEventosWS.Designer.cs">
       <DependentUpon>frmEventosWS.cs</DependentUpon>
     </Compile>
+    <Compile Include="frmFichaComprobante.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmFichaComprobante.Designer.cs">
+      <DependentUpon>frmFichaComprobante.cs</DependentUpon>
+    </Compile>
     <Compile Include="frmPaises.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="frmPaises.Designer.cs">
       <DependentUpon>frmPaises.cs</DependentUpon>
     </Compile>
+    <Compile Include="frmPruebaWebService.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmPruebaWebService.Designer.cs">
+      <DependentUpon>frmPruebaWebService.cs</DependentUpon>
+    </Compile>
     <Compile Include="frmPtoVenta.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="frmPtoVenta.Designer.cs">
       <DependentUpon>frmPtoVenta.cs</DependentUpon>
-    </Compile>
-    <Compile Include="frmRptComprobantesAprobados.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="frmRptComprobantesAprobados.Designer.cs">
-      <DependentUpon>frmRptComprobantesAprobados.cs</DependentUpon>
     </Compile>
     <Compile Include="frmTicketAcceso.cs">
       <SubType>Form</SubType>
@@ -180,6 +183,9 @@
     <EmbeddedResource Include="frmAcercaDe.resx">
       <DependentUpon>frmAcercaDe.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="frmAutoConfiguracion.resx">
+      <DependentUpon>frmAutoConfiguracion.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="frmComprobantesAprobados.resx">
       <DependentUpon>frmComprobantesAprobados.cs</DependentUpon>
     </EmbeddedResource>
@@ -192,14 +198,17 @@
     <EmbeddedResource Include="frmEventosWS.resx">
       <DependentUpon>frmEventosWS.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="frmFichaComprobante.resx">
+      <DependentUpon>frmFichaComprobante.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="frmPaises.resx">
       <DependentUpon>frmPaises.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="frmPruebaWebService.resx">
+      <DependentUpon>frmPruebaWebService.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="frmPtoVenta.resx">
       <DependentUpon>frmPtoVenta.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="frmRptComprobantesAprobados.resx">
-      <DependentUpon>frmRptComprobantesAprobados.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="frmTicketAcceso.resx">
       <DependentUpon>frmTicketAcceso.cs</DependentUpon>
@@ -239,17 +248,6 @@
       <DesignTime>True</DesignTime>
     </Compile>
     <None Include="App.config" />
-    <None Include="DataSetCbtesAutorizados.xsc">
-      <DependentUpon>DataSetCbtesAutorizados.xsd</DependentUpon>
-    </None>
-    <None Include="DataSetCbtesAutorizados.xsd">
-      <SubType>Designer</SubType>
-      <Generator>MSDataSetGenerator</Generator>
-      <LastGenOutput>DataSetCbtesAutorizados.Designer.cs</LastGenOutput>
-    </None>
-    <None Include="DataSetCbtesAutorizados.xss">
-      <DependentUpon>DataSetCbtesAutorizados.xsd</DependentUpon>
-    </None>
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
