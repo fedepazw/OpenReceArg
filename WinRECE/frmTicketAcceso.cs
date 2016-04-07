@@ -276,6 +276,18 @@ namespace OpenRECE
         }
 
         /// <summary>
+        /// Abre el Form de Nuevo Comprobante
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void autorizarComprobanteToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            frmFichaComprobante objFichaCbte = new frmFichaComprobante();
+
+            objFichaCbte.ShowDialog();
+        }
+
+        /// <summary>
         /// Abre el Form de Prueba del WebService
         /// </summary>
         /// <param name="sender"></param>
@@ -383,6 +395,7 @@ namespace OpenRECE
         {
             this.Close();
         }
+
 
     }
 }

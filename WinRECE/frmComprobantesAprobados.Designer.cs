@@ -90,6 +90,7 @@
             // cboPtosVenta
             // 
             this.cboPtosVenta.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)));
+            this.cboPtosVenta.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cboPtosVenta.FormattingEnabled = true;
             this.cboPtosVenta.Location = new System.Drawing.Point(295, 10);
             this.cboPtosVenta.Name = "cboPtosVenta";
@@ -110,6 +111,7 @@
             // cboTipoCbte
             // 
             this.cboTipoCbte.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)));
+            this.cboTipoCbte.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cboTipoCbte.FormattingEnabled = true;
             this.cboTipoCbte.Location = new System.Drawing.Point(295, 37);
             this.cboTipoCbte.Name = "cboTipoCbte";

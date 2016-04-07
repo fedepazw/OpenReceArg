@@ -48,7 +48,12 @@ namespace OpenRECE
                 {
                     if (pedirNuevoTicketAcc())
                     {
+                        borrarLogsErrores();
+                        borrarLogsEventos();
+                        actualizarTablaPaises();
                         actualizarTablaTiposCbtes();
+                        actualizarTablaTiposConceptos();
+                        actulizarTablaTiposDocumentos();
                         actualizarTablaPuntosVenta();
                         actualizarUltAutorizadosRTA();
                     }
@@ -109,7 +114,7 @@ namespace OpenRECE
                 lblBorrarTicketActivoRTA.Refresh();
                 respuesta = true;
             }
-            catch(Exception ex)
+            catch(Exception)
             {
                 lblBorrarTicketActivoRTA.ForeColor = Color.Red;
                 lblBorrarTicketActivoRTA.Text = "ERROR";
@@ -183,6 +188,113 @@ namespace OpenRECE
         }
 
         /// <summary>
+        /// Borra los Logs de Errores
+        /// </summary>
+        private void borrarLogsErrores()
+        {
+            lblBorrarErroresRTA.ForeColor = Color.Black;
+            lblBorrarErroresRTA.Text = "Procesando...";
+            lblBorrarErroresRTA.Refresh();
+
+            //Borro los Logs de Errores
+            Logica.Errores_WS objLogicaErrores = new Logica.Errores_WS();
+
+            try
+            {
+                objLogicaErrores.BorrarTodos();
+
+                lblBorrarErroresRTA.ForeColor = Color.Green;
+                lblBorrarErroresRTA.Text = "OK";
+                lblBorrarErroresRTA.Refresh();
+            }
+            catch (Exception)
+            {
+                lblBorrarErroresRTA.ForeColor = Color.Red;
+                lblBorrarErroresRTA.Text = "ERROR";
+                lblBorrarErroresRTA.Refresh();
+            }
+        }
+
+        /// <summary>
+        /// Borra los Logs de Eventos
+        /// </summary>
+        private void borrarLogsEventos()
+        {
+            lblBorrarEventosRTA.ForeColor = Color.Black;
+            lblBorrarEventosRTA.Text = "Procesando...";
+            lblBorrarEventosRTA.Refresh();
+
+            //Borro los Logs de Eventos
+            Logica.Eventos_WS objLogicaEventos = new Logica.Eventos_WS();
+
+            try
+            {
+                objLogicaEventos.BorrarTodos();
+
+                lblBorrarEventosRTA.ForeColor = Color.Green;
+                lblBorrarEventosRTA.Text = "OK";
+                lblBorrarEventosRTA.Refresh();
+            }
+            catch (Exception)
+            {
+                lblBorrarEventosRTA.ForeColor = Color.Red;
+                lblBorrarEventosRTA.Text = "ERROR";
+                lblBorrarEventosRTA.Refresh();
+            }
+        }
+
+        /// <summary>
+        /// Actualiza desde el WebService la Tabla de Paises
+        /// </summary>
+        private void actualizarTablaPaises()
+        {
+            lblTablaPaisesRTA.ForeColor = Color.Black;
+            lblTablaPaisesRTA.Text = "Procesando...";
+            lblTablaPaisesRTA.Refresh();
+
+            Entidades.Tickets_Acceso objEntidadesTicket_Acceso = new Entidades.Tickets_Acceso();
+            Logica.Tickets_Acceso objLogicaTicket_Acceso = new Logica.Tickets_Acceso();
+
+            objEntidadesTicket_Acceso = objLogicaTicket_Acceso.TraerTicketActivo();
+
+            //Llamo al Webservice para recuperar los Paises
+            Logica.WebServices_AFIP objLogicaWebServiceAfip = new Logica.WebServices_AFIP();
+
+            if (objEntidadesTicket_Acceso.TipoAprobacion == 'P') //Producción
+            {
+                /*WebService Producción*/
+                if (objLogicaWebServiceAfip.FEParamGetTiposPaises(objEntidadesTicket_Acceso) == Entidades.WebServices_AFIP.RespuestaWS.Correcta)
+                {
+                    lblTablaPaisesRTA.ForeColor = Color.Green;
+                    lblTablaPaisesRTA.Text = "OK";
+                    lblTablaPaisesRTA.Refresh();
+                }
+                else
+                {
+                    lblTablaPaisesRTA.ForeColor = Color.Red;
+                    lblTablaPaisesRTA.Text = "ERROR";
+                    lblTablaPaisesRTA.Refresh();
+                }
+            }
+            else
+            {
+                /*WebService Homologacion*/
+                if (objLogicaWebServiceAfip.FEParamGetTiposPaises_Homologacion(objEntidadesTicket_Acceso) == Entidades.WebServices_AFIP.RespuestaWS.Correcta)
+                {
+                    lblTablaPaisesRTA.ForeColor = Color.Green;
+                    lblTablaPaisesRTA.Text = "OK";
+                    lblTablaPaisesRTA.Refresh();
+                }
+                else
+                {
+                    lblTablaPaisesRTA.ForeColor = Color.Red;
+                    lblTablaPaisesRTA.Text = "ERROR";
+                    lblTablaPaisesRTA.Refresh();
+                }
+            }
+        }
+
+        /// <summary>
         /// Actualiza desde el WebService la Tabla de Tipos de Comprobantes
         /// </summary>
         private void actualizarTablaTiposCbtes()
@@ -229,6 +341,108 @@ namespace OpenRECE
                     lblTablaTiposCbtesRTA.ForeColor = Color.Red;
                     lblTablaTiposCbtesRTA.Text = "ERROR";
                     lblTablaTiposCbtesRTA.Refresh();
+                }
+            }
+        }
+
+        /// <summary>
+        /// Actualiza desde el WebService la Tabla de Tipos de Conceptos
+        /// </summary>
+        private void actualizarTablaTiposConceptos()
+        {
+            lblTablaTiposConceptosRTA.ForeColor = Color.Black;
+            lblTablaTiposConceptosRTA.Text = "Procesando...";
+            lblTablaTiposConceptosRTA.Refresh();
+
+            Entidades.Tickets_Acceso objEntidadesTicket_Acceso = new Entidades.Tickets_Acceso();
+            Logica.Tickets_Acceso objLogicaTicket_Acceso = new Logica.Tickets_Acceso();
+
+            objEntidadesTicket_Acceso = objLogicaTicket_Acceso.TraerTicketActivo();
+
+            //Llamo al Webservice para recuperar los Tipos de Comprobantes
+            Logica.WebServices_AFIP objLogicaWebServiceAfip = new Logica.WebServices_AFIP();
+
+            if (objEntidadesTicket_Acceso.TipoAprobacion == 'P') //Producción
+            {
+                /*WebService Producción*/
+                if (objLogicaWebServiceAfip.FEParamGetTiposConcepto(objEntidadesTicket_Acceso) == Entidades.WebServices_AFIP.RespuestaWS.Correcta)
+                {
+                    lblTablaTiposConceptosRTA.ForeColor = Color.Green;
+                    lblTablaTiposConceptosRTA.Text = "OK";
+                    lblTablaTiposConceptosRTA.Refresh();
+                }
+                else
+                {
+                    lblTablaTiposConceptosRTA.ForeColor = Color.Red;
+                    lblTablaTiposConceptosRTA.Text = "ERROR";
+                    lblTablaTiposConceptosRTA.Refresh();
+                }
+            }
+            else
+            {
+                /*WebService Homologacion*/
+                if (objLogicaWebServiceAfip.FEParamGetTiposConcepto_Homologacion(objEntidadesTicket_Acceso) == Entidades.WebServices_AFIP.RespuestaWS.Correcta)
+                {
+                    lblTablaTiposConceptosRTA.ForeColor = Color.Green;
+                    lblTablaTiposConceptosRTA.Text = "OK";
+                    lblTablaTiposConceptosRTA.Refresh();
+                }
+                else
+                {
+                    lblTablaTiposConceptosRTA.ForeColor = Color.Red;
+                    lblTablaTiposConceptosRTA.Text = "ERROR";
+                    lblTablaTiposConceptosRTA.Refresh();
+                }
+            }
+        }
+
+        /// <summary>
+        /// Actualiza desde el WebService la Tabla de Tipos de Documentos
+        /// </summary>
+        private void actulizarTablaTiposDocumentos()
+        {
+            lblTablaTiposDocumentosRTA.ForeColor = Color.Black;
+            lblTablaTiposDocumentosRTA.Text = "Procesando...";
+            lblTablaTiposDocumentosRTA.Refresh();
+
+            Entidades.Tickets_Acceso objEntidadesTicket_Acceso = new Entidades.Tickets_Acceso();
+            Logica.Tickets_Acceso objLogicaTicket_Acceso = new Logica.Tickets_Acceso();
+
+            objEntidadesTicket_Acceso = objLogicaTicket_Acceso.TraerTicketActivo();
+
+            //Llamo al Webservice para recuperar los Tipos de Comprobantes
+            Logica.WebServices_AFIP objLogicaWebServiceAfip = new Logica.WebServices_AFIP();
+
+            if (objEntidadesTicket_Acceso.TipoAprobacion == 'P') //Producción
+            {
+                /*WebService Producción*/
+                if (objLogicaWebServiceAfip.FEParamGetTiposDoc(objEntidadesTicket_Acceso) == Entidades.WebServices_AFIP.RespuestaWS.Correcta)
+                {
+                    lblTablaTiposDocumentosRTA.ForeColor = Color.Green;
+                    lblTablaTiposDocumentosRTA.Text = "OK";
+                    lblTablaTiposDocumentosRTA.Refresh();
+                }
+                else
+                {
+                    lblTablaTiposDocumentosRTA.ForeColor = Color.Red;
+                    lblTablaTiposDocumentosRTA.Text = "ERROR";
+                    lblTablaTiposDocumentosRTA.Refresh();
+                }
+            }
+            else
+            {
+                /*WebService Homologacion*/
+                if (objLogicaWebServiceAfip.FEParamGetTiposDoc_Homologacion(objEntidadesTicket_Acceso) == Entidades.WebServices_AFIP.RespuestaWS.Correcta)
+                {
+                    lblTablaTiposDocumentosRTA.ForeColor = Color.Green;
+                    lblTablaTiposDocumentosRTA.Text = "OK";
+                    lblTablaTiposDocumentosRTA.Refresh();
+                }
+                else
+                {
+                    lblTablaTiposDocumentosRTA.ForeColor = Color.Red;
+                    lblTablaTiposDocumentosRTA.Text = "ERROR";
+                    lblTablaTiposDocumentosRTA.Refresh();
                 }
             }
         }

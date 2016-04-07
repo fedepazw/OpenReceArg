@@ -58,6 +58,7 @@
             // 
             // cboPtosVenta
             // 
+            this.cboPtosVenta.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cboPtosVenta.FormattingEnabled = true;
             this.cboPtosVenta.Location = new System.Drawing.Point(115, 31);
             this.cboPtosVenta.Name = "cboPtosVenta";

@@ -58,6 +58,7 @@
             this.paisesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.configuracionToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.certificadoToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.autoConfiguraciónToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.pruebaDelWebServiceToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.logsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.erroresToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -65,7 +66,7 @@
             this.ayudaToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.acercaDeToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.btnVerificarInternet = new System.Windows.Forms.Button();
-            this.autoConfiguraciónToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.autorizarComprobanteToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.gbRespuestaAFIP.SuspendLayout();
             this.tlpRtaAFIP.SuspendLayout();
             this.menuStripSuperior.SuspendLayout();
@@ -213,7 +214,8 @@
             // 
             this.comprobantesToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.autorizadosToolStripMenuItem,
-            this.ultimosNúmerosToolStripMenuItem});
+            this.ultimosNúmerosToolStripMenuItem,
+            this.autorizarComprobanteToolStripMenuItem});
             this.comprobantesToolStripMenuItem.Enabled = false;
             this.comprobantesToolStripMenuItem.Name = "comprobantesToolStripMenuItem";
             this.comprobantesToolStripMenuItem.Size = new System.Drawing.Size(98, 20);
@@ -222,14 +224,14 @@
             // autorizadosToolStripMenuItem
             // 
             this.autorizadosToolStripMenuItem.Name = "autorizadosToolStripMenuItem";
-            this.autorizadosToolStripMenuItem.Size = new System.Drawing.Size(167, 22);
+            this.autorizadosToolStripMenuItem.Size = new System.Drawing.Size(199, 22);
             this.autorizadosToolStripMenuItem.Text = "&Autorizados";
             this.autorizadosToolStripMenuItem.Click += new System.EventHandler(this.autorizadosToolStripMenuItem_Click);
             // 
             // ultimosNúmerosToolStripMenuItem
             // 
             this.ultimosNúmerosToolStripMenuItem.Name = "ultimosNúmerosToolStripMenuItem";
-            this.ultimosNúmerosToolStripMenuItem.Size = new System.Drawing.Size(167, 22);
+            this.ultimosNúmerosToolStripMenuItem.Size = new System.Drawing.Size(199, 22);
             this.ultimosNúmerosToolStripMenuItem.Text = "&Ultimos Números";
             this.ultimosNúmerosToolStripMenuItem.Click += new System.EventHandler(this.ultimosNúmerosToolStripMenuItem_Click);
             // 
@@ -338,6 +340,13 @@
             this.certificadoToolStripMenuItem.Text = "C&ertificado";
             this.certificadoToolStripMenuItem.Click += new System.EventHandler(this.certificadoToolStripMenuItem_Click);
             // 
+            // autoConfiguraciónToolStripMenuItem
+            // 
+            this.autoConfiguraciónToolStripMenuItem.Name = "autoConfiguraciónToolStripMenuItem";
+            this.autoConfiguraciónToolStripMenuItem.Size = new System.Drawing.Size(194, 22);
+            this.autoConfiguraciónToolStripMenuItem.Text = "A&utoConfiguración";
+            this.autoConfiguraciónToolStripMenuItem.Click += new System.EventHandler(this.autoConfiguraciónToolStripMenuItem_Click);
+            // 
             // pruebaDelWebServiceToolStripMenuItem
             // 
             this.pruebaDelWebServiceToolStripMenuItem.Name = "pruebaDelWebServiceToolStripMenuItem";
@@ -393,12 +402,12 @@
             this.btnVerificarInternet.UseVisualStyleBackColor = true;
             this.btnVerificarInternet.Click += new System.EventHandler(this.btnVerificarInternet_Click);
             // 
-            // autoConfiguraciónToolStripMenuItem
+            // autorizarComprobanteToolStripMenuItem
             // 
-            this.autoConfiguraciónToolStripMenuItem.Name = "autoConfiguraciónToolStripMenuItem";
-            this.autoConfiguraciónToolStripMenuItem.Size = new System.Drawing.Size(194, 22);
-            this.autoConfiguraciónToolStripMenuItem.Text = "A&utoConfiguración";
-            this.autoConfiguraciónToolStripMenuItem.Click += new System.EventHandler(this.autoConfiguraciónToolStripMenuItem_Click);
+            this.autorizarComprobanteToolStripMenuItem.Name = "autorizarComprobanteToolStripMenuItem";
+            this.autorizarComprobanteToolStripMenuItem.Size = new System.Drawing.Size(199, 22);
+            this.autorizarComprobanteToolStripMenuItem.Text = "&Autorizar Comprobante";
+            this.autorizarComprobanteToolStripMenuItem.Click += new System.EventHandler(this.autorizarComprobanteToolStripMenuItem_Click);
             // 
             // frmTicketAcceso
             // 
@@ -466,5 +475,6 @@
         private System.Windows.Forms.ToolStripMenuItem ultimosNúmerosToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem pruebaDelWebServiceToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem autoConfiguraciónToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem autorizarComprobanteToolStripMenuItem;
     }
 }

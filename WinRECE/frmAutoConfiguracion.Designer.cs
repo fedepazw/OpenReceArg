@@ -255,7 +255,6 @@
             this.lblTablaTiposDocumentosRTA.Name = "lblTablaTiposDocumentosRTA";
             this.lblTablaTiposDocumentosRTA.Size = new System.Drawing.Size(0, 13);
             this.lblTablaTiposDocumentosRTA.TabIndex = 17;
-            this.lblTablaTiposDocumentosRTA.Visible = false;
             // 
             // lblTablaTiposDocumentos
             // 
@@ -266,18 +265,15 @@
             this.lblTablaTiposDocumentos.Size = new System.Drawing.Size(208, 13);
             this.lblTablaTiposDocumentos.TabIndex = 16;
             this.lblTablaTiposDocumentos.Text = "Actualizando Tabla de Tipos Documentos:";
-            this.lblTablaTiposDocumentos.Visible = false;
             // 
             // lblTablaTiposConceptosRTA
             // 
             this.lblTablaTiposConceptosRTA.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.lblTablaTiposConceptosRTA.AutoSize = true;
-            this.lblTablaTiposConceptosRTA.Location = new System.Drawing.Point(303, 166);
+            this.lblTablaTiposConceptosRTA.Location = new System.Drawing.Point(314, 166);
             this.lblTablaTiposConceptosRTA.Name = "lblTablaTiposConceptosRTA";
-            this.lblTablaTiposConceptosRTA.Size = new System.Drawing.Size(22, 13);
+            this.lblTablaTiposConceptosRTA.Size = new System.Drawing.Size(0, 13);
             this.lblTablaTiposConceptosRTA.TabIndex = 15;
-            this.lblTablaTiposConceptosRTA.Text = "OK";
-            this.lblTablaTiposConceptosRTA.Visible = false;
             // 
             // lblTablaTiposConceptos
             // 
@@ -288,7 +284,6 @@
             this.lblTablaTiposConceptos.Size = new System.Drawing.Size(214, 13);
             this.lblTablaTiposConceptos.TabIndex = 14;
             this.lblTablaTiposConceptos.Text = "Actualizando Tabla de Tipos de Conceptos:";
-            this.lblTablaTiposConceptos.Visible = false;
             // 
             // lblTablaTiposCbtesRTA
             // 
@@ -313,12 +308,10 @@
             // 
             this.lblTablaPaisesRTA.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.lblTablaPaisesRTA.AutoSize = true;
-            this.lblTablaPaisesRTA.Location = new System.Drawing.Point(303, 120);
+            this.lblTablaPaisesRTA.Location = new System.Drawing.Point(314, 120);
             this.lblTablaPaisesRTA.Name = "lblTablaPaisesRTA";
-            this.lblTablaPaisesRTA.Size = new System.Drawing.Size(22, 13);
+            this.lblTablaPaisesRTA.Size = new System.Drawing.Size(0, 13);
             this.lblTablaPaisesRTA.TabIndex = 11;
-            this.lblTablaPaisesRTA.Text = "OK";
-            this.lblTablaPaisesRTA.Visible = false;
             // 
             // lblTablaPaises
             // 
@@ -329,18 +322,15 @@
             this.lblTablaPaises.Size = new System.Drawing.Size(150, 13);
             this.lblTablaPaises.TabIndex = 10;
             this.lblTablaPaises.Text = "Actualizando Tabla de Paises:";
-            this.lblTablaPaises.Visible = false;
             // 
             // lblBorrarEventosRTA
             // 
             this.lblBorrarEventosRTA.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.lblBorrarEventosRTA.AutoSize = true;
-            this.lblBorrarEventosRTA.Location = new System.Drawing.Point(303, 97);
+            this.lblBorrarEventosRTA.Location = new System.Drawing.Point(314, 97);
             this.lblBorrarEventosRTA.Name = "lblBorrarEventosRTA";
-            this.lblBorrarEventosRTA.Size = new System.Drawing.Size(22, 13);
+            this.lblBorrarEventosRTA.Size = new System.Drawing.Size(0, 13);
             this.lblBorrarEventosRTA.TabIndex = 9;
-            this.lblBorrarEventosRTA.Text = "OK";
-            this.lblBorrarEventosRTA.Visible = false;
             // 
             // lblBorrarEventos
             // 
@@ -351,18 +341,15 @@
             this.lblBorrarEventos.Size = new System.Drawing.Size(121, 13);
             this.lblBorrarEventos.TabIndex = 8;
             this.lblBorrarEventos.Text = "Borrar Logs de Eventos:";
-            this.lblBorrarEventos.Visible = false;
             // 
             // lblBorrarErroresRTA
             // 
             this.lblBorrarErroresRTA.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.lblBorrarErroresRTA.AutoSize = true;
-            this.lblBorrarErroresRTA.Location = new System.Drawing.Point(303, 74);
+            this.lblBorrarErroresRTA.Location = new System.Drawing.Point(314, 74);
             this.lblBorrarErroresRTA.Name = "lblBorrarErroresRTA";
-            this.lblBorrarErroresRTA.Size = new System.Drawing.Size(22, 13);
+            this.lblBorrarErroresRTA.Size = new System.Drawing.Size(0, 13);
             this.lblBorrarErroresRTA.TabIndex = 7;
-            this.lblBorrarErroresRTA.Text = "OK";
-            this.lblBorrarErroresRTA.Visible = false;
             // 
             // lblBorrarErrores
             // 
@@ -373,7 +360,6 @@
             this.lblBorrarErrores.Size = new System.Drawing.Size(115, 13);
             this.lblBorrarErrores.TabIndex = 6;
             this.lblBorrarErrores.Text = "Borrar Logs de Errores:";
-            this.lblBorrarErrores.Visible = false;
             // 
             // lblPedirNuevoTicketAccRTA
             // 
