@@ -31,6 +31,8 @@
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmErroresWS));
             this.btnCerrar = new System.Windows.Forms.Button();
             this.dgvErroresWS = new System.Windows.Forms.DataGridView();
+            this.btnExportarExcel = new System.Windows.Forms.Button();
+            this.saveFileDialogExcel = new System.Windows.Forms.SaveFileDialog();
             ((System.ComponentModel.ISupportInitialize)(this.dgvErroresWS)).BeginInit();
             this.SuspendLayout();
             // 
@@ -59,12 +61,23 @@
             this.dgvErroresWS.Size = new System.Drawing.Size(847, 360);
             this.dgvErroresWS.TabIndex = 12;
             // 
+            // btnExportarExcel
+            // 
+            this.btnExportarExcel.Location = new System.Drawing.Point(709, 372);
+            this.btnExportarExcel.Name = "btnExportarExcel";
+            this.btnExportarExcel.Size = new System.Drawing.Size(75, 39);
+            this.btnExportarExcel.TabIndex = 15;
+            this.btnExportarExcel.Text = "Exportar a Excel";
+            this.btnExportarExcel.UseVisualStyleBackColor = true;
+            this.btnExportarExcel.Click += new System.EventHandler(this.btnExportarExcel_Click);
+            // 
             // frmErroresWS
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(877, 418);
             this.ControlBox = false;
+            this.Controls.Add(this.btnExportarExcel);
             this.Controls.Add(this.btnCerrar);
             this.Controls.Add(this.dgvErroresWS);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
@@ -81,5 +94,7 @@
 
         private System.Windows.Forms.Button btnCerrar;
         private System.Windows.Forms.DataGridView dgvErroresWS;
+        private System.Windows.Forms.Button btnExportarExcel;
+        private System.Windows.Forms.SaveFileDialog saveFileDialogExcel;
     }
 }

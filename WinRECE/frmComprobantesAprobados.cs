@@ -11,6 +11,7 @@ namespace OpenRECE
 {
     public partial class frmComprobantesAprobados : Form
     {
+        
         public frmComprobantesAprobados()
         {
             InitializeComponent();
@@ -23,10 +24,24 @@ namespace OpenRECE
         /// <param name="sender"></param>
         /// <param name="e"></param>
         private void frmComprobantesAprobados_Load(object sender, EventArgs e)
-        {            
+        {
+            configuraArchivoExcel();
             CargarComboPtosVenta();
             CargarComboTiposCbtes();
             TraerTodos(Convert.ToInt32(cboPtosVenta.SelectedValue), Convert.ToInt32(cboTipoCbte.SelectedValue));
+        }
+
+        /// <summary>
+        /// Configura los parámetros del Archivo Excel
+        /// </summary>
+        private void configuraArchivoExcel()
+        {            
+            saveFileDialogExcel.Title = "Guardar Archivo de Comprobantes Aprobados";
+            saveFileDialogExcel.AddExtension = true;
+            saveFileDialogExcel.DefaultExt = ".xlsx";
+            saveFileDialogExcel.FileName = "OR_cbtesAutorizados_";
+            saveFileDialogExcel.Filter = "Archivo de Excel 2007 (*.xlsx)|*.xlsx";
+            saveFileDialogExcel.InitialDirectory = System.Environment.GetFolderPath(Environment.SpecialFolder.Personal);
         }
 
         /// <summary>
@@ -295,6 +310,69 @@ namespace OpenRECE
         private void btnCerrar_Click(object sender, EventArgs e)
         {
             this.Close();
+        }
+
+        /// <summary>
+        /// Control del botón Exportar a Excel
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void btnExportarExcel_Click(object sender, EventArgs e)
+        {
+            exportarExcel();
+        }
+
+        /// <summary>
+        /// Exporta a Excel el DataTable con los filtros seleccionados
+        /// </summary>
+        private void exportarExcel()
+        {
+            string fechaActual;
+            int ptoVentaExportar = Convert.ToInt32(cboPtosVenta.SelectedValue);
+            int tipoCbteExportar = Convert.ToInt32(cboTipoCbte.SelectedValue);
+            string tipoCbteExportarCadena = cboTipoCbte.Text;
+            string nombreHojaExcel;
+
+            /*Asigno un nombre de Archivo*/
+            fechaActual = DateTime.Now.ToString("yyyyMMdd_HHmm");
+            saveFileDialogExcel.FileName = saveFileDialogExcel.FileName + "PtoVenta_" + ptoVentaExportar.ToString() + "_" + tipoCbteExportarCadena + '_' + fechaActual;
+
+            if (saveFileDialogExcel.ShowDialog() == DialogResult.OK)
+            {
+                Logica.Comprobantes_Autorizados objLogicaCbtesAutorizados = new Logica.Comprobantes_Autorizados();
+                DataTable datosAExportar;
+
+
+                Logica.ArchExcel objLogicaArchExcel = new Logica.ArchExcel();
+                
+                /*Asigno Nombre a la Hoja de Excel*/
+                nombreHojaExcel = (tipoCbteExportarCadena + " PtoVenta " + ptoVentaExportar.ToString());
+
+                if (nombreHojaExcel.Length >= 31)
+                {
+                    //Las hojas de Excel permiten nombres de longitud menor a 31
+                    nombreHojaExcel = nombreHojaExcel.Substring(0, 30);
+                }
+
+                /*Creo el DataTable a Exportar*/
+                if (chkFiltroNros.Checked == true)
+                {
+                    datosAExportar = objLogicaCbtesAutorizados.TraerCbtesEspecificoNro(ptoVentaExportar, tipoCbteExportar, Convert.ToInt32(txtNroCbteDesde.Text), Convert.ToInt32(txtNroCbteHasta.Text));
+                }
+                else
+                {
+                    datosAExportar = objLogicaCbtesAutorizados.TraerCbtesEspecifico(ptoVentaExportar, tipoCbteExportar);
+                }
+
+                objLogicaArchExcel.guardarArchivoExcel(datosAExportar, nombreHojaExcel, saveFileDialogExcel.FileName);
+
+                frmAbrirArchivo objAbrirArch = new frmAbrirArchivo();
+
+                if (objAbrirArch.ShowDialog() == DialogResult.OK)
+                {
+                    System.Diagnostics.Process.Start(saveFileDialogExcel.FileName);
+                }
+            }
         }
 
     }

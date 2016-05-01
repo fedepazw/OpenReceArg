@@ -54,6 +54,10 @@ namespace OpenRECE
                         actualizarTablaTiposCbtes();
                         actualizarTablaTiposConceptos();
                         actulizarTablaTiposDocumentos();
+                        actualizarTablaTiposIva();
+                        actualizarTablaTiposMonedas();
+                        actualizarTablaTiposOpcionales();
+                        actualizarTablaTiposTributos();
                         actualizarTablaPuntosVenta();
                         actualizarUltAutorizadosRTA();
                     }
@@ -443,6 +447,214 @@ namespace OpenRECE
                     lblTablaTiposDocumentosRTA.ForeColor = Color.Red;
                     lblTablaTiposDocumentosRTA.Text = "ERROR";
                     lblTablaTiposDocumentosRTA.Refresh();
+                }
+            }
+        }
+
+        /// <summary>
+        /// Actualiza desde el WebService la Tabla de Tipos Iva
+        /// </summary>
+        private void actualizarTablaTiposIva()
+        {
+            lblTablaTiposIvaRTA.ForeColor = Color.Black;
+            lblTablaTiposIvaRTA.Text = "Procesando...";
+            lblTablaTiposIvaRTA.Refresh();
+
+            Entidades.Tickets_Acceso objEntidadesTicket_Acceso = new Entidades.Tickets_Acceso();
+            Logica.Tickets_Acceso objLogicaTicket_Acceso = new Logica.Tickets_Acceso();
+
+            objEntidadesTicket_Acceso = objLogicaTicket_Acceso.TraerTicketActivo();
+
+            //Llamo al Webservice para recuperar los Tipos de Iva
+            Logica.WebServices_AFIP objLogicaWebServiceAfip = new Logica.WebServices_AFIP();
+
+            if (objEntidadesTicket_Acceso.TipoAprobacion == 'P') //Producción
+            {
+                /*WebService Producción*/
+                if (objLogicaWebServiceAfip.FEParamGetTiposIva(objEntidadesTicket_Acceso) == Entidades.WebServices_AFIP.RespuestaWS.Correcta)
+                {
+                    lblTablaTiposIvaRTA.ForeColor = Color.Green;
+                    lblTablaTiposIvaRTA.Text = "OK";
+                    lblTablaTiposIvaRTA.Refresh();
+                }
+                else
+                {
+                    lblTablaTiposIvaRTA.ForeColor = Color.Red;
+                    lblTablaTiposIvaRTA.Text = "ERROR";
+                    lblTablaTiposIvaRTA.Refresh();
+                }
+
+            }
+            else
+            {
+                /*WebService Homologacion*/
+                if (objLogicaWebServiceAfip.FEParamGetTiposIva_Homologacion(objEntidadesTicket_Acceso) == Entidades.WebServices_AFIP.RespuestaWS.Correcta)
+                {
+                    lblTablaTiposIvaRTA.ForeColor = Color.Green;
+                    lblTablaTiposIvaRTA.Text = "OK";
+                    lblTablaTiposIvaRTA.Refresh();
+                }
+                else
+                {
+                    lblTablaTiposIvaRTA.ForeColor = Color.Red;
+                    lblTablaTiposIvaRTA.Text = "ERROR";
+                    lblTablaTiposIvaRTA.Refresh();
+                }
+            }
+        }
+
+        /// <summary>
+        /// Actualiza desde el WebService la Tabla Tipos de Monedas
+        /// </summary>
+        private void actualizarTablaTiposMonedas()
+        {
+            lblTablaTiposMonedasRTA.ForeColor = Color.Black;
+            lblTablaTiposMonedasRTA.Text = "Procesando...";
+            lblTablaTiposMonedasRTA.Refresh();
+
+            Entidades.Tickets_Acceso objEntidadesTicket_Acceso = new Entidades.Tickets_Acceso();
+            Logica.Tickets_Acceso objLogicaTicket_Acceso = new Logica.Tickets_Acceso();
+
+            objEntidadesTicket_Acceso = objLogicaTicket_Acceso.TraerTicketActivo();
+
+            //Llamo al Webservice para recuperar los Tipos de Monedas 
+            Logica.WebServices_AFIP objLogicaWebServiceAfip = new Logica.WebServices_AFIP();
+
+            if (objEntidadesTicket_Acceso.TipoAprobacion == 'P') //Producción
+            {
+                /*WebService Producción*/
+                if (objLogicaWebServiceAfip.FEParamGetTiposMonedas(objEntidadesTicket_Acceso) == Entidades.WebServices_AFIP.RespuestaWS.Correcta)
+                {
+                    lblTablaTiposMonedasRTA.ForeColor = Color.Green;
+                    lblTablaTiposMonedasRTA.Text = "OK";
+                    lblTablaTiposMonedasRTA.Refresh();
+                }
+                else
+                {
+                    lblTablaTiposMonedasRTA.ForeColor = Color.Red;
+                    lblTablaTiposMonedasRTA.Text = "ERROR";
+                    lblTablaTiposMonedasRTA.Refresh();
+                }
+
+            }
+            else
+            {
+                /*WebService Homologacion*/
+                if (objLogicaWebServiceAfip.FEParamGetTiposMonedas_Homologacion(objEntidadesTicket_Acceso) == Entidades.WebServices_AFIP.RespuestaWS.Correcta)
+                {
+                    lblTablaTiposMonedasRTA.ForeColor = Color.Green;
+                    lblTablaTiposMonedasRTA.Text = "OK";
+                    lblTablaTiposMonedasRTA.Refresh();
+                }
+                else
+                {
+                    lblTablaTiposMonedasRTA.ForeColor = Color.Red;
+                    lblTablaTiposMonedasRTA.Text = "ERROR";
+                    lblTablaTiposMonedasRTA.Refresh();
+                }
+            }
+        }
+
+        /// <summary>
+        /// Actualiza desde el WebService la Tabla Tipos Opcionales
+        /// </summary>
+        private void actualizarTablaTiposOpcionales()
+        {
+            lblTablaTiposOpcionalesRTA.ForeColor = Color.Black;
+            lblTablaTiposOpcionalesRTA.Text = "Procesando...";
+            lblTablaTiposOpcionalesRTA.Refresh();
+
+            Entidades.Tickets_Acceso objEntidadesTicket_Acceso = new Entidades.Tickets_Acceso();
+            Logica.Tickets_Acceso objLogicaTicket_Acceso = new Logica.Tickets_Acceso();
+
+            objEntidadesTicket_Acceso = objLogicaTicket_Acceso.TraerTicketActivo();
+
+            //Llamo al Webservice para recuperar los Tipos de Monedas 
+            Logica.WebServices_AFIP objLogicaWebServiceAfip = new Logica.WebServices_AFIP();
+
+            if (objEntidadesTicket_Acceso.TipoAprobacion == 'P') //Producción
+            {
+                /*WebService Producción*/
+                if (objLogicaWebServiceAfip.FEParamGetTiposOpcionales(objEntidadesTicket_Acceso) == Entidades.WebServices_AFIP.RespuestaWS.Correcta)
+                {
+                    lblTablaTiposOpcionalesRTA.ForeColor = Color.Green;
+                    lblTablaTiposOpcionalesRTA.Text = "OK";
+                    lblTablaTiposOpcionalesRTA.Refresh();
+                }
+                else
+                {
+                    lblTablaTiposOpcionalesRTA.ForeColor = Color.Red;
+                    lblTablaTiposOpcionalesRTA.Text = "ERROR";
+                    lblTablaTiposOpcionalesRTA.Refresh();
+                }
+
+            }
+            else
+            {
+                /*WebService Homologacion*/
+                if (objLogicaWebServiceAfip.FEParamGetTiposOpcionales_Homologacion(objEntidadesTicket_Acceso) == Entidades.WebServices_AFIP.RespuestaWS.Correcta)
+                {
+                    lblTablaTiposOpcionalesRTA.ForeColor = Color.Green;
+                    lblTablaTiposOpcionalesRTA.Text = "OK";
+                    lblTablaTiposOpcionalesRTA.Refresh();
+                }
+                else
+                {
+                    lblTablaTiposOpcionalesRTA.ForeColor = Color.Red;
+                    lblTablaTiposOpcionalesRTA.Text = "ERROR";
+                    lblTablaTiposOpcionalesRTA.Refresh();
+                }
+            }
+        }
+
+        /// <summary>
+        /// Actualiza desde el WebService la Tabla Tipos de Tributos
+        /// </summary>
+        private void actualizarTablaTiposTributos()
+        {
+            lblTablaTiposTributosRTA.ForeColor = Color.Black;
+            lblTablaTiposTributosRTA.Text = "Procesando...";
+            lblTablaTiposTributosRTA.Refresh();
+
+            Entidades.Tickets_Acceso objEntidadesTicket_Acceso = new Entidades.Tickets_Acceso();
+            Logica.Tickets_Acceso objLogicaTicket_Acceso = new Logica.Tickets_Acceso();
+
+            objEntidadesTicket_Acceso = objLogicaTicket_Acceso.TraerTicketActivo();
+
+            //Llamo al Webservice para recuperar los Tipos de Monedas 
+            Logica.WebServices_AFIP objLogicaWebServiceAfip = new Logica.WebServices_AFIP();
+
+            if (objEntidadesTicket_Acceso.TipoAprobacion == 'P') //Producción
+            {
+                /*WebService Producción*/
+                if (objLogicaWebServiceAfip.FEParamGetTiposTributos(objEntidadesTicket_Acceso) == Entidades.WebServices_AFIP.RespuestaWS.Correcta)
+                {
+                    lblTablaTiposTributosRTA.ForeColor = Color.Green;
+                    lblTablaTiposTributosRTA.Text = "OK";
+                    lblTablaTiposTributosRTA.Refresh();
+                }
+                else
+                {
+                    lblTablaTiposTributosRTA.ForeColor = Color.Red;
+                    lblTablaTiposTributosRTA.Text = "ERROR";
+                    lblTablaTiposTributosRTA.Refresh();
+                }
+
+            }
+            else
+            {
+                /*WebService Homologacion*/
+                if (objLogicaWebServiceAfip.FEParamGetTiposTributos_Homologacion(objEntidadesTicket_Acceso) == Entidades.WebServices_AFIP.RespuestaWS.Correcta)
+                {
+                    lblTablaTiposTributosRTA.ForeColor = Color.Green;
+                    lblTablaTiposTributosRTA.Text = "OK";
+                    lblTablaTiposTributosRTA.Refresh();
+                }
+                else
+                {
+                    lblTablaTiposTributosRTA.ForeColor = Color.Red;
+                    lblTablaTiposTributosRTA.Text = "ERROR";
+                    lblTablaTiposTributosRTA.Refresh();
                 }
             }
         }

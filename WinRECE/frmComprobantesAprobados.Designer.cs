@@ -44,6 +44,8 @@
             this.chkFiltroNros = new System.Windows.Forms.CheckBox();
             this.btnFiltrarCbtes = new System.Windows.Forms.Button();
             this.printDocCbtesAutorizados = new System.Drawing.Printing.PrintDocument();
+            this.btnExportarExcel = new System.Windows.Forms.Button();
+            this.saveFileDialogExcel = new System.Windows.Forms.SaveFileDialog();
             ((System.ComponentModel.ISupportInitialize)(this.dgvCbtesAutorizados)).BeginInit();
             this.SuspendLayout();
             // 
@@ -178,12 +180,13 @@
             // btnImprimir
             // 
             this.btnImprimir.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnImprimir.Location = new System.Drawing.Point(715, 514);
+            this.btnImprimir.Location = new System.Drawing.Point(634, 514);
             this.btnImprimir.Name = "btnImprimir";
             this.btnImprimir.Size = new System.Drawing.Size(75, 39);
             this.btnImprimir.TabIndex = 33;
             this.btnImprimir.Text = "Imprimir";
             this.btnImprimir.UseVisualStyleBackColor = true;
+            this.btnImprimir.Visible = false;
             this.btnImprimir.Click += new System.EventHandler(this.btnImprimir_Click);
             // 
             // chkFiltroNros
@@ -213,6 +216,16 @@
             this.printDocCbtesAutorizados.DocumentName = "Comprobantes Autorizados";
             this.printDocCbtesAutorizados.PrintPage += new System.Drawing.Printing.PrintPageEventHandler(this.printDocCbtesAutorizados_PrintPage);
             // 
+            // btnExportarExcel
+            // 
+            this.btnExportarExcel.Location = new System.Drawing.Point(715, 514);
+            this.btnExportarExcel.Name = "btnExportarExcel";
+            this.btnExportarExcel.Size = new System.Drawing.Size(75, 39);
+            this.btnExportarExcel.TabIndex = 36;
+            this.btnExportarExcel.Text = "Exportar a Excel";
+            this.btnExportarExcel.UseVisualStyleBackColor = true;
+            this.btnExportarExcel.Click += new System.EventHandler(this.btnExportarExcel_Click);
+            // 
             // frmComprobantesAprobados
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -232,6 +245,7 @@
             this.Controls.Add(this.txtNroCbteDesde);
             this.Controls.Add(this.txtNroCbteHasta);
             this.Controls.Add(this.cboTipoCbte);
+            this.Controls.Add(this.btnExportarExcel);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MinimizeBox = false;
             this.Name = "frmComprobantesAprobados";
@@ -261,5 +275,7 @@
         private System.Windows.Forms.CheckBox chkFiltroNros;
         private System.Windows.Forms.Button btnFiltrarCbtes;
         private System.Drawing.Printing.PrintDocument printDocCbtesAutorizados;
+        private System.Windows.Forms.Button btnExportarExcel;
+        private System.Windows.Forms.SaveFileDialog saveFileDialogExcel;
     }
 }

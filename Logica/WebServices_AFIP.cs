@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Data;
+using System.Globalization;
 using System.Linq;
 using System.Text;
 
@@ -2434,6 +2435,88 @@ namespace Logica
             {
                 objEntidadesWebService_AFIP_Rta = Entidades.WebServices_AFIP.RespuestaWS.Error;
             }
+
+            return objEntidadesWebService_AFIP_Rta;
+        }
+
+        public Entidades.WebServices_AFIP.RespuestaWS FECAESolicitar(Entidades.Tickets_Acceso pTicket_Rta, Entidades.Comprobantes pCbte)
+        {
+            Entidades.WebServices_AFIP.RespuestaWS objEntidadesWebService_AFIP_Rta = new Entidades.WebServices_AFIP.RespuestaWS();
+            /*
+             * https://servicios1.afip.gov.ar/wsfev1/service.asmx?op=FEParamGetPtosVenta
+             */
+            /*WebService*/
+            AFIP_WSFEV1_Produccion.FEAuthRequest autorizacion = new AFIP_WSFEV1_Produccion.FEAuthRequest();
+            AFIP_WSFEV1_Produccion.FECAEResponse respuesta = new AFIP_WSFEV1_Produccion.FECAEResponse();
+
+            AFIP_WSFEV1_Produccion.FECAERequest cbtePedido = new AFIP_WSFEV1_Produccion.FECAERequest();
+            /*Puntos de Venta Recuperados*/
+            Entidades.PtosVenta objEntidadesPtosVenta = new Entidades.PtosVenta();
+            Logica.PtosVenta objLogicaPtosVenta = new Logica.PtosVenta();
+            /*Errores Devueltos*/
+            Entidades.Errores_WS objEntidadesErroresWS = new Entidades.Errores_WS();
+            Logica.Errores_WS objLogicaErroresWS = new Logica.Errores_WS();
+            /*Eventos Devueltos*/
+            Entidades.Eventos_WS objEntidadesEventosWS = new Entidades.Eventos_WS();
+            Logica.Eventos_WS objLogicaEventosWS = new Logica.Eventos_WS();
+
+            /*Asigno los datos a la autorización*/
+            autorizacion.Cuit = pTicket_Rta.Cuit;
+            autorizacion.Sign = pTicket_Rta.Sign;
+            autorizacion.Token = pTicket_Rta.Token;
+
+            /*Asigno al CbteRequest los datos del Cbte*/
+
+            /*CABECERA*/
+            cbtePedido.FeCabReq.CantReg = 1;            
+            cbtePedido.FeCabReq.PtoVta = pCbte.Id_PtoVenta;
+            cbtePedido.FeCabReq.CbteTipo = pCbte.Id_TipoCbte;
+
+            /*DETALLE*/
+            int i = 0;
+            cbtePedido.FeDetReq[i].Concepto = pCbte.Id_TipoConcepto;
+            //pCbte.Id_Cliente;
+            cbtePedido.FeDetReq[i].DocTipo = 80; /*ARREGLAR*/
+            cbtePedido.FeDetReq[i].DocNro = 20335542402; /*ARREGLAR*/
+            cbtePedido.FeDetReq[i].CbteDesde = pCbte.Nro_CbteDesde;
+            cbtePedido.FeDetReq[i].CbteHasta = pCbte.Nro_CbteHasta;
+            cbtePedido.FeDetReq[i].CbteFch = pCbte.CbteFch.ToString("yyyyMMdd");
+            cbtePedido.FeDetReq[i].ImpTotal = pCbte.ImpTotal;
+            cbtePedido.FeDetReq[i].ImpTotConc = pCbte.ImpTotConc;
+            cbtePedido.FeDetReq[i].ImpNeto = pCbte.ImpNeto;
+            cbtePedido.FeDetReq[i].ImpOpEx = pCbte.ImpOpEx;
+            cbtePedido.FeDetReq[i].ImpIVA = pCbte.ImpIVA;
+            cbtePedido.FeDetReq[i].ImpTrib = pCbte.ImpTrib;
+            cbtePedido.FeDetReq[i].FchServDesde = pCbte.FchServDesde.ToString("yyyyMMdd");
+            cbtePedido.FeDetReq[i].FchServHasta = pCbte.FchServHasta.ToString("yyyyMMdd");
+            cbtePedido.FeDetReq[i].FchVtoPago = pCbte.FchVtoPago.ToString("yyyyMMdd");
+            cbtePedido.FeDetReq[i].MonId = pCbte.Id_TipoMoneda;
+            cbtePedido.FeDetReq[i].MonCotiz = pCbte.MonCotiz;
+            
+            /*CBTES ASOCIADOS*/
+            //cbtePedido.FeDetReq[i].CbtesAsoc[a].Tipo = ;
+            //cbtePedido.FeDetReq[i].CbtesAsoc[a].PtoVta = ;
+            //cbtePedido.FeDetReq[i].CbtesAsoc[a].Nro = ;
+
+            /*TRIBUTOS*/
+            //cbtePedido.FeDetReq[i].Tributos[t].Id = ;
+            //cbtePedido.FeDetReq[i].Tributos[t].Desc = ;
+            //cbtePedido.FeDetReq[i].Tributos[t].BaseImp = ;
+            //cbtePedido.FeDetReq[i].Tributos[t].Alic = ;
+            //cbtePedido.FeDetReq[i].Tributos[t].Importe = ;
+
+            /*IVA*/
+            //cbtePedido.FeDetReq[i].Iva[v].Id = ;
+            //cbtePedido.FeDetReq[i].Iva[v].BaseImp = ;
+            //cbtePedido.FeDetReq[i].Iva[v].Importe = ;
+
+            /*OPCIONALES*/
+            //cbtePedido.FeDetReq[i].Opcionales[o].Id = ;
+            //cbtePedido.FeDetReq[i].Opcionales[o].Valor = ;
+
+            /*Llamo al WebService*/
+            AFIP_WSFEV1_Produccion.Service webService = new AFIP_WSFEV1_Produccion.Service();
+            respuesta = webService.FECAESolicitar(autorizacion, cbtePedido);
 
             return objEntidadesWebService_AFIP_Rta;
         }

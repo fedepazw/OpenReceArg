@@ -261,6 +261,7 @@ namespace OpenRECE
             frmComprobantesAprobados objCbtesAprobados = new frmComprobantesAprobados();
 
             objCbtesAprobados.ShowDialog();
+
         }
 
         /// <summary>

@@ -78,6 +78,7 @@
             this.txtCliRazonSocial = new System.Windows.Forms.TextBox();
             this.lblCliRazonSocial = new System.Windows.Forms.Label();
             this.backgroundWorker1 = new System.ComponentModel.BackgroundWorker();
+            this.btnProcesarCbte = new System.Windows.Forms.Button();
             this.tabCDetalle.SuspendLayout();
             this.tabPage1.SuspendLayout();
             this.SuspendLayout();
@@ -518,11 +519,22 @@
             this.lblCliRazonSocial.TabIndex = 0;
             this.lblCliRazonSocial.Text = "Cliente:";
             // 
+            // btnProcesarCbte
+            // 
+            this.btnProcesarCbte.Location = new System.Drawing.Point(713, 557);
+            this.btnProcesarCbte.Name = "btnProcesarCbte";
+            this.btnProcesarCbte.Size = new System.Drawing.Size(115, 36);
+            this.btnProcesarCbte.TabIndex = 32;
+            this.btnProcesarCbte.Text = "Procesar Comprobante";
+            this.btnProcesarCbte.UseVisualStyleBackColor = true;
+            this.btnProcesarCbte.Click += new System.EventHandler(this.btnProcesarCbte_Click);
+            // 
             // frmFichaComprobante
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(840, 547);
+            this.ClientSize = new System.Drawing.Size(840, 605);
+            this.Controls.Add(this.btnProcesarCbte);
             this.Controls.Add(this.tabCDetalle);
             this.Controls.Add(this.mtxtImpTrib);
             this.Controls.Add(this.lblImpTrib);
@@ -618,5 +630,6 @@
         private System.Windows.Forms.Label lblCliProvincia;
         private System.Windows.Forms.TextBox txtCliLocalidad;
         private System.Windows.Forms.Label lblCliLocalidad;
+        private System.Windows.Forms.Button btnProcesarCbte;
     }
 }

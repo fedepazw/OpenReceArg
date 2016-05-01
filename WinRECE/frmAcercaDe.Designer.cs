@@ -35,11 +35,12 @@
             this.lblCreador = new System.Windows.Forms.Label();
             this.lblLicencia = new System.Windows.Forms.Label();
             this.wbLicencia = new System.Windows.Forms.WebBrowser();
+            this.lblMarcaExcel = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // btnCerrar
             // 
-            this.btnCerrar.Location = new System.Drawing.Point(599, 311);
+            this.btnCerrar.Location = new System.Drawing.Point(607, 331);
             this.btnCerrar.Name = "btnCerrar";
             this.btnCerrar.Size = new System.Drawing.Size(81, 35);
             this.btnCerrar.TabIndex = 0;
@@ -94,12 +95,22 @@
             this.wbLicencia.TabIndex = 6;
             this.wbLicencia.Url = new System.Uri("http://www.gnu.org/licenses/gpl.txt", System.UriKind.Absolute);
             // 
+            // lblMarcaExcel
+            // 
+            this.lblMarcaExcel.AutoSize = true;
+            this.lblMarcaExcel.Location = new System.Drawing.Point(20, 311);
+            this.lblMarcaExcel.Name = "lblMarcaExcel";
+            this.lblMarcaExcel.Size = new System.Drawing.Size(270, 13);
+            this.lblMarcaExcel.TabIndex = 7;
+            this.lblMarcaExcel.Text = "Excel es una marca registrada de Microsoft  Corporation";
+            // 
             // frmAcercaDe
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(707, 352);
+            this.ClientSize = new System.Drawing.Size(707, 376);
             this.ControlBox = false;
+            this.Controls.Add(this.lblMarcaExcel);
             this.Controls.Add(this.wbLicencia);
             this.Controls.Add(this.lblLicencia);
             this.Controls.Add(this.lblCreador);
@@ -124,5 +135,6 @@
         private System.Windows.Forms.Label lblCreador;
         private System.Windows.Forms.Label lblLicencia;
         private System.Windows.Forms.WebBrowser wbLicencia;
+        private System.Windows.Forms.Label lblMarcaExcel;
     }
 }

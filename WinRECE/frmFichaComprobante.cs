@@ -43,9 +43,9 @@ namespace OpenRECE
         /// </summary>
         void CargarComboTiposCbtes()
         {
-            Logica.UltCbtesAutorizados objLogicaUltCbtesAutorizados = new Logica.UltCbtesAutorizados();
+            Logica.TiposCbtes objLogicaTiposCbtes = new Logica.TiposCbtes();
 
-            cmbTipoCbte.DataSource = objLogicaUltCbtesAutorizados.TraerTodos();
+            cmbTipoCbte.DataSource = objLogicaTiposCbtes.TraerTodos();
             cmbTipoCbte.ValueMember = "Id_TipoCbte";
             cmbTipoCbte.DisplayMember = "Descripcion";
         }
@@ -99,6 +99,43 @@ namespace OpenRECE
             cmbCliPais.ValueMember = "Id_Pais";
             cmbCliPais.DisplayMember = "Descripcion";
             cmbCliPais.SelectedValue = 200; //Id_Pais = 200 -> Argentina
+        }
+
+        private void btnProcesarCbte_Click(object sender, EventArgs e)
+        {
+            Entidades.Tickets_Acceso objEntidadesTicket_Acceso = new Entidades.Tickets_Acceso();
+            Logica.Tickets_Acceso objLogicaTicket_Acceso = new Logica.Tickets_Acceso();
+
+            objEntidadesTicket_Acceso = objLogicaTicket_Acceso.TraerTicketActivo();
+
+            //Llamo al Webservice para aprobar el Comprobante
+            Logica.WebServices_AFIP objLogicaWebServiceAfip = new Logica.WebServices_AFIP();
+
+            if (objEntidadesTicket_Acceso.TipoAprobacion == 'P') //Producción
+            {
+                /*WebService Producción*/
+                if (objLogicaWebServiceAfip.FEParamGetTiposPaises(objEntidadesTicket_Acceso) == Entidades.WebServices_AFIP.RespuestaWS.Correcta)
+                {
+                    MessageBox.Show("Paises actualizados desde el WebService");
+                }
+                else
+                {
+                    MessageBox.Show("El WebService devolvió un Error/Evento. Por favor revise los Logs");
+                }
+
+            }
+            else
+            {
+                /*WebService Homologacion*/
+                if (objLogicaWebServiceAfip.FEParamGetTiposPaises_Homologacion(objEntidadesTicket_Acceso) == Entidades.WebServices_AFIP.RespuestaWS.Correcta)
+                {
+                    MessageBox.Show("Paises actualizados desde el WebService");
+                }
+                else
+                {
+                    MessageBox.Show("El WebService devolvió un Error/Evento. Por favor revise los Logs");
+                }
+            }            
         }
     }
 }

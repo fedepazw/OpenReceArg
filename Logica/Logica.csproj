@@ -44,6 +44,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="ArchExcel.cs" />
     <Compile Include="CertificadosX509.cs" />
     <Compile Include="Comprobantes_Autorizados.cs" />
     <Compile Include="Configuracion_Certificado.cs" />

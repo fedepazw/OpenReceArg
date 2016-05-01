@@ -163,12 +163,10 @@
             // 
             this.lblTablaTiposTributosRTA.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.lblTablaTiposTributosRTA.AutoSize = true;
-            this.lblTablaTiposTributosRTA.Location = new System.Drawing.Point(303, 281);
+            this.lblTablaTiposTributosRTA.Location = new System.Drawing.Point(314, 281);
             this.lblTablaTiposTributosRTA.Name = "lblTablaTiposTributosRTA";
-            this.lblTablaTiposTributosRTA.Size = new System.Drawing.Size(22, 13);
+            this.lblTablaTiposTributosRTA.Size = new System.Drawing.Size(0, 13);
             this.lblTablaTiposTributosRTA.TabIndex = 25;
-            this.lblTablaTiposTributosRTA.Text = "OK";
-            this.lblTablaTiposTributosRTA.Visible = false;
             // 
             // lblTablaTiposTributos
             // 
@@ -179,18 +177,15 @@
             this.lblTablaTiposTributos.Size = new System.Drawing.Size(186, 13);
             this.lblTablaTiposTributos.TabIndex = 24;
             this.lblTablaTiposTributos.Text = "Actualizando Tabla de Tipos Tributos:";
-            this.lblTablaTiposTributos.Visible = false;
             // 
             // lblTablaTiposOpcionalesRTA
             // 
             this.lblTablaTiposOpcionalesRTA.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.lblTablaTiposOpcionalesRTA.AutoSize = true;
-            this.lblTablaTiposOpcionalesRTA.Location = new System.Drawing.Point(303, 258);
+            this.lblTablaTiposOpcionalesRTA.Location = new System.Drawing.Point(314, 258);
             this.lblTablaTiposOpcionalesRTA.Name = "lblTablaTiposOpcionalesRTA";
-            this.lblTablaTiposOpcionalesRTA.Size = new System.Drawing.Size(22, 13);
+            this.lblTablaTiposOpcionalesRTA.Size = new System.Drawing.Size(0, 13);
             this.lblTablaTiposOpcionalesRTA.TabIndex = 23;
-            this.lblTablaTiposOpcionalesRTA.Text = "OK";
-            this.lblTablaTiposOpcionalesRTA.Visible = false;
             // 
             // lblTablaTiposOpcionales
             // 
@@ -201,18 +196,15 @@
             this.lblTablaTiposOpcionales.Size = new System.Drawing.Size(201, 13);
             this.lblTablaTiposOpcionales.TabIndex = 22;
             this.lblTablaTiposOpcionales.Text = "Actualizando Tabla de Tipos Opcionales:";
-            this.lblTablaTiposOpcionales.Visible = false;
             // 
             // lblTablaTiposMonedasRTA
             // 
             this.lblTablaTiposMonedasRTA.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.lblTablaTiposMonedasRTA.AutoSize = true;
-            this.lblTablaTiposMonedasRTA.Location = new System.Drawing.Point(303, 235);
+            this.lblTablaTiposMonedasRTA.Location = new System.Drawing.Point(314, 235);
             this.lblTablaTiposMonedasRTA.Name = "lblTablaTiposMonedasRTA";
-            this.lblTablaTiposMonedasRTA.Size = new System.Drawing.Size(22, 13);
+            this.lblTablaTiposMonedasRTA.Size = new System.Drawing.Size(0, 13);
             this.lblTablaTiposMonedasRTA.TabIndex = 21;
-            this.lblTablaTiposMonedasRTA.Text = "OK";
-            this.lblTablaTiposMonedasRTA.Visible = false;
             // 
             // lblTablaTiposMonedas
             // 
@@ -223,18 +215,15 @@
             this.lblTablaTiposMonedas.Size = new System.Drawing.Size(207, 13);
             this.lblTablaTiposMonedas.TabIndex = 20;
             this.lblTablaTiposMonedas.Text = "Actualizando Tabla de Tipos de Monedas:";
-            this.lblTablaTiposMonedas.Visible = false;
             // 
             // lblTablaTiposIvaRTA
             // 
             this.lblTablaTiposIvaRTA.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.lblTablaTiposIvaRTA.AutoSize = true;
-            this.lblTablaTiposIvaRTA.Location = new System.Drawing.Point(303, 212);
+            this.lblTablaTiposIvaRTA.Location = new System.Drawing.Point(314, 212);
             this.lblTablaTiposIvaRTA.Name = "lblTablaTiposIvaRTA";
-            this.lblTablaTiposIvaRTA.Size = new System.Drawing.Size(22, 13);
+            this.lblTablaTiposIvaRTA.Size = new System.Drawing.Size(0, 13);
             this.lblTablaTiposIvaRTA.TabIndex = 19;
-            this.lblTablaTiposIvaRTA.Text = "OK";
-            this.lblTablaTiposIvaRTA.Visible = false;
             // 
             // lblTablaTiposIva
             // 
@@ -245,7 +234,6 @@
             this.lblTablaTiposIva.Size = new System.Drawing.Size(178, 13);
             this.lblTablaTiposIva.TabIndex = 18;
             this.lblTablaTiposIva.Text = "Actualizando Tabla de Tipos de Iva:";
-            this.lblTablaTiposIva.Visible = false;
             // 
             // lblTablaTiposDocumentosRTA
             // 

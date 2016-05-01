@@ -64,6 +64,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="frmAbrirArchivo.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmAbrirArchivo.Designer.cs">
+      <DependentUpon>frmAbrirArchivo.cs</DependentUpon>
+    </Compile>
     <Compile Include="frmAcercaDe.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -180,6 +186,9 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <EmbeddedResource Include="frmAbrirArchivo.resx">
+      <DependentUpon>frmAbrirArchivo.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="frmAcercaDe.resx">
       <DependentUpon>frmAcercaDe.cs</DependentUpon>
     </EmbeddedResource>
